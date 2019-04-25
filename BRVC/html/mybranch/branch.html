@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>晚霞先锋</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="../../css/mui.min.css"  />
+	<link rel="stylesheet" href="../../css/base.css" />
+	<link rel="stylesheet" href="../../css/list.css" /> 
+	<style>
+		.mui-table-view:before {height: 0px;}
+		body{
+			/*background-color: #efeff4;*/
+		}
+		.mui-table-view-cell:after {right: 0;left: 0px;height: 0px;
+		}
+		.mui-table-view:after {left: 0;height: 0px;}
+		.mui-table-view .mui-active {
+			background-color: #FFFFFF;
+		}
+		ul{
+			margin-top: 18px;
+		    margin-left: 10px;
+		    margin-right: 10px;
+		    /*position: static;*/
+		}
+		.mui-table-view .mui-media-object {
+			line-height: 42px;
+			max-width: 42px;
+			height: auto; 
+		}
+		.askLeave-list{
+			width: 48%;
+			float: left;
+			padding:0;
+			height: 80px;
+			line-height: 80px;
+			margin: 2% 1%;
+			border-radius: 10px;
+			box-shadow: 0 0 6px #666666;
+		}
+		.mui-table-view .askLeave-list img{
+			margin: 20px 10px!important;
+		}
+	</style>
+	
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/httpUrl.js"></script>
+	<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+	
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav headr" style="position: relative;">
+		 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		 <h1 class="mui-title font25">晚霞先锋管理</h1>
+    </header>
+    <div id="t_list2" class="mui-content" style="z-index: 3;padding-top: 0px; position: relative;background: #efeff4;">
+	  	<ul id="t_list2" class="mui-table-view" style="">
+		    <li class="mui-table-view-cell askLeave-list">  
+		    	<div class="mui-row" onclick="jump(7)">
+					<div class="mui-col-sm-5 mui-col-xs-5" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_b" src="../../img/zbxx.png">
+					</div>
+					<div class="mui-col-sm-7  mui-col-xs-7" style="">
+						<label class="font20 textColorMain">支部信息</label>
+					</div>
+					<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+					</div>-->
+				</div>
+		    </li>
+			<li class="mui-table-view-cell askLeave-list">
+				<div class="mui-row" onclick="jump(8)">
+					<div class="mui-col-sm-5 mui-col-xs-5" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_b" src="../../img/zbhd.png">
+					</div>
+					<div class="mui-col-sm-7 mui-col-xs-7" style="">
+						<label class="font20 textColorMain">支部活动</label>
+					</div>
+					<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+					</div>-->
+				</div>
+		    </li>
+		    <li class="mui-table-view-cell askLeave-list">
+		    	<div class="mui-row" onclick="jump(10)">
+					<div class="mui-col-sm-5 mui-col-xs-5" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_b" src="../../img/zbdf.png">
+					</div>
+					<div class="mui-col-sm-7 mui-col-xs-7" style="">
+						<label class="font20 textColorMain">党费信息</label>
+					</div>
+					<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+					</div>-->
+				</div>
+		    </li>
+		    <li class="mui-table-view-cell askLeave-list">
+		    	<div class="mui-row" onclick="jump(11)" style="height: 50px;">
+					<div class="mui-col-sm-5 mui-col-xs-5" style="height: 50px;">
+						<img class="mui-medi
+							a-object mui-pull-right img_b" src="../../img/zbxf.png">
+					</div>
+					<div class="mui-col-sm-7 mui-col-xs-7" style="">
+						<label class="font20 textColorMain">先锋之星</label>
+					</div>
+					<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+						<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+					</div>-->
+				</div>
+		    </li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	mui.init({
+		
+	});
+
+</script>
+</html>

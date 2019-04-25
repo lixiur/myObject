@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>课程详情</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/base.css"/>
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<style>
+			.mes-block{
+				width: 80%;
+				margin: 30px auto 20px;
+				padding-left:0;
+			}
+			.div-content2{
+				border-bottom:0;
+				line-height: 70px;
+			}
+		</style>
+		<script src="../../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../../../js/privile.js" ></script>
+		<script type="text/javascript" src="../../../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js" ></script>
+	</head>
+	<body>
+    	<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">我的兴趣详情</h1>
+		</header>
+		<div class="red_back">
+			</div>
+			
+		<div class="mui-content" style="padding-top: 65px;background: #FFFFFF;">
+			<div class="mes-block">			
+	    		<div class="div-content2">
+			   		<label class="circle_label">兴趣班名称</label> 	
+			   		<label class="mes_content" id="proposerName">测试数据</label> 	
+			    </div>
+			    <div class="div-content2">
+			   		<label class="circle_label">活动时间</label> 	
+			   		<label class="mes_content" id="subhead">2019-11-3</label> 	
+			    </div>
+			    <div class="div-content2">
+			   		<label class="circle_label" >活动地点</label> 	
+			   		<label class="mes_content" id="startTime">XX大学7教503</label> 	
+			    </div>
+			    <div class="div-content2">
+			   		<label class="circle_label" >兴趣班内容</label> 	
+			   		<label class="mes_content" id="startTime">测试数据</label> 	
+			    </div>
+			  </div>
+		</div>
+    <script>
+    	mui.init({
+			
+		});
+		phx = 0;//是否显示审批环节0不显示、1显示审批笺2、显示签批单
+//  	var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+//		var user = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+//		var applyUserOrgId = user.orgId;
+//		var applyUserOrgName=user.applyUserOrgName;
+//		var userId=user.id;//用户id
+//		var name=user.username;//用户名
+//		var detaId = obtain();//任务
+//		var datep = detaId.split(",");
+//		myAjax(httpAction[36],{id:datep[1]},function (res) {
+//			if (res.status == 1) {
+//				var list = res.data;
+//				for(var keyVal in list) {
+//					$("#" + keyVal).text(list[keyVal]);
+//				}
+//			} else{
+//				mui.toast("服务器错误");
+//			}
+//		});
+		function getMes(){
+			var type=1;
+			if(type==1){
+				mui.alert("报名成功")
+			}
+			else{
+				mui.alert("报名失败")
+			}
+		}
+		</script>
+	</body>
+</html>
+

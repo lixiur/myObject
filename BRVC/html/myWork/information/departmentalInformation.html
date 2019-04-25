@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>单位信息</title>
+		<link rel="stylesheet" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<style>
+			.div-content2{
+					line-height: 50px;
+				}
+			</style>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js"></script>
+		<script type="text/javascript" >
+			mui.init();
+			mui.ready(function () {
+				
+				getUnitInformation();
+				
+			})
+			
+			//获取单位信息
+			function getUnitInformation(){
+				var ui = test04[0];
+				
+				loadUnitInformation(ui);
+			}
+			
+			//加载单位信息
+			function loadUnitInformation(datas){
+				
+				var imgpath = mui(".img_b")[0];
+				var name = mui("#name")[0];
+				var ophone = mui("#ophone")[0];
+				var email = mui("#email")[0];
+				var address = mui("#address")[0];
+				
+				// console.log(datas);
+				// console.log(name.innerHTML);
+				imgpath.setAttribute("src",datas.imgpath);
+				name.innerHTML = datas.name;
+				ophone.innerHTML = datas.phonenum;
+				email.innerHTML = datas.email;
+				address.innerHTML = datas.address;
+			}
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">单位信息</h1>
+		</header>
+		<div class="mui-content" style="background: #fff;">
+			<div id="order_con9" class="met_fk12" align="center" style="margin-top: 20px;">
+				<img class="img_b" src="" style="width: 95%;" />
+			</div>
+			<div class="mes-block">
+			<div class="div-content2">
+				<label class="labe_co">单位名称:</label>
+				<label class="fr" id="name"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电话:</label>
+				<label class="fr" id="ophone"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电子邮箱:</label>
+				<label class="fr" id="email"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">办公地址:</label>
+				<label class="fr" id="address"></label>
+			</div>
+		</div>
+		</div>
+		</div>
+	</body>
+
+</html>

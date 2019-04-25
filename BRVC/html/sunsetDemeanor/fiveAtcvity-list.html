@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>专题详情</title>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css">
+		<link rel="stylesheet prefetch" href="../../css/photoswipe.css">
+		<link rel="stylesheet prefetch" href="../../css/default-skin/default-skin.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css"/>
+		<link rel="stylesheet" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../css/list.css"/>
+		<script src="../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/privile.js"></script>
+		<script src="../../js/photoswipe.js"></script>
+		<script src="../../js/photoswipe-ui-default.min.js"></script>
+		<script src="../../js/mescroll-for-muiscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}			
+			a {
+				color: #333;
+				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+			}
+			
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				*height: 1%;
+			}
+			
+			#list {
+				margin: 0 auto;
+				text-align: left;
+				width: 100%;
+			}
+			
+			.box {
+				border-top: 1px solid #eee;
+				position: relative;
+				width: 100%;
+				padding: 20px 0
+			}
+			
+			.box:hover .close {
+				display: block;
+			}
+			
+			.close {
+				display: none;
+				top: 0px;
+				right: 0px;
+				width: 28px;
+				height: 28px;
+				border: 1px solid #eee;
+				position: absolute;
+				background: #f2f4f7;
+				line-height: 27px;
+				text-align: center;
+			}
+			
+			.close:hover {
+				background: #c8d2e2;
+				text-decoration: none;
+			}
+			
+			.head {
+				float: left;
+				width: 60px;
+				height: 60px;
+				margin-right: 10px;
+			}
+			
+			.content {
+				float: left;
+				width: 100%;
+			}
+			
+			.main {
+				margin-bottom: 10px;
+			}
+			
+			.txt {
+				font-size: 0.18rem;
+				margin-bottom: 10px;
+			}
+			
+			.user {
+				color: #369;
+			}
+			
+			.pic {
+				margin-right: 5px;
+				width: 200px;
+				border: 1px solid #eee;
+			}
+			
+			.info {
+				height: 20px;
+				line-height: 19px;
+				font-size: 12px;
+				margin: 0 0 10px 0;
+			}
+			
+			.info .time {
+				color: #ccc;
+				float: left;
+				height: 20px;
+				padding-left: 20px;
+				background: url("../../img/bg1.jpg") no-repeat left top;
+			}
+			
+			.info .praise {
+				color: #369;
+				float: right;
+				height: 20px;
+				padding-left: 18px;
+				background: url("../../img/bg2.jpg") no-repeat left top;
+			}
+			
+			.info .praise:hover {
+				text-decoration: underline;
+				background: url("../../img/bg3.jpg") no-repeat left top;
+			}
+			
+			.praises-total {
+				margin: 0 0 10px 0;
+				height: 20px;
+				background: url("../../img/praise.png") no-repeat 5px 5px rgb(247, 247, 247);
+				padding: 5px 0 5px 25px;
+				line-height: 19px;
+			}
+			
+			.comment-text {
+				word-wrap: break-word;
+				word-break: break-all;
+				width: 100%;
+			}
+			
+			.comment-box {
+				padding: 10px;
+			}
+			
+			.comment-box:hover {
+/*				background: rgb(247, 247, 247);*/
+			}
+			
+			.comment-box .myhead {
+				float: left;
+				width: 30px;
+				height: 30px;
+				margin-right: 10px;
+			}
+			
+			.comment-box .comment-content {
+				float: left;
+				width: 100%;
+			}
+			
+			.comment-box .comment-content .comment-time {
+				color: #ccc;
+				margin-top: 3px;
+				line-height: 16px;
+				position: relative;
+			}
+			
+			.comment-box .comment-content .comment-praise {
+				display: none;
+				color: #369;
+				padding-left: 17px;
+				height: 20px;
+				background: url("../../img/praise.png") no-repeat;
+				position: absolute;
+				bottom: 0px;
+				right: 44px;
+			}
+			
+			.comment-box .comment-content .comment-operate {
+				display: none;
+				color: #369;
+				height: 20px;
+				position: absolute;
+				bottom: 0px;
+				right: 10px;
+			}
+			
+			.comment-box .comment-content:hover .comment-praise {
+				display: inline-block;
+			}
+			
+			.comment-box .comment-content:hover .comment-operate {
+				display: inline-block;
+			}
+			
+			.text-box .comment {
+				border: 1px solid #eee;
+				display: block;
+				height: 27px;
+				width: 100%;
+				padding: 5px;
+				resize: none;
+				color: #ccc;
+			}
+			
+			.text-box .btn-off {
+				border: 1px solid #ccc;
+				color: #ccc;
+				background: #F7F7F7;
+			}
+			
+			.text-box .word {
+				display: none;
+				height: 25px;
+				line-height: 25px;
+				float: left;
+				margin:0 0 0 5px;
+				color: #666;
+			}
+			
+			.text-box-on .comment {
+				height: 50px;
+				color: #333;
+			}
+			
+			.text-box-on .btn {
+				display: inline;
+			}
+			
+			.text-box-on .word {
+				display: inline;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 0px;
+			}
+			.mui-scroll-wrapper{
+				position: inherit;
+			}
+			.mui-scroll{
+				position: inherit;
+			}
+			.contain .body{
+				padding: 0px;
+			}
+			.img{
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+			.fr{font-size: 14px;}			
+		</style>
+
+		<script type="text/javascript" charset="utf-8">
+//			mui.init({
+//				statusBarBackground: "#d23330",
+//			});
+		</script>
+	</head>
+
+	<body style="background-color: #fff;">
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">专题详情</h1>
+		</header>
+		<div class="mui-content mui-scroll-wrapper" id="offCanvasContentScroll" style="background-color: white;">
+			<!--<div class="banner" style="position: relative;">
+				<div class="top_bg"></div>
+				<div style="width:80px; height:80px;position: absolute;background-color: #F3F3F7;right: 10px;bottom: -30px;">
+					<img src="../../img/tx.jpg" style="width:96%; margin: 2%;" />
+				</div>
+				<div style="position: absolute;right: 100px;bottom: 10px;color: white;">
+					在路上的愚人
+				</div>
+			</div>-->
+
+			<div id="list" class="mui-scroll contain" style="margin: 64px 0 0;">
+				<div class="box body" >
+						<div class="txt" id="content" style="margin-left: 10px;margin-top: 10px;"></div>
+						<div class="imgs" id="files" style="width: 300px;">
+							
+						</div>
+						<div class="tm" style="margin-top: 10px;overflow: hidden;margin-left: 10px;">							
+							<div class="fl" style="float: left;">浏览<span style="margin-left: 10px;" id="browseNums"> </span>次</div>
+							<div class="fr" style="float: right;">
+								<span style="float: right;margin-right: 20px;">
+									<img src="../../img/dianzan.png" style="height: 13px;" />
+									<span id="likeNums"> </span>	
+								</span>
+								<span style="float: right;margin-right: 20px;"><img src="../../img/xinxi.png"/ style="height: 12px;margin-right: 5px;"><span id="commentNums"></span> </span>
+							</div>
+						</div>
+						<div class="zan" style="margin-top: 20px;overflow: hidden;margin-bottom: 10px;">
+							<img src="../../img/dianzanh.png" style="height: 18px;float: left;margin-left: 10px;" />
+							<div id="zanpeople" style="float: left;margin-left: 10px;">
+								<!--<span style="color: #1a81d1;">王</span>-->
+							</div>
+						</div>
+					
+						<div class="comment-list">							
+							<div class="comment-box clearfix mui-scroll-wrapper" user="self">
+								<p class="font21">共<span class="font21" id="commentNumbers" style="color: #909095;"></span>条评论</p>
+								<div class="comment-content mui-scroll" id="comment-content">
+<!--									<p class="comment-text"><span class="user" id="user">我</span>：<span id="comment_content">写的太好了。66611111111111111111111111111111111111111111111111111111111111</span></p>	-->								
+								</div>
+							</div>
+						</div>											
+				</div>
+			</div>
+			<div class="comment_bottom">
+				<!--<span style="float: right;"><img style="height: 18px;margin-right: 10px;" src="../../img/shoucang1.png"/></span>-->
+				<span style="float: right;" ><img id="dianzan" style="height: 18px;margin-right: 20px;" src="../../img/dianzan.png"/></span>
+				<div class="text-box" style="width: 60%;margin-left: 5%;">
+					<textarea class="comment pinglun" autocomplete="off" onpropertychange="this.style.posHeight=this.scrollHeight " id="pinglun" style="border-radius: 20px;">评论…</textarea>							
+					<button class="btn" id="huifu">回 复</button>
+					<button class="hidden btn" id="niming">匿名回复</button>
+					<span class="word"><span class="length">0</span>/140</span>
+				</div>														
+			</div>
+		</div>
+
+		<!-- Root element of PhotoSwipe. Must have class pswp. -->
+		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+			<!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+			<div class="pswp__bg"></div>
+
+			<!-- Slides wrapper with overflow:hidden. -->
+			<div class="pswp__scroll-wrap">
+
+				<!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+				<div class="pswp__container">
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+				</div>
+
+				<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+				<div class="pswp__ui pswp__ui--hidden">
+
+					<div class="pswp__top-bar">
+
+						<!--  Controls are self-explanatory. Order can be changed. -->
+
+						<div class="pswp__counter"></div>
+
+						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+						<button class="pswp__button pswp__button--share" title="Share"></button>
+
+						<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+						<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+						<!-- element will get class pswp__preloader--active when preloader is running -->
+						<div class="pswp__preloader">
+							<div class="pswp__preloader__icn">
+								<div class="pswp__preloader__cut">
+									<div class="pswp__preloader__donut"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+						<div class="pswp__share-tooltip"></div>
+					</div>
+
+					<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+					<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+					<div class="pswp__caption">
+						<div class="pswp__caption__center"></div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+<script type="text/javascript">
+	mui.init();
+	mui.previewImage();
+	var Utils = getUtils();
+//	var userInfoJson = Utils.getDataStorageJsonNode('local',"userInfo","userIn");
+//	var user = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//	var userId = user.id;
+//	var userName = user.username;
+	var userId = 12;
+	var userName = "测试账户";
+	var circleId = obtain();
+	var status = 1;
+//	console.log($("#dianzan")[0].src);	
+	console.log(circleId);
+	var result;
+	var likeNums = 0;
+	var commentNumbers = 0;
+	
+//$("#comment-content").empty();
+//		mui.ready(function() {			
+
+//		})		
+//      //评论
+        var textArea = document.getElementsByClassName("pinglun")[0];
+//
+        //评论获取焦点
+        textArea.onfocus = function () {
+            this.parentNode.className = 'text-box text-box-on';
+            this.value = this.value == '评论…' ? '' : this.value;
+            this.onkeyup();
+//          console.log("1");
+        }
+
+        //评论失去焦点
+        textArea.onblur = function () {
+            var me = this;
+            var val = me.value;
+            if (val == '') {
+                timer = setTimeout(function () {
+                    me.value = '评论…';
+                    me.parentNode.className = 'text-box';
+                }, 200);
+            }
+        }
+
+        //评论按键事件
+        textArea.onkeyup = function () {
+            var val = this.value;
+            var len = val.length;
+            var els = this.parentNode.children;
+            var btn = els[1];
+            var btnh = els[2];
+            var word = els[3];
+            if (len <=0 || len > 140) {
+                btn.className = 'btn btn-off';
+                btnh.style.display = "none";              
+                btn.setAttribute("disabled","disabled");
+            }
+            else {
+                btn.className = 'btn';
+				btnh.style.display = "block";
+				btn.removeAttribute("disabled");
+            }
+            word.innerHTML = len + '/140';
+        }
+			function jiazai(){
+//				$.ajax({
+//					url: header + "mobile/getWorkCircleDetails",
+//					data: {
+//						encryptionPara:encryptionPara,
+//						id: circleId,
+//					},
+//					dataType: 'json', //服务器返回json格式数据
+//					type: 'post', //HTTP请求类型
+//					timeout: 10000, //超时时间设置为10秒；
+//					success: function(data) {
+//						if(data.status == 1) {	
+							var data=lier[0];
+							if (data.userId == userId) {
+								console.log("id:"+data.id);
+								$("#shanchu").removeClass("mui-hidden");
+							}
+							if(data.userName == null) {
+								$("#userName").text("");
+							} else {
+								$("#userName").text(data.userName);
+							}
+							if(data.createTime == null) {
+								$("#createTime").text("");
+							} else {
+								$("#createTime").text(data.createTime);
+							}
+							if(data.content == null) {
+								$("#content").text("");
+							} else {
+								$("#content").text(data.content);
+							}
+							if(data.browseNums == null) {
+								$("#browseNums").text("1");
+							} else {
+								$("#browseNums").text(data.browseNums);
+							}
+							if(data.comment.length == 0) {
+								$("#commentNums").text("");
+								$("#commentNumbers").text("0");
+							} else {
+								commentNumbers = data.comment.length;
+								$("#commentNums").text(commentNumbers);
+								$("#commentNumbers").text(commentNumbers);
+							}
+							if(data.praises.length == 0) {
+								$("#likeNums").text("");
+							} else {
+								likeNums = data.praises.length;
+								console.log(typeof(likeNums));
+								$("#likeNums").text(likeNums);
+							}
+							var photoUrl = data.files;
+							console.log(photoUrl);
+							if (photoUrl!=null) {
+								if (photoUrl.length>1) {
+									for(var i = 0; i < photoUrl.length; i++) {
+										var img = new Image();
+										//							var html='<img class="mui-col-sm-3 mui-col-xs-3" src="'+data[0].photoUrl[i]+'" data-preview-src="" data-preview-group="1" style="height: 80px;" />'
+										img.src ="../../img/xinwen.jpg"//header+photoUrl[i].FILE_PATH;
+										img.setAttribute("class", "mui-col-sm-3 mui-col-xs-3 img");
+										img.setAttribute("data-preview-src", "");
+										img.setAttribute("data-preview-group", "1");
+										img.setAttribute("style", "height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;");
+										document.getElementById("files").appendChild(img);
+									}										
+								} else{
+										var img = new Image();
+										//							var html='<img class="mui-col-sm-3 mui-col-xs-3" src="'+data[0].photoUrl[i]+'" data-preview-src="" data-preview-group="1" style="height: 80px;" />'
+										img.src ="../../img/xinwen.jpg"//header+photoUrl[0].FILE_PATH;
+										img.setAttribute("class", " img");
+										img.setAttribute("data-preview-src", "");
+										img.setAttribute("data-preview-group", "1");
+										img.setAttribute("style", "height: 100%;");
+										document.getElementById("files").appendChild(img);									
+								}
+							
+							}							
+//							console.log(data.comment);
+//							$("#zanpeople").empty();
+//							var zanpeople = data.praises;
+//							if (zanpeople!=null) {
+//								for(var i = 0; i < zanpeople.length; i++) {
+//									var liDom=document.createElement("div");									
+//									var html='';
+////									var html='<span style="color: #1a81d1;">'++'</span>';
+//									liDom.innerHTML=html;
+//									document.getElementById("zanpeople").appendChild(liDom);
+//								}								
+//							}
+							
+							var users = data.comment;
+							
+							$("#comment-content").empty();
+//							console.log(users);
+							if (users!=null) {
+								for(var i = 0; i < users.length; i++) {
+									var liDom=document.createElement("div");
+									if(users[i].commentTime == null){
+										users[i].commentTime = '';
+									}
+									if(users[i].commentUserName == null){
+										users[i].commentUserName = '';
+									}
+									if(users[i].commentContent == null){
+										users[i].commentContent = '';
+									}									
+									var html='';
+//									var html='<p class="comment-text"><span class="user" id="user">'+users[i].commentUserName+'</span>：<span id="comment_content">'+users[i].commentContent+'</span></p>';
+									html+='<div class="box body">'; 
+									html+='<div class="logo">';	
+									if (users[i].commentUserName == "匿名" || users[i].headPortraitid == null) {		
+										html+='<div style="border-radius:45px;overflow: hidden;width: 45px;margin-top: 5px;">';
+										html+='<img id="images" src="../../img/ic_progress_in.png"  style="float: left;width: 45px;height:45px"/>';	
+										html+='</div>';
+									} else{
+										html+='<div style="border-radius:45px;overflow: hidden;width: 45px;margin-top: 5px;">';
+										html+='<img id="images" src="'+header+users[i].headPortraitid+'"  style="float: left;width: 45px;height:45px"/>';											
+										html+='</div>';
+									}
+									html+='</div>';	
+									html+='<div class="text">';
+									html+='<div style="overflow:hidden">';
+									html+='<div class="title" style="float:left;font-size:12px">'+users[i].commentUserName+'</div>';		
+									html+='<div class="times font28" style="color: #C7C7CC;float:right;font-size:12px;margin-right:10px" id="createTime">'+users[i].commentTime+'</div>';			
+									html+='</div>';
+									html+='<div class="txt" id="content">'+users[i].commentContent+'</div>';
+									html+='</div>';	
+									html+='</div>';
+									liDom.innerHTML=html;
+									document.getElementById("comment-content").appendChild(liDom);
+								}								
+							}
+						var  praises = data.praises;
+						if (praises == null) {
+							$("#dianzan").attr('src',"../../img/dianzan.png"); 
+							status = 1;
+							$("#my").remove();
+						} else{
+							for (var i=0;i<praises.length;i++) {
+								if (praises[i].PuserId == userId) {
+									$("#dianzan").attr('src',"../../img/dianzanh.png"); 
+									status = 2;
+									var liDom=document.createElement("div");									
+									var html='';
+									var html='<span class="zan_user" id="my">'+userName+'</span>';
+									liDom.innerHTML=html;
+									document.getElementById("zanpeople").appendChild(liDom);									
+								}else{
+									var liDom=document.createElement("div");									
+									var html='';
+									var html='<span class="zan_user">'+userName+'</span>';
+									liDom.innerHTML=html;
+									document.getElementById("zanpeople").appendChild(liDom);									
+								}
+							}
+							
+						}
+//							plus.nativeUI.closeWaiting();
+//						} else {
+////							plus.nativeUI.closeWaiting();
+//							mui.toast(data.msg);
+//						}
+//					},
+//					error:function(xhr,type,errorThrown){
+//						 mui.alert("服务器出错！");
+//					}
+//				})
+	
+}
+				jiazai();
+				$("#shanchu").click(function(){
+					plus.nativeUI.showWaiting();
+				   		$.ajax({
+				   			url:header+"mobile/deleteMyWorkCircle",
+				   				data:{
+				   					encryptionPara:encryptionPara,
+				   					id:circleId,
+				   				},
+				   			dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+				   			success: function(data) {
+//				   				console.log(data);
+				   				plus.nativeUI.closeWaiting();
+								console.log(data.status);
+				   				if (data.status == 1) {			   					
+					   				mui.toast("该条工作圈已删除!");
+					   				backa();
+								} else{
+//									mui.back();
+									mui.toast(data.msg);
+								}
+							},
+							error:function(xhr,type,errorThrown){
+							plus.nativeUI.closeWaiting();
+							if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+								mui.toast("网络异常，请检查网络设置！");						 
+							} else {
+							 mui.alert("服务器出错！");
+							}
+						}
+				   	})
+				}); 				
+				$("#dianzan").click(function(){
+//					plus.nativeUI.showWaiting();
+//				   		$.ajax({
+//				   			url:header+"mobile/saveWorkPraise",
+//				   				data:{
+//				   					encryptionPara:encryptionPara,
+//				   					userId:userId,
+//				   					userName:userName,
+//				   					status:status,
+//				   					themeId:circleId
+//				   				},
+//				   			dataType: 'json', //服务器返回json格式数据
+//							type: 'post', //HTTP请求类型
+//							timeout: 10000, //超时时间设置为10秒；
+//				   			success: function(data) {
+////				   				console.log(data);
+//				   				plus.nativeUI.closeWaiting();
+//								console.log(data.status);
+//				   				if (data.status != 0) {
+//				   					jiazai();	
+									status=0 
+									if (status == 1) {
+										status = 1;
+										$("#dianzan").attr('src',"../../img/dianzan.png"); 
+										likeNums = likeNums - 1;
+										$("#likeNums").text(likeNums);
+										$("#my").remove();
+									} else{
+										status = 2;
+										$("#dianzan").attr('src',"../../img/dianzanh.png"); 	
+										likeNums = likeNums + 1;
+										$("#likeNums").text(likeNums);
+										var liDom=document.createElement("div");									
+										var html='';
+										var html='<span class="zan_user" id="my">'+userName+'</span>';
+										liDom.innerHTML=html;
+										document.getElementById("zanpeople").appendChild(liDom);										
+									}				   					
+//					   				mui.toast("申请已同意!");
+//					   				backa();
+//								} else{
+////									mui.back();
+//									mui.toast(data.msg);
+//								}
+//							},
+//							error:function(xhr,type,errorThrown){
+//							plus.nativeUI.closeWaiting();
+//							if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//								mui.toast("网络异常，请检查网络设置！");						 
+//							} else {
+//							 mui.alert("服务器出错！");
+//							}
+//						}
+//				   	})
+				});        
+				$("#huifu").click(function(){
+//					plus.nativeUI.showWaiting();
+					var contTime = twime(); //获取当前日期  
+					var commentContent = $("#pinglun").val();
+					if (commentContent == "") {
+						commentContent = null;
+					}
+//				   		$.ajax({
+//				   			url:header+"mobile/saveWorkComment",
+//				   				data:{
+//				   					encryptionPara:encryptionPara,
+//				   					anonymity:1,
+//				   					commentUserId:userId,
+//				   					circleId:circleId,
+//				   					commentName:userName,
+//				   					commentContent:commentContent
+//				   				},
+//				   			dataType: 'json', //服务器返回json格式数据
+//							type: 'post', //HTTP请求类型
+//							timeout: 10000, //超时时间设置为10秒；
+//				   			success: function(data) {
+////				   				console.log(data);
+////				   				plus.nativeUI.closeWaiting();
+//				   				if (data.status == 1) {
+//				   					jiazai();
+									var liDom=document.createElement("div");									
+									var html='';
+//									var html='<p class="comment-text"><span class="user" id="user">'+users[i].commentUserName+'</span>：<span id="comment_content">'+users[i].commentContent+'</span></p>';
+									html+='<div class="box body">'; 
+//									html+='<div class="logo">';	
+//									html+='<div style="border-radius:45px;overflow: hidden;width: 45px;margin-top: 5px;">';
+//									html+='<img id="images" src="'+header+data.headPortrait+'"  style="float: left;width: 45px;height:45px"/>';	
+//									html+='</div>';
+//									html+='</div>';	
+									html+='<div class="text">';
+									html+='<div style="overflow:hidden">';
+									html+='<div class="title font20" style="float:left;margin-right:10px">'+userName+'</div>';		
+									html+='<div class="times font14" style="color: #C7C7CC;float:right;margin-right:10px" id="createTime">'+contTime+'</div>';			
+									html+='</div>';
+									html+='<div class="txt font14" id="content">'+commentContent+'</div>';
+									html+='</div>';	
+									html+='</div>';									
+									liDom.innerHTML=html;
+									document.getElementById("comment-content").appendChild(liDom);
+//									commentNumbers=0;
+									commentNumbers = commentNumbers + 1;
+									$("#commentNums").text(commentNumbers);
+									$("#commentNumbers").text(commentNumbers);
+					   				mui.toast("回复成功!");
+					   				$("#pinglun").val("");
+//					   				backa();
+//								} else{
+////									mui.back();
+//									mui.toast(data.msg);
+//								}
+//							},
+//							error:function(xhr,type,errorThrown){
+//								plus.nativeUI.closeWaiting();
+//								if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//									mui.toast("网络异常，请检查网络设置！");						 
+//								} else {
+//								 mui.alert("服务器出错！");
+//								}
+//						}
+//				   	})
+				});
+				$("#niming").click(function(){
+					var contTime = twime(); //获取当前日期  
+//					plus.nativeUI.showWaiting();
+					var commentContent = $("#pinglun").val();
+//					if (commentContent == "") {
+//						commentContent = null;
+//					}
+//					console.log("1");
+//				   		$.ajax({
+//				   			url:header+"mobile/saveWorkComment",
+//				   				data:{
+//				   					encryptionPara:encryptionPara,
+//				   					anonymity:2,
+//				   					commentUserId:userId,
+//				   					circleId:circleId,
+//				   					commentName:"匿名",
+//				   					commentContent:commentContent
+//				   				},
+//				   			dataType: 'json', //服务器返回json格式数据
+//							type: 'post', //HTTP请求类型
+//							timeout: 10000, //超时时间设置为10秒；
+//				   			success: function(data) {
+//				   				console.log(data);
+//				   				plus.nativeUI.closeWaiting();
+//				   				if (data.status == 1) {
+//				   					jiazai();
+									var liDom=document.createElement("div");
+									var html='';
+//									var html='<p class="comment-text"><span class="user" id="user">'+users[i].commentUserName+'</span>：<span id="comment_content">'+users[i].commentContent+'</span></p>';
+									html+='<div class="box body">'; 
+//									html+='<div class="logo">';	
+//									html+='<div style="border-radius:45px;overflow: hidden;width: 45px;margin-top: 5px;">';
+//									html+='<img id="images" src="../../img/ic_progress_in.png"  style="float: left;width: 45px;height:45px"/>';	
+//									html+='</div>';
+									html+='</div>';	
+									html+='<div class="text">';
+									html+='<div style="overflow:hidden">';
+									html+='<div class="title font20" style="float:left;margin-right:10px">匿名</div>';		
+									html+='<div class="times font14" style="color: #C7C7CC;float:right;margin-right:10px" id="createTime">'+contTime+'</div>';			
+									html+='</div>';
+									html+='<div class="txt font14" id="content">'+commentContent+'</div>';
+									html+='</div>';	
+									html+='</div>';										
+									liDom.innerHTML=html;
+									document.getElementById("comment-content").appendChild(liDom);
+//									commentNumbers=0;
+									commentNumbers = commentNumbers + 1;
+									$("#commentNums").text(commentNumbers);
+									$("#commentNumbers").text(commentNumbers);
+					   				mui.toast("匿名回复成功!");
+					   				$("#pinglun").val("");
+//					   				backa();
+//								} else{
+////									mui.back();
+//									mui.toast(data.msg);
+//								}
+//							},
+//							error:function(xhr,type,errorThrown){
+//								plus.nativeUI.closeWaiting();
+//								if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//									mui.toast("网络异常，请检查网络设置！");						 
+//								} else {
+//								 mui.alert("服务器出错！");
+//								}
+//						}
+//				   	})
+				});        
+</script>
+</html>

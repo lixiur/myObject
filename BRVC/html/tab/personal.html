@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html> 
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		 <!--<link href="../../css/cropper.min.css" rel="stylesheet" />-->
+		<link rel="stylesheet" href="../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="../../css/list.css" />
+		<style type="text/css">
+			.mui-content {
+			    background-color: white;
+			    background: url(../../img/bj_s.png);
+			    background-position: inherit;
+			    position: absolute;
+			    width: 100%;
+			    height: 100%;
+			    background-repeat: no-repeat;
+			    background-size: 100% 100%;
+			    overflow-x: hidden;
+			}
+			.my-table img {
+			    height: 18px;
+			}
+			html,body{
+				padding: 0px;
+				height: 100%;
+			}
+			
+			.title_message {
+			    color: black;
+			    line-height: 13px;
+			}
+			.mui-table-view:before {height: 0px;}
+		body{
+			background-color: #f8f9fb;
+		}
+		.mui-table-view-cell{
+			height: 60px;
+			background: #FFFFFF;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+		.mui-table-view-cell:after {
+		    position: absolute;
+		    right: 0;
+		    bottom: 0;
+		    left: 0px;
+		    height:0;
+		    content: '';
+		    -webkit-transform: scaleY(.5);
+		    transform: scaleY(.5);
+		    background-color: #f8f9fb;
+		}
+		/*ul{
+			margin-top: 18px;
+		    margin-left: 10px;
+		    margin-right: 10px;
+		}*/
+		li{
+			height: 60px;
+		}
+		.mui-table-view .mui-media-object {
+			line-height: 42px;
+			max-width: 42px;
+			height: auto; 
+		}
+		.img_b {
+		    margin-top: 2px;
+		    width: 18px;
+		    height: 18;
+		}
+		.mui-table-view-cell>a:not(.mui-btn) {
+		    margin:0; 
+		}
+		</style>
+	</head>
+
+	<body>
+		<!--<header id="reying_title" class="mui-bar mui-bar-nav" >
+			<div id="title" style="color: #FFF;height: 120px;margin-top: 40px;">
+				<div class="photo-list mui-clearfix pot-img" id="list" style="margin-top: 10%;margin-left: 25px;">
+					<div class="add-btn" id="btn" style="border-radius: 80px;border: solid 1px white;">
+						<img src="../../img/ic_progress_in.png" id="title_img_vd" style="border: 0px;width: 80px;height: 80px;"></img>
+					</div>
+				</div>
+				<div id="title_message"style="margin-top: 10%; ">
+					<p class="title_message font32 textColorMain" align="left"><span id="my_orge"></span>:<span id="my_persion"></span></p>
+					<p class="title_message font32 textColorMain" align="left" style="margin-top: 20px;">座机号：<span id="my_phone_num"></span></p>
+				</div>
+			</div>
+		</header>-->
+		<div class="mui-content" style="margin-top: -10px;">
+			<div id="my-table" style="margin-top: 40%;margin-left: 5%;margin-right: 5%;border-radius:20px;">
+				<div class="" style="background-color: #FFFFFF; height: 160px;width: 100%;padding-top: 80px; border-radius:20px;">
+					<div class="add-btn" id="btn" align="center" style="width: auto;height: auto;margin-top:-36%;margin-bottom: 20px;">
+						<img src="http://www.cdlgb.com/website/upload/images/2019/3/2111348856.jpg" id="title_img_vd" style="border-radius: 100px;width: 80px;height: 80px;">
+					</div>
+						<p class="title_message font25 textColorMain" align="center"><span id="my_orge">测试部门</span>:<span id="my_persion">xxxxx</span></p>
+						<p class="title_message font25 textColorMain" align="center" style="margin-top: 20px;">座机号:<span id="my_phone_num">xxxxx</span></p>
+				</div>
+				<div style="background-color: inherit;width: 100%;margin-top: 10px;">
+					<ul class="mui-table-view font28">
+						<li class="mui-table-view-cell mui-media" id="Changepassword">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left img_b" src="../../img/bi.png">
+								<div class="mui-media-body font20">
+									<span>修改密码</span>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media" id="app_banbenhao">
+							<a href="javascript:;" onclick="getbanbenhao();">
+								<img class="mui-media-object mui-pull-left img_b" src="../../img/banbenhao.png">
+								<div class="mui-media-body font20">
+									<span>app版本号</span>
+								</div>
+							</a>
+						</li>						
+						<li class="mui-table-view-cell mui-media" id="out_login" style="margin-top: 0px;">
+							<a href="javascript:;" onclick="quelt()">
+								<img class="mui-media-object mui-pull-left img_b" src="../../img/guanji.png">
+								<div class="mui-media-body font20">
+									<span>退出登录</span>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+					
+				
+		</div>
+	</body>
+	<script src="../../js/mui.min.js"></script> 
+	<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//	mui.previewImage();  
+		mui.init({
+	        keyEventBind: {
+		        backbutton: false,  //Boolean(默认true)关闭back按键监听
+		        menubutton: true   //Boolean(默认true)关闭menu按键监听
+		    }
+	    });
+	    var Utils = getUtils();
+//		var userInfoJson = Utils.getDataStorageJsonNode('local',"TYuserInfo","userIn");
+//		var users = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//		var headPor = Utils.getDataStorageJsonNode('local',"TYuserInfo","headPortrait");
+//		var headPor;
+//		var qq = Utils.getDataStorageJsonNode('local',"TYuserInfo","qq");
+//		var wx = Utils.getDataStorageJsonNode('local',"TYuserInfo","weChat");
+//		var roomName = Utils.getDataStorageJsonNode('local',"TYuserInfo","roomName");
+//		var landlinePhone = Utils.getDataStorageJsonNode('local',"TYuserInfo","landlinePhone");
+//	
+//		var user = users.id;
+//		var username = users.username;
+//		var orgName = users.orgName;
+//		var duty = users.duty;
+//		if(duty!=''&&duty!=null){
+//			$('#my_weizhi').text(duty);
+//		}else{
+//			$('#my_weizhi').text("无");
+//		}
+//		if(isNotNull(qq)){
+//			$('#my_qq_num').text(qq);
+//		}else{
+//			if(isNotNull(users.qq)){
+//				$('#my_qq_num').text(users.qq);
+//			}
+//		}	
+//		if(isNotNull(wx)){
+//			$('#my_wx_num').text(wx);
+//		}else{
+//			if(isNotNull(users.weChat)){
+//				$('#my_wx_num').text(users.weChat);
+//			}
+//		}
+//		if(isNotNull(roomName)){
+//			$('#my_room_num').text(roomName);
+//		}else{
+//			if(isNotNull(users.roomName)){
+//				$('#my_room_num').text(users.roomName);
+//			}
+//		}
+//		if(isNotNull(landlinePhone)){
+//			$('#my_phone_num').text(landlinePhone);
+//		}else{
+//			if(isNotNull(users.landlinePhone)){
+//				$('#my_phone_num').text(users.landlinePhone);
+//			}
+//		}
+//		
+////		else{
+////		}
+////		$('#my_room_num').text(users.roomName);
+////		$('#title_img_vd').attr('src',imUr);
+//		$('#my_persion').text(username);
+//		$('#my_orge').text(orgName);
+//		getImg();
+//		
+//		mui("#My_information").on('tap', 'a', function() {
+//			console.log("1");
+//			jumpValue(136,user);
+//		})
+//		mui("#My_wages").on('tap', 'a', function() {
+//			jump(52);
+//		})
+//		mui("#Knowledge_base").on('tap', 'a', function() {
+//			jump(53);
+//		})
+//		mui("#My_depute").on('tap', 'a', function() {
+//			jump(54);
+//		})
+//		mui("#app_erweima").on('tap', 'a', function() {
+//			jump(179);
+//		})		
+////		mui("#My_file").on('tap', 'a', function() {
+////			jump(55);
+////		})
+//		mui("#My_collection").on('tap', 'a', function() {
+//			jump(56);
+//		})
+//		mui("#changeMy").on('tap', 'a', function() {
+//			jump(135);
+//		})
+		mui("#Changepassword").on('tap', 'a', function() {
+			jump(76);
+		})
+//		mui("#title").on('tap', '#list', function() {
+//			jump(161);
+//		})
+		function quelt() {
+			
+//			plus.nativeUI.showWaiting("提交中……");
+//			myAjax(httpAction[102],{id:user},function (res) {
+//					if (res.status == 1) {
+//						plus.nativeUI.closeWaiting();
+//						//清空本地缓存
+//						Utils.delDataStorageJsonNode('local',"TYuserInfo","userIn");
+//						Utils.delDataStorageJsonNode('local',"TYuserInfo","showTime");
+//						 plus.webview.all()//create();
+									var list = plus.webview.currentWebview().opener();
+									plus.webview.close(list);
+						mui.openWindow({
+							url:"../../login.html",
+							id:'login',
+							createNew:false,
+						})
+//					} else{
+//						plus.nativeUI.closeWaiting();
+//						mui.toast(res.errorMessage);
+//					}
+//				})
+			
+		}
+////	mui.previewImage();
+//			mui.init();
+//	function getImg(){
+//			myAjax(httpAction[111],{id:user},function (res) {
+//				if (res.status == 1) {
+//					$('#title_img_vd').attr('src',header+res.data.head_portrait);
+//				} else{
+//					mui.toast(res.errorMessage);
+//				}
+//			})
+//	}
+	var version;
+	mui.plusReady(function() {
+		plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+		version = inf.version;
+		console.log(version);
+			});		
+		});
+	function getbanbenhao(){
+		mui.alert("您当前的版本号是："+version);
+	}
+</script>
+</html>

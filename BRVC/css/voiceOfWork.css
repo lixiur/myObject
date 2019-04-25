@@ -1,0 +1,141 @@
+.submission {
+	right: 1.225rem;
+	height: 35px;
+	float: right;
+	width: 20%;
+	position: absolute;
+	top: 27px;
+	border-radius: 0.9375rem;
+	color: white;
+	background-color: red;
+}
+
+.proposal {
+	height: 3.75rem;
+	margin-top: 30px;
+	line-height: 30px;
+	border-bottom-color: #000000;
+}
+
+.proposal-content {
+	margin-top: -10px;
+	margin-left: 0.3125rem;
+	height: 45px;
+	width: 90%;
+	border-radius: 1.25rem;
+	border: 1px solid #CCCCCC;
+}
+
+.proposal-all {
+	border: 1px solid #DDDDDD;
+}
+
+.submission1 {
+	right: 1.225rem;
+	height: 35px;
+	float: right;
+	width: 20%;
+	position: absolute;
+	top: 27px;
+	border-radius: 0.9375rem;
+	color: white;
+	background-color: red;
+}
+
+.workexperience {
+	height: 3.75rem;
+	margin-top: 30px;
+	line-height: 30px;
+	border-bottom-color: #000000;
+}
+
+.workexperience-content {
+	margin-top: -10px;
+	margin-left: 0.3125rem;
+	height: 45px;
+	width: 90%;
+	border-radius: 1.25rem;
+	border: 1px solid #CCCCCC;
+}
+
+.workexperience-all {
+	border: 1px solid #DDDDDD;
+}
+
+.date {
+	float: right;
+}
+
+.info1 {
+	height: 50px;
+}
+
+.info2 {
+	height: auto;
+	margin-top: 10px;
+}
+
+.info3 {
+	height: 30px;
+	color: #AAAAAA;
+	font-size: 13px;
+}
+
+.public-1 {
+	padding-top: 10px;
+	margin-top: 30px;
+	width: 50%;
+	font-size: 0.18rem;
+	float: left;
+	border-top: 1px solid #EEEEEE;
+}
+
+.public-2 {
+	font-size: 0.18rem;
+	border-right: 1px solid #EEEEEE;
+}
+
+.interval {
+	height: 10px;
+	background-color: #EEEEEE;
+}
+
+.info1 span {
+	font-size: 0.20rem;
+	position: absolute;
+	margin-left: 10px;
+}
+
+.time {
+	margin-top: 20px;
+	color: #BBBBBB;
+}
+
+.comment-list {
+	/* display: none; */
+	height: auto;
+	background-color: #E6E6E6;
+}
+
+.lis-h {
+	margin-left: 20px;
+	color: #3E5C9A;
+}
+
+.lis-c {
+	margin-left: 40px;
+	color: black;
+}
+
+label {
+	overflow: hidden;
+
+	text-overflow: ellipsis;
+
+	display: -webkit-box;
+
+	-webkit-box-orient: vertical;
+
+	-webkit-line-clamp: 2;
+	font-size: 0.18rem;
+}

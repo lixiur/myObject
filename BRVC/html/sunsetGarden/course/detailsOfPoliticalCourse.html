@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>政治理论课程详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/list.css"/>
+
+		<style>
+			* {
+				font-family: "微软雅黑";
+			}
+			img {
+				width: 100%;
+				margin: 0;
+			}
+		</style>
+
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/tools.js"></script>
+		<script src="../../../js/jump.js"></script>
+		<script src="../../../js/httpUrl.js"></script>
+		<script src="../../../js/privile.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+
+				accessToCourseContent();
+
+			})
+
+			//获取课程内容
+			function accessToCourseContent() {
+				var courseId = obtain();
+
+				var atcc = test11[(courseId - 1)];
+
+				loadPoliticalCourse(atcc);
+			}
+
+			//加载课程内容
+			function loadPoliticalCourse(datas) {
+				var div = mui(".mui-content")[0];
+
+				div.innerHTML += '<div>' +
+					'<center>' +
+					'<img src="' + datas.imgPath1 + '" />' +
+					'<img src="' + datas.imgPath2 + '" />' +
+					'<img src="' + datas.imgPath3 + '" />' +
+					'<img src="' + datas.imgPath4 + '" />' +
+					'<img src="' + datas.imgPath5 + '" />' +
+					'</center>' +
+					'</div>'
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<!-- 标题头部 -->
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">政治理论课程详情</h1>
+		</header>
+		<div class="mui-content" style="padding:80px 10px 0 10px;background: #FFFFFF;">
+
+		</div>
+	</body>
+
+</html>

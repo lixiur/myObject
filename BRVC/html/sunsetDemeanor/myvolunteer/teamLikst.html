@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的团队</title>
+		<link rel="stylesheet" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<style>
+			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+			    top: 70px;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: red;
+			}
+			.person-mes{
+				list-style: none;
+			}
+			.team-table{
+				margin: 0 auto;
+			}
+			.team-table td{
+				padding-left: 10px;
+			}
+		</style>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/public.js"></script>
+		<script type="text/javascript" src="../../../js/mescroll-for-muiscroll.min.js"></script>
+		<script type="text/javascript" src="../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">我的团队</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" style="width: 100%;">
+						<a class="mui-control-item mui-active" data-index="0" style="width: 33%;">科技活动</a>
+						<a class="mui-control-item" data-index="1" style="width: 33%;">关系下一代</a>
+						<a class="mui-control-item" data-index="2" style="width: 33%;">宣传</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll mui-row">
+								<table class="font20 team-table" border="1" width="90%">
+									<tbody>
+										<tr style="height:13.5pt" height="18">
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65">团队名称</td>
+												<td colspan="6" class="xl66" style="border-left:none">科技活动</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">负责人</td>
+												<td colspan="6" class="xl66" style="border-left:none">李某某</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队人数</td>
+												<td colspan="6" class="xl66" style="border-left:none">20</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队简介</td>
+												<td colspan="6" class="xl66" style="border-left:none">科技介绍</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td rowspan="18" class="xl67" style="border-top:none">成员信息</td>
+												<td colspan="2" class="xl66" style="border-left:none">姓名</td>
+												<td colspan="2" class="xl66" style="border-left:none">电话</td>
+												<td colspan="2" class="xl66" style="border-left:none">拨打</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+													</ul>
+												</td>
+											</tr>
+										
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<table class="font20 team-table" border="1" width="90%">
+									<tbody>
+										<tr style="height:13.5pt" height="18">
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65">团队名称</td>
+												<td colspan="6" class="xl66" style="border-left:none">关系下一代</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">负责人</td>
+												<td colspan="6" class="xl66" style="border-left:none">李某某</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队人数</td>
+												<td colspan="6" class="xl66" style="border-left:none">20</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队简介</td>
+												<td colspan="6" class="xl66" style="border-left:none">下一代的培养</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td rowspan="18" class="xl67" style="border-top:none">成员信息</td>
+												<td colspan="2" class="xl66" style="border-left:none">姓名</td>
+												<td colspan="2" class="xl66" style="border-left:none">电话</td>
+												<td colspan="2" class="xl66" style="border-left:none">拨打</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+												</td>
+											</tr>
+										
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<table class="font20 team-table" border="1" width="90%">
+									<tbody>
+										<tr style="height:13.5pt" height="18">
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65">团队名称</td>
+												<td colspan="6" class="xl66" style="border-left:none">宣传</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">负责人</td>
+												<td colspan="6" class="xl66" style="border-left:none">宣传志愿活动</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队人数</td>
+												<td colspan="6" class="xl66" style="border-left:none">20</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td class="xl65" style="border-top:none">团队简介</td>
+												<td colspan="6" class="xl66" style="border-left:none">此团队主要用于扶贫</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td rowspan="18" class="xl67" style="border-top:none">成员信息</td>
+												<td colspan="2" class="xl66" style="border-left:none">姓名</td>
+												<td colspan="2" class="xl66" style="border-left:none">电话</td>
+												<td colspan="2" class="xl66" style="border-left:none">拨打</td>
+											</tr>
+											<tr style="height:13.5pt" height="18">
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+														<li class="person-mes">测试1</li>
+													</ul>
+												</td>
+												<td colspan="2" rowspan="17" class="xl66">
+													<ul>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+														<li class="person-mes">拨打</li>
+													</ul>
+												</td>
+											</tr>
+										
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.ready(function() {
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: true,
+					indicators: true,
+					deceleration: mui.os.ios ? 0.003 : 0.0009
+				});
+				mui('.mui-scroll').on('tap', '.mui-control-item:not(.mui-active)', function() {
+					mui('.mui-slider').slider().gotoItem(this.getAttribute('data-index'));
+				});
+			});
+		</script>
+	</body>
+
+</html>

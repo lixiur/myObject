@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<link href="../../../css/voiceOfWork.css" rel="stylesheet" />
+		<style>
+			.date{
+				margin-top: 2.5rem;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: red;
+			    border-bottom: 2px solid red;
+			    background: 0 0;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+			    background-color: red;
+			}
+		</style>
+
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js"></script>
+		<script type="text/javascript" src="../../../js/privile.js"></script>
+		<script type="text/javascript">
+			var datas = test05;
+			var lists = test051;
+			mui.init();
+			mui.ready(function() {
+			
+				getExperienceData();
+			
+				getAllTheSuggestions();
+			
+			})
+			//获取工作心得数据
+			function getExperienceData() {
+				var ed = test05;
+				var list = test051;
+			
+				loadExperienceData(ed,list);
+			}
+			
+						//加载工作心得到页面
+			function loadExperienceData() {
+				// console.log(datas);
+				var ul = mui("#item1 ul")[0];
+				ul.innerHTML = null;
+				
+				
+				for (var i = 0; i < datas.length; i++) {
+					var datas2=[];
+					var eId=datas[i].eId;
+					for(var j = 0; j < lists.length;j++){
+					var eIds = lists[j].eId;
+					if(eId == eIds){
+						datas2.push(test051[j]);
+					}
+				}
+					var statusCode = datas[i].statusCode;
+					var imgstatusCode = "";
+					
+					if(statusCode == 0){
+						imgstatusCode ='<img src="../../../img/bg2.jpg" style="width: 20px;height: 20px;"/>'
+					}else{
+						imgstatusCode ='<img src="../../../img/bg3.jpg" style="width: 20px;height: 20px;"/>'
+					}
+					var div = document.createElement("div");
+					div.innerHTML = '<li class="mui-table-view-cell" onclick="jumpValue(144,'+datas[i].eId+')">'+
+											'<!-- 头像/姓名/时间 -->'+
+											'<div class="info1">'+
+												'<div>'+
+													'<img src="../../../img/HeadImgDefault.png" style="width: 40px;height: 40px;border-radius: 20px;" />'+
+													'<span>'+datas[i].userName+'</span>'+
+													'<span class="time">'+datas[i].date+'</span>'+
+												'</div>'+
+											'</div>'+
+											'<!-- 内容 -->'+
+											'<div class="info2">'+
+												'<label>'+datas[i].content+'</label>'+
+											'</div>'+
+											'<!-- 点赞/评论/分享 -->'+
+												'<div class="info3">'+
+													'<div class="public-1 public-2">'+
+														'<center>'+
+															'<a class="thumbs-up">'+
+																imgstatusCode+
+															'</a>'+
+															'<span>点赞数'+datas[i].thumbs+'</span>'+
+														'</center>'+
+													'</div>'+
+													'<div class=" public-1">'+
+														'<center>'+
+															'<a class="comment">'+
+																'<img src="../../../img/t3_2.png"/ style="width: 20px;height: 20px;">'+
+															'</a>'+
+															'<span>评论'+datas2.length+'</span>'+
+														'</center>'+
+													'</div>'+
+												'</div>'+
+										'</li>'+
+										'<div class="interval"></div>'
+					ul.appendChild(div);
+				}
+			}
+			
+			//提交工作心得
+			// function workExperience() {
+			// 	mui(".submission1")[0].addEventListener("tap", function() {
+			// 		var date = getNowFormatDate();
+			// 		var workExperienceContent = mui(".workexperience-content")[0].value;
+			// 
+			// 
+			// 		if (workExperienceContent == "") {
+			// 			mui.toast('还没有内容哦')
+			// 		} else {
+			// 			var datass = {
+			// 				"userHeader":"../../../img/HeadImgDefault.png",
+			// 				"userName":"测试人员009",
+			// 				"date": date,
+			// 				"content": workExperienceContent,
+			// 				"thumbs":0,
+			// 				"comment":0,
+			// 				"share":0
+			// 			};
+			// 			test05.push(datass);
+			// 
+			// 			mui(".workexperience-content")[0].value = null;
+			// 			mui.toast('感谢您分享的工作心得');
+			// 
+			// 			getExperienceData();
+			// 		}
+			// 	})
+			// }
+			
+			// //点赞(工作心得)
+			// function thumbs(statusCodes,index,arr){
+			// 	
+			// 	mui(".thumbs-up")[index].addEventListener("tap",function(){
+			// 		console.log('statusCodes = '+statusCodes);
+			// 		var datas = arr[index];
+			// 		if(statusCodes == 0){
+			// 			datas.thumbs += 1;
+			// 			datas.statusCode = 1;
+			// 			this.setAttribute("src","../../img/bg3.jpg");
+			// 		}else{
+			// 			datas.thumbs -= 1;
+			// 			datas.statusCode = 0;
+			// 			this.setAttribute("src","../../img/bg2.jpg");
+			// 		}
+			// 		getExperienceData();
+			// 	})
+			// }
+			
+			// //评论（工作心得）
+			// function comment1(){
+			// 	
+			// 	console.log(mui(".comment"));
+			// 	var comm = mui(".comm")[index];
+			// 	mui(".comment")[index].addEventListener("tap",function(){
+			// 		console.log(1);
+			// 		
+			// 	})
+			// }
+			
+			//提交意见或建议
+			// function proposal() {
+			// 	mui(".submission")[0].addEventListener("tap", function() {
+			// 		var date = getNowFormatDate();
+			// 		var proposalContent = mui(".proposal-content")[0].value;
+			// 
+			// 
+			// 		if (proposalContent == "") {
+			// 			mui.toast('还没有内容哦')
+			// 		} else {
+			// 			var datass = {
+			// 				"userHeader":"../../img/HeadImgDefault.png",
+			// 				"userName":"测试人员009",
+			// 				"date": date,
+			// 				"content": proposalContent,
+			// 				"thumbs":0,
+			// 				"comment":0,
+			// 				"share":0
+			// 			};
+			// 			test05.push(datass);
+			// 
+			// 			mui(".proposal-content")[0].value = null;
+			// 			mui.toast('感谢您给出意见或建议');
+			// 
+			// 			getAllTheSuggestions();
+			// 		}
+			// 	})
+			// }
+			
+			//获取当前时间 格式YYYY-MM-DD hh-mm-ss
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+				var strDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+					" " + date.getHours() + seperator2 + date.getMinutes() +
+					seperator2 + date.getSeconds();
+				return currentdate;
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">休养之声</h1>
+			<a class="mui-icon mui-icon-plusempty mui-pull-right" onclick="jump(143)" style="color: white;font-size:0.4rem;"></a>
+		</header>
+		<div style="margin-top: 80px">
+			<div class="mui-slider">
+				<!--<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item item1 mui-active font20" href="#item1">工作心得</a>
+					<a class="mui-control-item  item2 font20" href="#item2">工作建议</a>
+				</div>-->
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div class="mui-slider-group">
+
+					<div id="item1" class="mui-slider-item mui-control-content mui-active">
+
+						<!-- 所有工作心得 -->
+						<div class="workexperience-all">
+							<ul class="mui-table-view">
+
+
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

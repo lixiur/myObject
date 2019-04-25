@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>公告详情</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" href="../../css/list.css" /> 
+		<style>
+			.met_apply {
+			    margin-bottom: 10px;
+			    margin-top: 15px;
+			}
+			.muiinput div {
+			    padding-top: 5px ;
+			    padding-left: 8px;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" ></script>
+		<script src="../../js/jquery-form.js"></script>
+		<script src="../../js/tools.js" ></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" ></script>
+		<script src="../../js/jump.js" type="text/javascript" ></script>
+	</head>
+
+	<body >
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">公告详情</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 20px;background-color: #FFFFFF">
+		    <div class="met_apply">
+		   		<div id="" align="center">
+		   			<label class="font21" id="title"></label>
+		    	</div>	
+		    </div>
+	   		<div id="content" class="news-text font20 textColorMain" style="margin-left: 10px;">
+	    	</div>
+		</div>
+	</body>
+	<script>
+//		var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+//		var user = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+//		var usId = user.id;//用户id
+//		var uName = user.username;
+//  	var detaId = obtain();
+//  	var datep = detaId.split(",");
+//  	var sid = datep[0];
+//  	var noUrl;
+//  	if(datep[1] == 1){//表示从主页进来的
+//  		noUrl = httpAction[105];
+//  	}else if(datep[1] == 2){//表示从列表页进来的
+//  		noUrl = httpAction[106];
+//  	}
+//		myAjax(noUrl,{id:sid,userId:usId,userName:uName},function (res) {
+//			var code = res.status;
+//			if (code == 1) {
+//				var list = (res.data)[0];
+				
+					var data =[{'content': "受业主*******委托，招标网于2019年04月15日发布中标公告：中国共产党宜宾市委员会老干部局宜宾市离退休干部参观学习项目成交公告。"+
+    "请中标单位及时与业主相关负责人联系，及时签署相关商务合同；未中标供应商也可及时向业主提出相关质疑。于此项目有关的其他供应商也可与中标商*******联系，及时提供后续设备与服务。",
+					"createTime": "2019-04-10 10:10:42",
+					"id": "4",
+					"title": "中国共产党宜宾市委员会老干部局宜宾市离退休干部参观学习项目成交公告"}] 
+					var list = data[0];
+				for(var keyVal in list) {
+					if(keyVal == 'title') {
+						var utitle = list[keyVal];
+						$("#" + keyVal).text(utitle);
+					}else if(keyVal == 'content'){
+						var uContent = list[keyVal];
+//						$("#" + keyVal).text(uContent);
+						$("#content").append(uContent);
+					}else{
+						$("#" + keyVal).text(list[keyVal]);
+					}
+				}
+//			} else{
+//				mui.toast("服务器错误");
+//			}
+//		});
+	</script>	
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>文艺历史课程</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css"/>
+		<link rel="stylesheet" href="../../css/iconfont1.css" />
+		<style>
+			* {
+				font-family: "微软雅黑";
+			}
+			.workImg{
+				height: 12.5rem;
+			}
+			.mui-media-object{
+				width: 25rem;
+				height: 18.75rem;
+			}
+			.icon-chakan{
+				float: left;
+				margin-top:10px;
+			}
+		</style>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script src="../../js/jump.js"></script>
+		<script src="../../js/httpUrl.js"></script>
+		<script src="../../js/privile.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+			
+				//courseOnclick();
+				
+				getCourses();
+			
+			})
+			
+			//获取课程
+			function getCourses(){
+				var cour = test07;
+				
+				loadCourses(cour);
+			}
+			
+			//加载课程到到页面
+			function loadCourses(datas){
+				var ul = mui(".mui-content ul")[0];
+				
+				for(var i=0;i<datas.length;i++){
+					var li = document.createElement("li");
+					li.innerHTML = '<a href="#" onclick="jumpValue(97,'+datas[i].courseId+')">'+
+										'<img class="mui-media-object" src="'+datas[i].imgpath+'">'+
+										'<div class="mui-media-body">'+datas[i].courseName+'</div>'+
+										'<p class="mui-icon iconfont icon-chakan">'+
+											'<span class="count1">'+datas[i].count+'</span>'+
+										'</p>'+
+									'</a>'
+					li.setAttribute("class","mui-table-view-cell mui-media mui-col-xs-6");
+					ul.appendChild(li);
+				}
+			}
+			//课程点击
+			function courseOnclick() {
+				mui(".mui-table-view-cell").on("tap", "a", function() {
+					
+					tatisticalReading(this);
+					
+					toCourseDetails(this);
+					
+				})
+			}
+			
+			//统计课程点击量
+			function tatisticalReading(ob) {
+				var count = ob.getAttribute("count");
+				var span = mui("." + count)[0];
+				span.innerHTML++;
+			}
+			
+			//转跳课程详情页
+			function toCourseDetails(ob) {
+				var courseName = ob.getAttribute("coursename");
+				mui.openWindow({
+					url:"course/detailsOfLiteratureAndArtHistoryCourse.html",
+					id:"course/detailsOfLiteratureAndArtHistoryCourse.html",
+					extras:{
+						courseName:courseName
+					}
+				})
+			}
+		</script>
+		
+	</head>
+
+	<body style="background: #efeff4;">
+		
+		<header class="mui-bar mui-bar-nav headr">
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			 <h1 class="mui-title font25">文艺历史课程</h1>
+		</header>
+		
+		<div class="mui-content" style="background: #FFFFFF;">
+			<ul class="mui-table-view mui-grid-view">
+				<!-- <li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div class="workImg">
+						<a href="#" count="count1" coursename="OrchidPavilion">
+							<img class="mui-media-object" src="../../img/test/test006-11.png">
+							<div class="mui-media-body">兰亭序（东晋王羲之撰文）</div>
+						</a>
+					</div>
+					<p class="mui-icon iconfont icon-chakan">
+						<span class="count1">0</span>
+					</p>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div class="workImg">
+						<a href="#" count="count2" coursename="QiBaiShiWorks">
+							<img class="mui-media-object" src="../../img/test/test007-2.png">
+							<div class="mui-media-body">齐白石作品赏析</div>
+						</a>
+					</div>
+					<p class="mui-icon iconfont icon-chakan">
+						<span class="count2">0</span>
+					</p>
+				</li> -->
+			</ul>
+		</div>
+	
+	</body>
+
+</html>

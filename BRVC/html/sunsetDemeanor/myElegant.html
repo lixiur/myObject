@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>工作圈</title>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../../css/OAlmj.css" />
+		<link rel="stylesheet" href="../../css/demo1.css">
+		<link rel="stylesheet" href="../../css/iconfont.css">-->
+		<link rel="stylesheet prefetch" href="../../css/photoswipe.css">
+		<link rel="stylesheet prefetch" href="../../css/default-skin/default-skin.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css"/>
+		<script src="../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/photoswipe.js"></script>
+		<script src="../../js/privile.js"></script>
+		<script src="../../js/photoswipe-ui-default.min.js"></script>
+		<script src="../../js/mescroll-for-muiscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}			
+			a {
+				color: #333;
+				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+			}
+			
+			.clearfix:after {
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				*height: 1%;
+			}
+			
+			#list {
+				margin: 0 auto;
+				text-align: left;
+				width: 100%;
+			}
+			
+			.box {
+				border-top: 1px solid #eee;
+				position: relative;
+				width: 100%;
+				padding: 20px 0
+			}
+			
+			.box:hover .close {
+				display: block;
+			}
+			
+			.close {
+				display: none;
+				top: 0px;
+				right: 0px;
+				width: 28px;
+				height: 28px;
+				border: 1px solid #eee;
+				position: absolute;
+				background: #f2f4f7;
+				line-height: 27px;
+				text-align: center;
+			}
+			
+			.close:hover {
+				background: #c8d2e2;
+				text-decoration: none;
+			}
+			
+			.head {
+				float: left;
+				width: 60px;
+				height: 60px;
+				margin-right: 10px;
+			}
+			
+			.content {
+				float: left;
+				width: 100%;
+			}
+			
+			.main {
+				margin-bottom: 10px;
+			}
+			
+			.txt {
+				margin-bottom: 10px;
+			}
+			
+			.user {
+				color: #369;
+			}
+			
+			.pic {
+				margin-right: 5px;
+				width: 200px;
+				border: 1px solid #eee;
+			}
+			
+			.info {
+				height: 20px;
+				line-height: 19px;
+				font-size: 12px;
+				margin: 0 0 10px 0;
+			}
+			
+			.info .time {
+				color: #ccc;
+				float: left;
+				height: 20px;
+				padding-left: 20px;
+				background: url("../../img/bg1.jpg") no-repeat left top;
+			}
+			
+			.info .praise {
+				color: #369;
+				float: right;
+				height: 20px;
+				padding-left: 18px;
+				background: url("../../img/bg2.jpg") no-repeat left top;
+			}
+			
+			.info .praise:hover {
+				text-decoration: underline;
+				background: url("../../img/bg3.jpg") no-repeat left top;
+			}
+			
+			.praises-total {
+				margin: 0 0 10px 0;
+				height: 20px;
+				background: url("../../img/praise.png") no-repeat 5px 5px rgb(247, 247, 247);
+				padding: 5px 0 5px 25px;
+				line-height: 19px;
+			}
+			
+			.comment-text {
+				word-wrap: break-word;
+				word-break: break-all;
+				width: 100%;
+			}
+			
+			.comment-box {
+				padding: 10px 0;
+				border-top: 1px solid #eee;
+			}
+			
+			.comment-box:hover {
+				background: rgb(247, 247, 247);
+			}
+			
+			.comment-box .myhead {
+				float: left;
+				width: 30px;
+				height: 30px;
+				margin-right: 10px;
+			}
+			
+			.comment-box .comment-content {
+				float: left;
+				width: 100%;
+			}
+			
+			.comment-box .comment-content .comment-time {
+				color: #ccc;
+				margin-top: 3px;
+				line-height: 16px;
+				position: relative;
+			}
+			
+			.comment-box .comment-content .comment-praise {
+				display: none;
+				color: #369;
+				padding-left: 17px;
+				height: 20px;
+				background: url("../../img/praise.png") no-repeat;
+				position: absolute;
+				bottom: 0px;
+				right: 44px;
+			}
+			
+			.comment-box .comment-content .comment-operate {
+				display: none;
+				color: #369;
+				height: 20px;
+				position: absolute;
+				bottom: 0px;
+				right: 10px;
+			}
+			
+			.comment-box .comment-content:hover .comment-praise {
+				display: inline-block;
+			}
+			
+			.comment-box .comment-content:hover .comment-operate {
+				display: inline-block;
+			}
+			
+			.text-box .comment {
+				border: 1px solid #eee;
+				display: block;
+				height: 27px;
+				width: 100%;
+				padding: 5px;
+				resize: none;
+				color: #ccc;
+			}
+			
+			.text-box .btn-off {
+				border: 1px solid #ccc;
+				color: #ccc;
+				background: #F7F7F7;
+			}
+			
+			.text-box .word {
+				display: none;
+				float: right;
+				margin: 7px 10px 0 0;
+				color: #666;
+			}
+			
+			.text-box-on .comment {
+				height: 50px;
+				color: #333;
+			}
+			
+			.text-box-on .btn {
+				display: inline;
+			}
+			
+			.text-box-on .word {
+				display: inline;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 0px;
+			}
+			.img{
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+			.fr{font-size: 14px;}	
+			.showpic{
+				height: 82px;
+			    width: 28%;
+			    overflow: hidden;
+			    float: left;
+			    margin-top: 5px;
+			    margin-right: 5px;				
+			}
+			.imgs{
+				overflow: hidden;
+			}					
+		</style>
+
+		<script type="text/javascript" charset="utf-8">
+//			mui.init({
+//				statusBarBackground: "#d23330",
+//			});
+		</script>
+	</head>
+
+	<body style="background-color: #fff;">
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">我的风采</h1>
+		    <a onclick="jump(43)"><img id="xiangji" style="height:18px;float: right;margin-right: 10px;margin-top: 10px;" src="../../img/xiangji.png" /></a>
+		</header>
+		<div class="mui-content mui-scroll-wrapper" id="offCanvasContentScroll" style="background-color: white;">
+			<!--<div class="banner" style="position: relative;">
+				<div class="top_bg"></div>
+				<div style="width:80px; height:80px;position: absolute;background-color: #F3F3F7;right: 10px;bottom: -30px;">
+					<img src="../../img/tx.jpg" style="width:96%; margin: 2%;" />
+				</div>
+				<div style="position: absolute;right: 100px;bottom: 10px;color: white;">
+					在路上的愚人
+				</div>
+			</div>-->
+
+			<div id="list" class="mui-scroll contain" style="margin: 64px 0 0;">
+				<ul id="dataList" class="data-list mui-table-view">
+
+				</ul>
+				<!--<div class="box body">
+					<div class="logo">
+						<img src="../../img/tx2.jpg" />
+					</div>
+					<div class="text">
+						<div class="title">小黄人</div>
+						<div class="times font28" style="color: #C7C7CC;">
+							2018-06-04 10:19
+						</div>
+						<div class="txt">在宇宙中未知的地方有一个由12个人类殖民地组成的星际国家，人类为了方便制造了Cylons（机器人）为人类服务，但Cylons起来反抗人类，双方在血战之后停火，Cylons离开了殖民地去建立自己的家园。40年的和平让<span id="p1">...</span><span id="txt1" style="display:none;">人类放松了警惕，Cylons通过人类内部的间谍瘫痪了人类的防御系统，摧毁了Battlestar舰队，用核武器将殖民地的城市化为灰烬。Battlestar Galactica是唯一一艘幸存的航母，它在舰长Adama的指挥下带领几十艘各式各样的民船和近5万名幸存者逃离了殖民地的行星系统，开始了寻找人类的第13个殖民地——地球——的旅程。</span></div>-->
+<!--						<div style="color: #88B1C5;" onclick="more(this,'1')">全文</div>-->
+						<!--<div class="my-gallery" data-pswp-uid="1">
+							<figure><span>
+							  <a href="../../img/m3.jpg" data-size="670x712">
+							  <img style="width:80%;" src="../../img/th1.jpg"/>
+							  </a></span>
+							</figure>
+						</div>-->
+						<!--<div class="tm" style="margin-top: 10px;">
+							<div class="fl">浏览<span style="margin-left: 10px;">19</span>次</div>
+							<div class="fr">
+								<span style="float: right;margin-right: 20px;">
+									<img src="../../images/dianzan.png" style="height: 18px;" />
+									2
+								</span>
+								<span style="float: right;margin-right: 20px;"><img src="../../images/xinxi.png"/ style="height: 18px;margin-right: 5px;">1</span>
+							</div>
+						</div>-->
+<!--						<div class="praises-total" total="4" style="display: block;">4个人觉得很赞</div>-->
+						<!--<div class="comment-list">
+							<div class="comment-box clearfix" user="self">
+								<div class="comment-content">
+									<p class="comment-text"><span class="user">我：</span>写的太好了。</p>
+									<p class="comment-time">
+										<a href="javascript:;" class="comment-praise" total="1" my="0" style="display: inline-block">1 赞</a>
+										<a href="javascript:;" class="comment-operate">删除</a>
+									</p>
+								</div>
+							</div>
+						</div>-->
+						<!--<div class="text-box">
+							<textarea class="comment" autocomplete="off" onpropertychange="this.style.posHeight=this.scrollHeight ">评论…</textarea>
+							<button class="btn">回 复</button>
+							<button class="hidden btn">匿名回复</button>
+							<span class="word"><span class="length">0</span>/140</span>
+						</div>-->
+					<!--</div>
+				</div>-->
+				<!--<div class="box body">
+					<div class="logo"><img src="../../img/tx3.jpg"></div>
+					<div class="text">
+						<div class="title">小清新</div>
+						<div class="txt">买了一个更帅的电饭锅，可以手机远程操制的，开心</div>-->
+						<!--data-pswp-uid 是每个gallery的id不能重复-->
+						<!--<div class="my-gallery" data-pswp-uid="2">
+							<figure>
+								<div>
+									<a href="../../img/s5.jpg" data-size="286x220"><img style="height:100%;" src="../../img/s5.jpg"></a>
+								</div>
+								<figcaption style="display:none;">在这里可增加图片描述</figcaption>
+							</figure>
+							<figure>
+								<div>
+									<a href="../../img/sb1.jpg" data-size="640x426"><img style="height:100%;" src="../../img/sb1.jpg"></a>
+								</div>
+								<figcaption style="display:none;">在这里可增加图片描述2</figcaption>
+							</figure>
+							<figure>
+								<div>
+									<a href="../../img/sb3.jpg" data-size="768x1024"><img style="width:100%;" src="../../img/sb3.jpg"></a>
+								</div>
+								<figcaption style="display:none;">在这里可增加图片描述3</figcaption>
+							</figure>
+							<figure>
+								<div>
+									<a href="../../img/sb4.jpg" data-size="900x596"><img style="height:100%;" src="../../img/sb4.jpg"></a>
+								</div>
+								<figcaption style="display:none;">在这里可增加图片描述4</figcaption>
+							</figure>
+							<figure>
+								<div>
+									<a href="../../img/y1.jpeg" data-size="1200x1200"><img style="height:100%;" src="../../img/y1.jpeg"></a>
+								</div>
+								<figcaption style="display:none;">在这里可增加图片描述5在这里可增加图片描述5在这里可增加图片描述5</figcaption>
+							</figure>
+						</div>
+						<div class="tm" style="margin-top: 10px;">
+							<div class="fl">2分钟前</div>
+							<div class="fr">
+								<a class="praise" style="float: right;padding-left: 10px;">赞</a><img src="../../images/dianzan.png" / style="height: 18px;float: right;">
+								<span style="float: right;"><img src="../../images/xinxi.png"/ style="height: 18px;margin-right: 10px;"></span>
+							</div>
+						</div>
+						<div class="praises-total" total="0" style="display: none;"></div>
+						<div class="comment-list">
+							<div class="comment-box clearfix" user="other">
+								<div class="comment-content">
+									<p class="comment-text"><span class="user">老鹰：</span>我也想去三亚。</p>
+									<p class="comment-time">
+										<a href="javascript:;" class="comment-praise" total="0" my="0">赞</a>
+										<!--<a href="javascript:;" class="comment-operate">回复</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="text-box">
+							<textarea class="comment" autocomplete="off">评论…</textarea>
+							<button class="btn ">回 复</button>
+							<button class="hidden btn">匿名回复</button>
+							<span class="word"><span class="length">0</span>/140</span>
+						</div>
+					</div>
+				</div>-->
+			</div>
+
+		</div>
+
+		<!-- Root element of PhotoSwipe. Must have class pswp. -->
+		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+			<!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+			<div class="pswp__bg"></div>
+
+			<!-- Slides wrapper with overflow:hidden. -->
+			<div class="pswp__scroll-wrap">
+
+				<!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+				<div class="pswp__container">
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+					<div class="pswp__item"></div>
+				</div>
+
+				<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+				<div class="pswp__ui pswp__ui--hidden">
+
+					<div class="pswp__top-bar">
+
+						<!--  Controls are self-explanatory. Order can be changed. -->
+
+						<div class="pswp__counter"></div>
+
+						<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+						<button class="pswp__button pswp__button--share" title="Share"></button>
+
+						<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+						<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+						<!-- element will get class pswp__preloader--active when preloader is running -->
+						<div class="pswp__preloader">
+							<div class="pswp__preloader__icn">
+								<div class="pswp__preloader__cut">
+									<div class="pswp__preloader__donut"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+						<div class="pswp__share-tooltip"></div>
+					</div>
+
+					<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+					<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+					<div class="pswp__caption">
+						<div class="pswp__caption__center"></div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+<script type="text/javascript">
+	mui.init();
+	mui.previewImage();
+//	var Utils = getUtils();
+//	var userInfoJson = Utils.getDataStorageJsonNode('local',"userInfo","userIn");
+//	var user = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//	var userId = user.id;
+	var result;
+	commentNums=12
+function Utf8ToUnicode(strUtf8) { 
+  var i,j; 
+  var uCode; 
+  var temp = new Array(); 
+  for(i=0,j=0; i<strUtf8.length; i++){ 
+    uCode = strUtf8.charCodeAt(i); 
+    if(uCode<0x100){         //ASCII字符 
+      temp[j++] = 0x00; 
+      temp[j++] = uCode; 
+    }else if(uCode<0x10000){ 
+      temp[j++] = (uCode>>8)&0xff; 
+      temp[j++] = uCode&0xff; 
+    }else if(uCode<0x1000000){ 
+      temp[j++] = (uCode>>16)&0xff; 
+      temp[j++] = (uCode>>8)&0xff; 
+      temp[j++] = uCode&0xff; 
+    }else if(uCode<0x100000000){ 
+      temp[j++] = (uCode>>24)&0xff; 
+      temp[j++] = (uCode>>16)&0xff; 
+      temp[j++] = (uCode>>8)&0xff; 
+      temp[j++] = uCode&0xff; 
+    }else{ 
+      break; 
+    } 
+  } 
+  temp.length = j; 
+  return temp; 
+}
+//		mui.ready(function() {			
+			//创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;内部已初始化mui的区域滚动
+			var mescroll = new MeScroll("offCanvasContentScroll", {
+				up: {
+					clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+					callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+				}
+			}
+//				 ,{bounce:false} //是否启用回弹效果,默认true; 如果设置false,可解决一个小小的问题: 下拉的时候不会感觉下拉区域被遮住一点点
+		);
+			window.addEventListener('refresh', function(e){//执行刷新
+			    mescroll.resetUpScroll();
+			});			
+//			console.log(pdType);
+			/*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+			function getListData(page){
+				//联网加载数据
+				console.log("page.num=="+page.num+",page.size=="+page.size);
+				getListDataFromNet(page.num, page.size, function(data){
+					//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+					mescroll.endSuccess(data.length);//传参:数据的总数; mescroll会自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+					//设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+					setListData(data);
+				}, function(){
+					//联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+	                mescroll.endErr();
+				});
+			}
+
+			/*设置列表数据*/
+			function setListData(data){
+				var listDom=document.getElementById("dataList");
+				for (var i = 0; i < data.length; i++) {
+					var pd=data[i];
+//					console.log(pd.id);
+					if (pd.userName == null) {
+						pd.userName = "";
+					}
+					if (pd.createTime == null) {
+						pd.createTime ="";
+					}
+					if (pd.content == null) {
+						pd.content = "";
+					}
+					if (pd.likeNums == null) {
+						pd.likeNums = "0";
+					}
+					if (pd.commentNumbers == null) {
+						pd.commentNumbers = "0";
+					}
+					if (pd.browseNums == null) {
+						pd.browseNums = "1";
+					}
+					var photoUrl = pd.files;
+					console.log(photoUrl.length);	
+					var content = Utf8ToUnicode(pd.content);
+					var str='';
+					str+='<div class="box body" onclick="jumpValue(146,'+pd.id+')">';
+					str+='<div id="" style="margin-left: 10px;overflow: hidden;">';
+					str+='<div class="logo" style="border-radius: 40px;overflow: hidden;width:40px;">';
+					if(pd.images == null){
+						str+='<img src="../../img/ic_progress_in.png" style="height:40px;width:40px;"/>';
+					}else{ 
+						str+='<img src="../../img/ic_progress_in.png" style="height:40px;width:40px;"/>';
+					
+//						str+='<img src="'+header+pd.images+'" style="height:40px;width:40px;"/>';
+					//../../img/xinwen.jpg
+					}
+					str+='</div>';	
+					str+='<div class="text" style="overflow: hidden;">';	
+					str+='<div class="title">'+pd.userName+'</div>';		
+					str+='<div class="times font22" style="color: #C7C7CC;font-size:14px">'+pd.createTime+'</div>';								
+					str+='</div>';
+					str+='</div>';
+					str+='<div class="txt" style="font-size:18px;margin-left: 10px;margin-top:10px">'+pd.content+'</div>';
+					str+='<div class="imgs" style="width:300px;margin-left:10px;">';
+					if (photoUrl.length != 0) {
+						if (photoUrl.length >1) {
+						if (photoUrl[0] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[0].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[1] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[1].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[2] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[2].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[3] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[3].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[4] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[4].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[5] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[5].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[6] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[6].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[7] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[7].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}
+						if (photoUrl[8] != null) {
+//							str+='<div class="showpic">';
+							str+='<img   src="'+header+photoUrl[8].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							str+='</div>';
+						}						
+//						console.log("不为空");
+//						for(var i = 0; i < photoUrl.length; i++) {
+//							console.log(photoUrl[i].FILE_PATH);
+////							str+='<img class="mui-col-sm-3 mui-col-xs-3 img" src="'+header+photoUrl[i].FILE_PATH+'" data-preview-src="" data-preview-group="1" style="height: 80px;" />';
+//						}								
+												
+						} else{
+							str+='<img  src="../../img/xinwen.jpg" data-preview-src="" data-preview-group="'+i+'" style="height: 80px;width:80px;object-fit: cover;margin-top: 5px;margin-right: 5px;" />';							
+//							
+//							str+='<img   src="'+header+photoUrl[0].FILE_PATH+'" data-preview-src="" data-preview-group="'+i+'" style="height: 160px;width:160px;" />';														
+						}
+					}
+					str+='</div>';
+					str+='<div class="tm" style="margin-top: 10px;overflow: hidden;margin-left: 10px;">';		
+					str+='<div class="fl" style="float: left;">浏览<span style="margin-left: 10px;">'+pd.browseNums+'</span>次</div>';
+//					str+='<div class="fl">浏览<span style="margin-left: 10px;">10</span>次</div>';
+					str+='<div class="fr" style="float: right;>';			
+//					str+='<span style="float: right;margin-right: 20px;"><img src="../../img/xinxi.png" style="height: 12px;margin-right: 5px;" />'+pd.commentNums+'</span>';					
+					str+='<span style="float: right;margin-right: 20px;"><img src="../../img/xinxi.png" style="height: 12px;margin-right: 5px;" />'+"12"+'</span>';					
+					str+='<span style="float: right;margin-right: 20px;margin-left: 30px;"><img src="../../img/dianzan.png" style="height: 13px;margin-right: 5px;" />'+pd.likeNums+'</span>';
+					str+='</div>';			
+					str+='</div>';		
+					str+='</div>';
+					var liDom=document.createElement("li");
+					liDom.setAttribute("class", "mui-table-view-cel mui-media");
+					liDom.innerHTML=str;					
+					listDom.appendChild(liDom);					
+				}
+			}
+			
+			/*联网加载列表数据*/
+			function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
+				//延时一秒,模拟联网
+//				console.log(result);
+//              setTimeout(function () {
+//              	$.ajax({
+//		                type: 'post',
+//		                url: httpAction[125],
+//		                data:{
+//		                	encryptionPara:encryptionPara,
+////		                	userId:userId,
+////		                	time:result,
+//		                	page:pageNum,
+//		                	limit:pageSize		                	
+//		                },
+//		                dataType: 'json',
+//		                success: function(data){
+//		                	//模拟分页数据
+		                	var listData=[];
+////		                	console.log(JSON.stringify(data.data));
+//		                	for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
+//				            		if(i==data.data.length) break;
+				            		var data=lier2[0];
+				            		listData.push(data);
+//				            		listData.push(data.data[i]);
+//		                	}
+		                	successCallback(listData);
+//		                },
+//		                error: errorCallback
+//		            });
+//              },1000)
+			}
+			
+			//禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
+			document.ondragstart=function() {return false;}
+//		})		
+		
+</script>
+	
+	<!--<script type="text/javascript">
+		mui.init();
+		// 扩展API加载完毕后调用onPlusReady回调函数 
+		document.addEventListener("plusready", onPlusReady, false);
+		var r = null;
+		// 扩展API加载完毕，现在可以正常调用扩展API 
+		function onPlusReady() {}
+		mui('.pswp__share-tooltip').on('tap', 'pswp__share--download', function() {
+			console.log("222");
+			plus.gallery.save(this.href, function() {
+				alert("保存图片到相册成功");
+			});
+
+		})
+		var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+			// 解析来自DOM元素幻灯片数据（URL，标题，大小...）
+			// (children of gallerySelector)
+			var parseThumbnailElements = function(el) {
+				var thumbElements = el.childNodes,
+					numNodes = thumbElements.length,
+					items = [],
+					figureEl,
+					linkEl,
+					size,
+					item,
+					divEl;
+
+				for(var i = 0; i < numNodes; i++) {
+
+					figureEl = thumbElements[i]; // <figure> element
+
+					// 仅包括元素节点
+					if(figureEl.nodeType !== 1) {
+						continue;
+					}
+					divEl = figureEl.children[0];
+					linkEl = divEl.children[0]; // <a> element
+
+					size = linkEl.getAttribute('data-size').split('x');
+
+					// 创建幻灯片对象
+					item = {
+						src: linkEl.getAttribute('href'),
+						w: parseInt(size[0], 10),
+						h: parseInt(size[1], 10)
+					};
+
+					if(figureEl.children.length > 1) {
+						// <figcaption> content
+						item.title = figureEl.children[1].innerHTML;
+					}
+
+					if(linkEl.children.length > 0) {
+						// <img> 缩略图节点, 检索缩略图网址
+						item.msrc = linkEl.children[0].getAttribute('src');
+					}
+
+					item.el = figureEl; // 保存链接元素 for getThumbBoundsFn
+					items.push(item);
+				}
+
+				return items;
+			};
+
+			// 查找最近的父节点
+			var closest = function closest(el, fn) {
+				return el && (fn(el) ? el : closest(el.parentNode, fn));
+			};
+
+			// 当用户点击缩略图触发
+			var onThumbnailsClick = function(e) {
+				e = e || window.event;
+				e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+				var eTarget = e.target || e.srcElement;
+
+				// find root element of slide
+				var clickedListItem = closest(eTarget, function(el) {
+					return(el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+				});
+
+				if(!clickedListItem) {
+					return;
+				}
+
+				// find index of clicked item by looping through all child nodes
+				// alternatively, you may define index via data- attribute
+				var clickedGallery = clickedListItem.parentNode,
+					childNodes = clickedListItem.parentNode.childNodes,
+					numChildNodes = childNodes.length,
+					nodeIndex = 0,
+					index;
+
+				for(var i = 0; i < numChildNodes; i++) {
+					if(childNodes[i].nodeType !== 1) {
+						continue;
+					}
+
+					if(childNodes[i] === clickedListItem) {
+						index = nodeIndex;
+						break;
+					}
+					nodeIndex++;
+				}
+
+				if(index >= 0) {
+					// open PhotoSwipe if valid index found
+					openPhotoSwipe(index, clickedGallery);
+				}
+				return false;
+			};
+
+			// parse picture index and gallery index from URL (#&pid=1&gid=2)
+			var photoswipeParseHash = function() {
+				var hash = window.location.hash.substring(1),
+					params = {};
+
+				if(hash.length < 5) {
+					return params;
+				}
+
+				var vars = hash.split('&');
+				for(var i = 0; i < vars.length; i++) {
+					if(!vars[i]) {
+						continue;
+					}
+					var pair = vars[i].split('=');
+					if(pair.length < 2) {
+						continue;
+					}
+					params[pair[0]] = pair[1];
+				}
+
+				if(params.gid) {
+					params.gid = parseInt(params.gid, 10);
+				}
+
+				return params;
+			};
+
+			var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+				var pswpElement = document.querySelectorAll('.pswp')[0],
+					gallery,
+					options,
+					items;
+
+				items = parseThumbnailElements(galleryElement);
+
+				// 这里可以定义参数
+				options = {
+					barsSize: {
+						top: 100,
+						bottom: 100
+					},
+					fullscreenEl: false,
+					shareButtons: [{
+							id: 'wechat',
+							label: '分享微信',
+							url: '#'
+						},
+						{
+							id: 'weibo',
+							label: '新浪微博',
+							url: '#'
+						},
+						{
+							id: 'download',
+							label: '保存图片',
+							url: '{{raw_image_url}}',
+							download: true
+						}
+					],
+
+					// define gallery index (for URL)
+					galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+					getThumbBoundsFn: function(index) {
+						// See Options -> getThumbBoundsFn section of documentation for more info
+						var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+							pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+							rect = thumbnail.getBoundingClientRect();
+
+						return {
+							x: rect.left,
+							y: rect.top + pageYScroll,
+							w: rect.width
+						};
+					}
+
+				};
+
+				// PhotoSwipe opened from URL
+				if(fromURL) {
+					if(options.galleryPIDs) {
+						// parse real index when custom PIDs are used 
+						for(var j = 0; j < items.length; j++) {
+							if(items[j].pid == index) {
+								options.index = j;
+								break;
+							}
+						}
+					} else {
+						// in URL indexes start from 1
+						options.index = parseInt(index, 10) - 1;
+					}
+				} else {
+					options.index = parseInt(index, 10);
+				}
+
+				// exit if index not found
+				if(isNaN(options.index)) {
+					return;
+				}
+
+				if(disableAnimation) {
+					options.showAnimationDuration = 0;
+				}
+
+				// Pass data to PhotoSwipe and initialize it
+				gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+				gallery.init();
+			};
+
+			// loop through all gallery elements and bind events
+			var galleryElements = document.querySelectorAll(gallerySelector);
+
+			for(var i = 0, l = galleryElements.length; i < l; i++) {
+				galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+				galleryElements[i].onclick = onThumbnailsClick;
+			}
+
+			// Parse URL and open gallery if it contains #&pid=3&gid=1
+			var hashData = photoswipeParseHash();
+			if(hashData.pid && hashData.gid) {
+				openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+			}
+		};
+
+		// execute above function
+		initPhotoSwipeFromDOM('.my-gallery');
+
+		$(".my-gallery>figure>div").each(function() {
+			$(this).height($(this).width());
+		});
+
+		function more(obj, id) {
+			if($('#txt' + id).is(":hidden")) {
+				$('#p' + id).hide();
+				$('#txt' + id).show();
+				obj.innerHTML = '收起';
+			} else {
+				$('#p' + id).show();
+				$('#txt' + id).hide();
+				obj.innerHTML = '全文';
+			}
+		}
+	</script>-->
+</html>

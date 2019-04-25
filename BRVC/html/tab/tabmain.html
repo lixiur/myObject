@@ -1,0 +1,803 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/list.css" />
+		<style>
+			.mui-slider-indicator {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				text-align: center;
+				background: rgba(0, 0, 0, 0.5);
+			}
+
+			.mui-slider {
+				margin: 0 10px;
+				border-radius: 10px;
+				width: auto;
+			}
+
+			.list {
+				overflow: hidden;
+				background: #FFFFFF;
+				margin-left: 2px;
+				/*border:1px solid silver;*/
+				padding: 1px;
+				height: 30px;
+				line-height: 30px;
+				width: 99%;
+			}
+
+			.message {
+				width: auto;
+				height: 30px;
+				position: static;
+				/*background-color:#f7f4f4;*/
+				border-radius: 10px;
+				margin: 15px 0px;
+				border: 0px;
+				/*border:1px solid #d7e5ec;*/
+			}
+
+			.message .icon {
+				height: 20px;
+				float: left;
+			}
+
+			.message .content {
+				font-size: 15px;
+				margin-left: 10px;
+			}
+
+			.mui-table-view.mui-grid-view .mui-table-view-cell {
+				border: 0px;
+				padding-left: 10px;
+			}
+
+			.mui-table-view-cell:after,
+			.mui-table-view:after {
+				height: 0px;
+			}
+
+			.mui-table-view-cell:before,
+			.mui-table-view:before {
+				height: 0px;
+			}
+
+			.met_fk12 {
+				/*box-shadow: 0.1px 0.1px 1px #8f8f94;*/
+				font-size: 17px;
+				display: inline-block;
+				padding-top: 5px;
+				/*margin: 3.6px;*/
+				width: 70px;
+				height: 75px;
+				border-radius: 15px;
+				/*margin-right: -4px;*/
+				text-align: center;
+				vertical-align: middle;
+				/*background: #f8f9fb;*/
+			}
+
+			.p_b2 {
+				/*font-size: 0.30rem;*/
+				font-size: 12px;
+				color: #7f92a7;
+				/*margin-top: 3px;*/
+			}
+
+			.img_jg {
+				/*width: 28px;*/
+				height: 45px;
+			}
+
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				/*width: auto;*/
+				/*这个打开的话图片的宽度很低*/
+			}
+
+			::-webkit-scrollbar: {
+				display: none;
+				width: 0;
+				height: 0;
+			}
+
+			.img_jg {
+				/*margin-top: 10px;*/
+			}
+
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+				padding: 11px 9px;
+			}
+
+			.mui-slider-title {
+				background-color: #424141;
+				color: white;
+				/*width: 80%;
+    			margin-left: 10%;*/
+			}
+
+			.mui-slider .mui-slider-group .mui-slider-item {
+				/*width: 80%;*/
+				/*margin-left: 10%;*/
+				/*margin-right: 10%;*/
+			}
+
+			.mui-table-view .mui-active {
+				background-color: #FFFFFF;
+			}
+
+			.mui-table-view .mui-media-object {
+				line-height: 42px;
+				max-width: 42px;
+				height: auto;
+			}
+
+			.askLeave-list {
+				width: 50%;
+				float: left;
+				padding: 0 0 0 35px;
+			}
+
+			.titile {
+				height: 50px;
+				margin-top: 8px;
+				padding-left: 13px;
+			}
+
+			.uldv {
+				margin-top: 5px;
+				margin-left: 10px;
+				margin-right: 10px;
+				overflow: hidden;
+			}
+
+			.font25 {
+				/*font-weight: bolder ;*/
+				font-size: 0.25rem;
+				/*次要文案22px*/
+			}
+
+			/*author:李秀容*/
+
+			.home-list-title {
+				margin-top: 10px;
+				height: 45px;
+				padding-left: 10px;
+				line-height: 45px;
+				box-sizing: border-box;
+			}
+
+			.home-list-title img {
+				width: 25px;
+				margin-right: 5px;
+				vertical-align: middle;
+			}
+
+			.font14 {
+				font-size: 0.18rem;
+				/*次要文案14px*/
+			}
+
+			.bg-white {
+				background: #FFFFFF;
+			}
+
+			.home-block {
+				border-top: 1px solid #F5F5F5;
+				border-bottom: 1px solid #F5F5F5;
+			}
+
+			.home-block-title {
+				box-sizing: border-box;
+				margin-left: 10px;
+				position: relative;
+				width: 97%;
+				line-height: 40px;
+			}
+
+			.home-block-title img {
+				position: absolute;
+				left: 0;
+				top: 8px;
+			}
+
+			.home-block-title a {
+				padding-left: 10px;
+			}
+
+			.gray-font {
+				/*灰色字体*/
+				color: #b7b1b1;
+			}
+
+			.mui-slider-indicator .mui-active.mui-indicator {
+				background: red;
+			}
+
+			.notice-block {
+				position: relative;
+				margin-top: 10px;
+			}
+
+			.notice-block .notice-icon {
+				position: absolute;
+				z-index: 10;
+				top: 3px;
+				left: 10px;
+				width: 25px;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.9.1.min.js"></script>
+		<script src="../../js/jquery.vticker-min.js"></script>
+		<script src="../../js/httpUrl.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script src="../../js/jump.js"></script>
+		<script src="../../js/privile.js"></script>
+	</head>
+
+	<body>
+		<div id="t_list1" class="mui-content" style=" z-index: 3; position: relative;background: #f5f5f5;">
+			<div class="bg-white" style="padding-top: 10px;">
+				<div id="slider" align="center" class="mui-slider" style="height: 206px;">
+					<div id="img_d0" class="mui-slider-group mui-slider-loop">
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#"><img class="img_s" src="../../img/xinwen.jpg" style="height:206px;">
+								<!--<p class="mui-slider-title">暂无新闻</p> -->
+							</a>
+						</div>
+					</div>
+					<div id="img_d" class="mui-slider-indicator" style="margin-top: 30px;">
+					</div>
+				</div>
+				<div id="" class="mui-row notice-block">
+					<img class="mui-col-sm-2 mui-col-xs-2 notice-icon" src="../../img/tabmain/notice.png" />
+					<div id="noticeList" class="list mui-col-sm-10 mui-col-xs-10" style="display: none;z-index: 5;padding-left: 30px;">
+						<ul class="mui-table-view" id="notice" style="display: block;z-index: 5;margin-top: 10px;width: 90%;height: 35px;">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="home-list-title bg-white font20">
+				<img src="../../img/tabmain/propaganda.png" />
+				<span id="">
+					宣传
+				</span>
+			</div>
+			<div id="" class="home-block bg-white font20">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;clear: both;">
+					<img src="../../img/tabmain/rect1.png" />
+					<a class="font20" style="color: black;" href="#">晚霞在线</a>
+					<a class="mui-pull-right font14 gray-font" style="margin-right: 20px;" onclick="jump(2)">更多<span class="mui-icon mui-icon-arrowright font20"></span></a>
+				</div>
+				<ul id="t_list3" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(81)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/dynamics.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">工作动态</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(136)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/dynamics.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">链接内容</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(13)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/penetrating.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">晚霞精粹</label>
+							</div>
+							<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+							<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+						</div>-->
+						</div>
+					</li>
+					<!--<li class="mui-table-view-cell askLeave-list">
+			    	<div class="mui-row" onclick="jump(14)">   
+						<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+							<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/sound.png">
+						</div>
+						<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+							<label class="font20 textColorMain">晚霞之声</label>
+						</div>
+					</div>
+			    </li>-->
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(16)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;margin-top: 5px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/propaganda_star.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">宣传之星</label>
+							</div>
+							<!--<div class="mui-col-sm-2  mui-col-xs-2" style="height: 50px;">
+							<img class="mui-media-object mui-pull-right img_x" src="../../img/youjiantou_1.png">
+						</div>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="home-list-title bg-white font20">
+				<img src="../../img/tabmain/active.png" />
+				<span id="">
+					服务
+				</span>
+			</div>
+			<div id="" class="home-block bg-white">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;">
+					<img src="../../img/tabmain/rect2.png" />
+					<a class="font20" style="color: black;" href="#">晚霞先锋</a>
+					<!--<a class="mui-pull-right font25" style="color: black;margin-right: 20px;" onclick="jump(79)">更多</a>-->
+				</div>
+				<ul id="t_list2" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(7)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/zbxx.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">支部信息</label>
+							</div>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(10)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/zbdf.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">党费信息</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(8)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/zbhd.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">支部活动</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(11)" style="height: 50px;">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/zbxf.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">先锋之星</label>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div id="" class="home-block bg-white font20">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;clear: both;">
+					<img src="../../img/tabmain/rect2.png" />
+					<a class="font20" style="color: black;" href="#">晚霞风采</a>
+					<a class="mui-pull-right gray-font font14" style="margin-right: 20px;" onclick="jump(77)">更多<span class="mui-icon mui-icon-arrowright font20"></span></a>
+				</div>
+				<ul id="t_list4" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(17)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;padding-top: 10px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/power.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">我为脱贫出份力</label>
+							</div>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(38)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/deeds.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">我的风采</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(28)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/volunteer.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">志愿活动</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(40)" style="height: 50px;">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/five_one.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">五个一活动</label>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="" class="home-block bg-white font20">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;clear: both;">
+					<img src="../../img/tabmain/rect2.png" />
+					<a class="font20" style="color: black;" href="#">晚霞颐年</a>
+					<a class="mui-pull-right gray-font font14" style="margin-right: 20px;" onclick="jump(78)">更多<span class="mui-icon mui-icon-arrowright font20"></span></a>
+				</div>
+				<ul id="t_list5" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(45)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/my_active.png">
+							</div>
+							<div class="mui-col-sm-8  mui-col-xs-8" style="height: 50px;margin-top: 5px;padding-left: 20px;">
+								<label class="font20 textColorMain">我的活动</label>
+							</div>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(61)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/health.png">
+							</div>
+							<div class="mui-col-sm-8  mui-col-xs-8" style="height: 50px;margin-top: 5px;padding-left: 20px;">
+								<label class="font20 textColorMain">健康休养</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(57)">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/help.png">
+							</div>
+							<div class="mui-col-sm-8  mui-col-xs-8" style="height: 50px;margin-top: 5px;padding-left: 20px;">
+								<label class="font20 textColorMain">特困帮扶</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list">
+						<div class="mui-row" onclick="jump(68)" style="height: 50px;">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/place.png">
+							</div>
+							<div class="mui-col-sm-8  mui-col-xs-8" style="height: 50px;margin-top: 5px;padding-left: 20px;">
+								<label class="font20 textColorMain">易地安置</label>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="home-list-title bg-white font20">
+				<img src="../../img/tabmain/learn.png" />
+				<span id="">
+					学习
+				</span>
+			</div>
+			<div id="" class="home-block bg-white">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;clear: both;">
+					<img src="../../img/tabmain/rect3.png" />
+					<a class="font20" style="color: black;" href="#">晚霞园地</a>
+					<a class="mui-pull-right gray-font font14" style="margin-right: 20px;" onclick="jump(79)">更多<span class="mui-icon mui-icon-arrowright font20"></span></a>
+				</div>
+				<ul id="y_list" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list" pagePath="../sunsetGarden/politicalTheory.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/theory.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">政治理论</label>
+							</div>
+						</div>
+					</li>
+
+					<li class="mui-table-view-cell askLeave-list" pagePath="../sunsetGarden/healthManager.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/healthcare.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">保健养生</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list" pagePath="../sunsetGarden/historyAndArt.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/history.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">文艺历史</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list" pagePath="../sunsetGarden/learningStar.html">
+						<div class="mui-row" style="height: 50px;">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/learn_star.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">学习之星</label>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="home-list-title bg-white font20">
+				<img src="../../img/tabmain/job.png" />
+				<span id="">
+					工作
+				</span>
+			</div>
+			<div id="" class="home-block bg-white">
+				<div class="home-block-title" style="margin-left: 10px;width: 97%;clear: both;">
+					<img src="../../img/tabmain/rect4.png" />
+					<a class="font20" style="color: black;" href="#">我的工作</a>
+					<a class="mui-pull-right gray-font font14" style="margin-right: 20px;" onclick="jump(80)">更多<span class="mui-icon mui-icon-arrowright font20"></span></a>
+				</div>
+				<ul id="w_list" class="mui-table-view uldv" style="">
+					<li class="mui-table-view-cell askLeave-list" pagePath="../myWork/staffStatus.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/company.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">我的单位</label>
+							</div>
+
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list" pagePath="../mybranch/branch.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/branch.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">晚霞先锋</label>
+							</div>
+
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list" pagePath="../myWork/workDisplay.html">
+						<div class="mui-row" style="height: 50px;">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/gzfc.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">工作风采</label>
+							</div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell askLeave-list" pagePath="../myWork/mobilOffice.html">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2" style="height: 50px;">
+								<img class="mui-media-object mui-pull-right img_b" src="../../img/tabmain/work.png">
+							</div>
+							<div class="mui-col-sm-10  mui-col-xs-10 titile" style="">
+								<label class="font20 textColorMain">移动办公</label>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<script>
+			var Utils = getUtils();
+			var hexgh = 0; //当前屏幕可用的高度
+			var higtg = 0;
+			var count = 0;
+			joalism()
+
+			function joalism() {
+				var header = "http://www.cdlgb.com/website/upload/";
+				var joaList = [];
+				var imgur = "http://171.217.92.191:4012/UnitedOA/mobile/getNewsTop5";
+				myAjax(imgur, {}, function(res) {
+					var code = res.status;
+					var html;
+					if (code == 1) {
+						higtg = '206px;';
+						var maxWidth = parseInt($(window).width());
+						//						joaList = res.data;
+						joaList = qsueList
+						var html = "";
+						var html2 = "";
+						var html3 = "";
+						var htmtx = "";
+						var joCount = joaList.length;
+						var a = joCount - 1;
+						for (var k = 0; k < joaList.length; k++) {
+							var im = joaList[k];
+							if (joCount == 2) {
+								if (k == 0) {
+									var ism = joaList[1];
+									html += '<div class="mui-slider-item mui-slider-item-duplicate">' +
+										'<a href="#" onclick="jumpValue(73,' + ism.id + ')"><img class="img_s" src="' + header + ism.imgUrl +
+										'" onload="AutoSize(this,' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+										'<p class="mui-slider-title">' + ism.title + '</p></a></div>';
+									var im = joaList[0];
+									html3 += '<div class="mui-slider-item mui-slider-item-duplicate" >' +
+										'<a href="#" onclick="jumpValue(73,' + im.id + ')"><img class="img_s" src="' + header + im.imgUrl +
+										'" onload="AutoSize(this, ' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+										'<p class="mui-slider-title">' + im.title + '</p></a></div>';
+									for (var i = 0; i < joaList.length; i++) {
+										var im = joaList[i];
+										htmtx += '<div class="mui-indicator" ></div>';
+										html2 += '<div class="mui-slider-item" >' +
+											'<a href="#" onclick="jumpValue(73,' + im.id + ')"><img class="img_s" src="' + header + im.imgUrl +
+											'" onload="AutoSize(this, ' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+											'<p class="mui-slider-title">' + im.title + '</p></a></div>';
+									}
+								}
+							} else {
+								if (k == 0) {
+									var im = joaList[a];
+									html += '<div class="mui-slider-item mui-slider-item-duplicate" >' +
+										'<a href="#" onclick="jumpValue(73,' + im.id + ')"><img class="img_s" src="' + header + im.imgUrl +
+										'" onload="AutoSize(this, ' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+										'</a></div>';
+									htmtx += '<div class="mui-indicator mui-active"></div>';
+								} else if (k == a) {
+									var im = joaList[0];
+									html3 += '<div class="mui-slider-item mui-slider-item-duplicate" >' +
+										'<a href="#" onclick="jumpValue(73,' + im.id + ')"><img class="img_s" src="' + header + im.imgUrl +
+										'" onload="AutoSize(this, ' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+										'</a></div>';
+									htmtx += '<div class="mui-indicator" ></div>';
+								} else {
+									html2 = "";
+									var yid = 10;
+									htmtx += '<div class="mui-indicator" ></div>';
+									for (var i = 0; i < joaList.length; i++) {
+										var im = joaList[i];
+										html2 += '<div class="mui-slider-item" >' +
+											'<a href="#" onclick="jumpValue(73,' + im.id + ')"><img class="img_s" src="' + header + im.imgUrl +
+											'" onload="AutoSize(this, ' + maxWidth + ', 206)" style="height:' + higtg + '">' +
+											'</a></div>';
+									}
+								}
+							}
+
+						}
+						document.getElementById("img_d0").innerHTML = "";
+						html = html + html2 + html3;
+						$("#img_d0").append(html);
+						$("#img_d").append(htmtx);
+						var gallery = mui('.mui-slider');
+						gallery.slider({
+							interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+						});
+					} else {
+						//							plus.nativeUI.closeWaiting();
+						mui.toast(data.msg);
+					}
+				});
+			}
+
+			function roll(leist) {
+				$('#' + leist).vTicker({
+					speed: 3000, //滚动速度，单位毫秒。
+					pause: 1000, //暂停时间，就是滚动一条之后停留的时间，单位毫秒。
+					showItems: 10, //显示内容的条数。
+					animation: 'fade', //动画效果，默认是fade，淡出。
+					mousePause: true, //鼠标移动到内容上是否暂停滚动，默认为true。
+					height: 30, //滚动内容的高度。
+					direction: 'up' //滚动的方向，默认为up向上，down则为向下滚动。
+				});
+			}
+
+			notList();
+
+			function notList() { //查询公告列表  
+				hlist = qsueLt;
+				document.getElementById('notice').innerHTML = "";
+				var html = "";
+				for (var k = 0; k < hlist.length; k++) {
+					var im = hlist[k];
+					var confeName = im.title; //公告标题
+					var count = confeName.length;
+					var contitle;
+					if (count > 18) {
+						contitle = confeName.substring(0, 18) + '...';
+					} else {
+						contitle = im.title;
+					}
+					//							var notiTime = im.noticeSelectTime//会议时间 
+					var roid = im.id + ',' + 1;
+					html += '<li class="mui-table-view-cell message" style="margin-top:20px;" onclick=jumpValue(101,"' + roid + '")>' +
+//						'<div class="icon"><img src="../../img/xiaoxi.png" style="height: 20px;margin-left: 10px;margin-top:5px;" /></div>' +
+						'<span class="content" style="">' + contitle + '</span>' +
+//						'<div class="icon" style="float:right;margin-right:10px;"><img src="../../img/bottom.png" style="height: 10px;margin-top:10px;" /></div>' +
+						'</li>';
+				}
+				$("#notice").append(html);
+				$("#noticeList").css('display', 'block');
+				roll('noticeList');
+				//			myAjax(httpAction[105],{userId:uid,userName:uName},function (res) {
+				//				var code = res.status;
+				//				if (code == 1) {
+				//					document.getElementById('notice').innerHTML = "";
+				//					var hlist = res.data;
+				//					var count = hlist.length; 
+				//					if(count >= 1){
+				//						
+				//					}
+				//				} else{
+				////					mui.toast("服务器错误");
+				//				}
+				//			});
+			}
+
+			function junmp(count) {
+				mui('#sheet1').popover('toggle');
+				if (count == 1) {
+					jumpValue(12, 1)
+				} else if (count == 2) {
+					jumpValue(12, 2)
+				}
+			}
+
+			mui.ready(function() {
+
+				target1();
+
+				target2();
+
+			})
+
+			function target1() {
+				mui("#y_list").on("tap", "li", function() {
+					var pagePath = this.getAttribute("pagePath");
+
+					target(pagePath);
+				})
+			}
+
+			function target2() {
+				mui("#w_list").on("tap", "li", function() {
+					var pagePath = this.getAttribute("pagePath");
+
+					target(pagePath);
+				})
+
+			}
+
+			//跳转
+			function target(pagePath) {
+				mui.openWindow({
+					url: pagePath,
+					id: pagePath,
+				})
+			}
+		</script>
+	</body>
+
+</html>

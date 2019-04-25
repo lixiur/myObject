@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+	<meta charset="UTF-8">
+	<title>保健养生</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="../../css/mui.min.css" />
+	<link rel="stylesheet" href="../../css/base.css" />
+	<link rel="stylesheet" href="../../css/list.css" />
+	<style>
+		body{
+			background-color: #FFFFFF;
+		}
+		ul{
+			margin-top: 18px;
+		    margin-left: 10px;
+		    margin-right: 10px;
+		}
+		.mui-table-view .mui-media-object {
+		    line-height: 42px;
+		    max-width: 42px;
+		    height: auto;
+		}
+		.titile{
+			margin-top:0;
+			height: 50px;
+			padding-left: 10px;
+			border-left: 1px solid #dad3d3;
+		}
+		</style>
+	<script src="../../js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		mui.ready(function () {
+			
+			toDetailsPage();
+			
+		})
+		
+		//调转详细页面
+		function toDetailsPage(){
+			mui(".mui-table-view").on("tap","li",function(){
+				var pagePath = this.getAttribute("pagePath");
+				mui.openWindow({
+					url:pagePath,
+					id:pagePath,
+				})
+			})
+		}
+	</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr" style="position: relative;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">保健养生管理</h1>
+		</header>
+		<div id="t_list" class="mui-content" style="z-index: 3;padding-top: 0px; position: relative;background: #FFFFFF;">
+			<ul class="mui-table-view" style="">
+				<li class="mui-table-view-cell menu_item_list" pagePath="health/healthCare.html">
+					<div class="mui-row">
+						<div class="mui-col-sm-2 mui-col-xs-2"  >
+							<img class="mui-media-object mui-pull-right img_b" src="../../img/txs.png">
+						</div>
+						<div class="mui-col-sm-7  mui-col-xs-7 titile"  >
+							<label class="font20 textColorMain">保健专区</label>
+						</div>
+						<div class="mui-col-sm-2  mui-col-xs-2"  >
+							<img class="mui-media-object mui-pull-right img_x" src="../../img/more_Icon.png">
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell menu_item_list" pagePath="health/healthPreservation.html">
+					<div class="mui-row">
+						<div class="mui-col-sm-2 mui-col-xs-2"  >
+							<img class="mui-media-object mui-pull-right img_b" src="../../img/xz_gz.png">
+						</div>
+						<div class="mui-col-sm-7  mui-col-xs-7 titile"  >
+							<label class="font20 textColorMain">养生专区</label>
+						</div>
+						<div class="mui-col-sm-2  mui-col-xs-2"  >
+							<img class="mui-media-object mui-pull-right img_x" src="../../img/more_Icon.png">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+
+</html>

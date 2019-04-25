@@ -1,0 +1,26 @@
+*{
+	font-family: "微软雅黑";
+}
+.title{
+	height: 4rem;
+    padding-top: 1.125rem;
+    background-color: red;
+}
+.title a{
+	color: white;
+}
+.title h1{
+	color: white;
+}
+.t-img{
+	width: 40%;
+}
+.t-info{
+	font-size: 1rem;
+}
+.t-info p{
+	margin-top: 10px
+}
+.mui-table-view-cell a{
+	font-size: 0.875rem;
+}

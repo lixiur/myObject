@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>工作人员信息详情</title>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/list.css" />
+		<style>
+			.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			.mui-control-content {
+				height: auto;
+			}
+			.mui-segmented-control .mui-control-item.mui-active{
+				border-bottom: 1px solid #df0300;
+    			color: #df0300;
+    			background-color: #FFFFFF;
+			}
+			.mui-segmented-control .mui-control-item {
+			    line-height: 38px;
+			    display: table-cell;
+			    overflow: hidden;
+			    width: 1%;
+			    -webkit-transition: background-color .1s linear;
+			    transition: background-color .1s linear;
+			    text-align: center;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    color: #8F8F94;
+			    border-color: #007aff;
+			    /* border-left: 1px solid #007aff; */
+			}
+			.nav{
+			 	height: 60px;
+			 	background-color: white;
+				border-bottom: 1px solid #ddd;
+				padding-top: 10px;
+			}
+			.nav p{
+				display: inline-block;
+				width: 24%;
+				padding: 5px 0;
+				font-size: 15px;
+			}
+			.nav .active{
+				padding-bottom: 10px;
+				border-bottom: 1px solid #1E90FF;
+				color: #1E90FF;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../js/privile.js"></script>
+		<script type="text/javascript" src="../../js/tools.js"></script>
+		<script type="text/javascript" src="../../js/jump.js"></script>
+		<script type="text/javascript" src="../../js/httpUrl.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">工作人员信息</h1>
+		</header>
+		<div class="mui-content" style="background: #fff;">
+			<div id="order_con9" class="met_fk12" align="center" style="margin-top: 20px;" onclick="qwstart()">
+				<img class="img_b" src="../../img/HeadImgDefault.png" style="width: 45px;height: 45px;" />
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">姓名:</label>
+				<label class="fr" id="name">测试人员1</label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电话:</label>
+				<label class="fr" id="ophone">13812345678</label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电子邮箱:</label>
+				<label class="fr" id="email">测试数据@163.com</label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">QQ:</label>
+				<label class="fr" id="opqq">xxxxxx</label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">微信:</label>
+				<label class="fr" id="weixin">xxxxxx</label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">办公地址:</label>
+				<label class="fr" id="weixin">测试数据</label>
+			</div>
+			<div class="div-content2" align="center" id="div_bts">
+				<button id="btn_str" type="button" class="mui-btn div_btnw" style="background: #FFFFFF;border: 1px solid #df0300;"
+				 onclick="smsTest()">
+					<img src="../../img/fdx.png" class="top_img" style="" />
+					</br>
+					<label style="color: red;">发短信</label>
+				</button>
+				<button id="btn_str" type="button" class="mui-btn div_btn" style="background: #FFFFFF;border: 1px solid #df0300;"
+				 onclick="smPhone()">
+					<img src="../../img/dpohe.png" class="top_img" style="" />
+					</br>
+					<label style="color: red;">拨打电话</label>
+				</button>
+			</div>
+		</div>
+		</div>
+		<script>
+			var detaId = obtain(); //任务
+			var datep = detaId.split(",");
+			console.log(datep);
+			$("#name").text(datep[0]);
+			$("#ophone").text(datep[1]);
+
+			function smsTest() {
+				var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+				msg.to = [datep[1]];
+				////			msg.body = 'This is HTML5 Plus example test message';
+				plus.messaging.sendMessage(msg);
+			}
+
+			function smPhone() {
+				var ophe = $("#ophone").text();
+				plus.device.dial(ophe, true);
+			}
+		</script>
+	</body>
+</html>

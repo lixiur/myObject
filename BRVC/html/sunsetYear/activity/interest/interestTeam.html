@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的团队</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../../css/base.css" />
+		<link rel="stylesheet" href="../../../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<style>
+			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+				top: 70px;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color: red;
+			}
+		</style>
+		<script src="../../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../../js/mescroll-for-muiscroll.min.js"></script>
+		<script type="text/javascript" src="../../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js"></script>
+		<script type="text/javascript" src="../../../../js/teamMes.js"></script>
+		<style type="text/css">
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+				color: inherit;
+				border: 0;
+				font-size: 0.22rem;
+				padding: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">我的团队</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll team-title" style="width: 100%;">
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content">
+						
+					</div>
+					<div class="mui-slider-item mui-control-content">
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.ready(function() {
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: true,
+					indicators: true,
+					deceleration: mui.os.ios ? 0.003 : 0.0009
+				});
+				mui('.mui-scroll').on('tap', '.mui-control-item:not(.mui-active)', function() {
+					mui('.mui-slider').slider().gotoItem(this.getAttribute('data-index'));
+				});
+			});
+			
+		</script>
+	</body>
+
+</html>

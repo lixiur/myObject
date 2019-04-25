@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>志愿之声</title>
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/list.css" />
+		<link rel="stylesheet" href="../../../css/mescroll.min.css" />
+		<style>
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color:#1a81d1;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+				color: #BBBBBB;
+			}
+			
+			.mui-table-view-cell:after {
+				background-color: #efeff4;
+			}
+			
+			.mui-table-view-cell:after {
+				left: 0px;
+			}
+			
+			
+			.mui-table-view:after{
+				height: 0px;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 0px;
+			}
+			.apply_foot{background-color: #1A81D1;position:fixed;bottom:0;width: 100%;height: 40px;line-height: 35px;text-align: center;}	
+			/*.apply_foot button{border-radius: 120px;width: 40%;margin: -5px 2%;color: white;height: 40px;}*/	
+			.mui-barr {
+			    position: fixed;
+			    z-index: 10;
+			    right: 0;
+			    left: 0;
+			    height: 44px;
+			    padding-right: 10px;
+			    padding-left: 10px;
+			    border-bottom: 0;
+			    background-color: #f7f7f7;
+			    -webkit-box-shadow: 0 0 1px #FFFFFF; 
+			    box-shadow: 0 0 1px #FFFFFF; 
+			    -webkit-backface-visibility: hidden; 
+			    backface-visibility: hidden;
+			}
+			.mui-bar-tab .mui-tab-item {
+			     color: #007aff; 
+			}
+			.mui-bar-tab .mui-tab-item.mui-active{
+				border-top: 1px solid #FF6990;
+				border-left: 0px;
+    			color: #FF6990;
+    			background-color: #FFFFFF;
+			}
+			.mui-table-view-cell:after {
+				background-color: #efeff4;
+			}
+			.mui-table-view-cell:after {
+				left: 0px;
+				background-color: #FFF
+			}
+			.mui-media-body{padding: 10px;}
+			 
+			a{color: #C0C0C0;}
+			
+			#met_count div{padding: 5px;}
+			.mui-backdrop {
+			    top: 0;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;
+			    background-color: rgba(0, 0, 0, .3);
+			}	
+			/*.mui-table-view-cell{padding: 10px 15px;}*/
+			#segmentedControl{margin-top: -15px;}
+			#knw_con p{line-height: 22px;}
+			.serch{width: 21%;padding: 8px 14px;background-color: #0082f8;color: white;text-align: center;font-size: 16px;border-radius: 15px;margin-top: 5px;}
+			 input[type=search]{margin-bottom: 5px;margin-top: 5px;}
+			 .mui-search:before{top: 65%;}
+			.ver-line{height: 67px; width: 1px; border-left: 1px #58BBFF solid;} 
+   			/*#offCanvasContentScroll{background-color: white;margin-top: 20px;border-left: 2px #2639B2 solid;border-right:1px #2639B2 solid ;}*/
+            .mui-search.mui-active:before{left: 25px;}
+			/*.mui-input-row {overflow: hidden}background-color: rgba(0, 0, 0, .1);*/
+  			.mui-scroll-wrapper{top: 10%}
+		</style>
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mescroll-for-muiscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/privile.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">志愿之声</h1>
+		</header>
+		<div class="mui-content" style="z-index: 3;">
+			<div  id="offCanvasContentScroll" class=" mui-scroll-wrapper" style="background-color: white;margin-left: 2px;width: 99%;">
+				<div class="mui-scroll"style="top: 1px;">
+						<!--数据列表-->
+					<ul class="mui-table-view" id="dataList" >
+			     		
+				    </ul>
+				     <p id="msg" style="display: none;" >无数据</p>
+				</div>
+			</div>
+        </div>
+	</body>
+	<script type="text/javascript">
+		mui.init({
+			beforeback: function() {　　　　 //获得父页面的webview
+				var list = plus.webview.currentWebview().opener();　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+				mui.fire(list, 'refsh',{id:123});
+				//返回true,继续页面关闭逻辑
+				return true;
+			}
+		});
+//		var Utils = getUtils();
+//		var userInfoJson = Utils.getDataStorageJsonNode('local',"userInfo","userIn");
+//		var users = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//		var userId = users.id;
+//		var username = users.username;
+//		var applyUserOrgId = users.orgId;
+//		var applyUserOrgName=users.applyUserOrgName;
+//		var urlStr = '';
+//		var params= new Array();
+//		var knowledgeType = '';
+		var pdType=0;
+		var pkType = 1;
+		var title ;
+		var mescroll;
+		var collectId = '';
+		var alist = 0;
+		mui.ready(function() {	
+			//创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;内部已初始化mui的区域滚动
+			 mescroll = new MeScroll("offCanvasContentScroll", {
+				up: {
+					clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+					callback: getListData,//上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+					page:{size:5}
+				}
+			}
+//				 ,{bounce:false} //是否启用回弹效果,默认true; 如果设置false,可解决一个小小的问题: 下拉的时候不会感觉下拉区域被遮住一点点
+			);
+			/*初始化菜单*/
+//			var pdType=0;//全部0;申请中1; 已派出2; 已结束3;
+			
+			/*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+			function getListData(page){
+				//联网加载数据
+				console.log("page.num=="+page.num+",page.size=="+page.size);
+				getListDataFromNet(page.num, page.size, function(data){
+					//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+//					mescroll.endBySize(data.length, totalSize);
+					mescroll.endSuccess(data.length);//传参:数据的总数; mescroll会自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+					//设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+					$.each(data, function(index,event) {
+						appendDom(index,event);
+					});
+
+				}, function(){
+					//联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+	                mescroll.endErr();
+				});
+			}
+			/*联网加载列表数据*/
+			function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
+					alist = lodeX3;
+//					loadeq()
+//				//延时一秒,模拟联网
+//              setTimeout(function () {
+//              	$.ajax({
+//              		type: 'post',
+//		                url: urlStr,
+//		                data:{　
+//		                	encryptionPara:encryptionPara,　　　　　　　　　　　
+//				　　　　　　　　userId : userId,　　　　　
+//				　　　　　　　　page : pageNum,
+//							   limit: pageSize
+//				　　　　	},
+//		                dataType: 'json',
+//		                success: function(res){
+//		                	//模拟分页数据
+////		                	var listData=[];
+////		                	console.log(JSON.stringify(data.length));
+//		                	if(res.status == 1){
+//		                		var data = res.data;
+////		                		for (var i = 0; i < data.length; i++) {
+//////			            			listData.push(data[i]);
+//									document.getElementById("dataList").innerHTML="";
+									var data=alist;
+			            			successCallback(data);
+////			            		}
+//		                	}else{
+//		                		mui.toast(res.msg);
+//		                	}
+//		                },
+//		                error: errorCallback
+//		            });
+//              },1000)
+			}
+			//禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
+			document.ondragstart=function() {return false;}
+
+	});	
+			function appendDom (index,data,p2dType) {
+		var html = "";
+		var im = data;
+		var qtype =im.type;
+		var conid = im.id;
+		var address = im.address;
+		var adname = im.name;
+		var cou = ""; 
+		var thtml = "";
+		var cound = 36;
+		var sta_color=""
+		var title;
+		if(address.length > 10){
+			address = address.substring(0,12)+"..."
+		}
+		styr = '<li class="mui-table-view-cell active_item" id="'+im.id+'" onclick=jumpValue('+cound+',"'+conid+'")>';
+        	cou = '查看';
+			thtml = '<div class="fl" style="width: 100%;" >';
+			html +=styr+thtml+
+			'<div class="fl list_blk"><p class="labe_ro list_type" >'+qtype+'</p>'+
+			'<img class="room_url" src="../../../img/gray_star.png" /><time class="font20 labe_ro time_ellipsis">'+address+'</time></div></div>'+
+			'<div class="fr div_b " style="margin-top: 10px;">'+
+			'<button type="button" class="mui-btn font25 bt_gw div_b btn-start" style="top:12px">'+cou+'</button></div></div>'+
+			'</li>';
+			$("#dataList").append(html);
+	}
+	</script>
+
+</html>

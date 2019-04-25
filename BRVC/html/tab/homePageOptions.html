@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<!--<link href="../../fonts/iconfont.css" rel="stylesheet" />-->
+		<link href="../../css/base.css" rel="stylesheet" />
+		<link href="../../css/list.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-title{
+				color: white;
+			}
+			.mui-bar-tab .mui-tab-item.mui-active {
+			    color: black; 
+			}
+			.mui-tab-label{
+				margin-top: -3px;
+				padding-left: 8px;
+			}
+		</style>
+		<script src="../../js/jquery-1.9.1.min.js"></script>
+		<script src="../../js/immersed.js"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/main.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		    <h1 id="biaoti" class="mui-title">天府晚霞</h1>
+		</header> 
+		<nav class="mui-bar mui-bar-tab" style="z-index: 1000;">
+		    <a class="mui-tab-item mui-active" data-id="home">
+		    	<span class="mui-icon ">
+						<img id="t_one" class="img_jg" src="../../img/t1_1.png" />
+					</span> 
+		        <span class="mui-tab-label" style="font-size: 0.18rem;">首页</span>
+		    </a>
+		    <a class="mui-tab-item" data-id="market">
+		        <span class="mui-icon">
+		        	<img id="t_two" class="img_jg" src="../../img/t2_2.png" />
+		        </span>
+		        <span class="mui-tab-label" style="font-size: 0.18rem;">通讯录</span>
+		    </a>
+		    <a class="mui-tab-item" data-id="setting">
+		        <span class="mui-icon">
+		        	<img id="t_three" class="img_jg" src="../../img/t3_2.png" />
+		        </span>
+		        <span class="mui-tab-label" style="font-size: 0.18rem;">消息</span> 
+		    </a>
+		    <a class="mui-tab-item" data-id="mine">
+		        <span class="mui-icon">
+		        	<img id="t_four" class="img_jg" src="../../img/t4_2.png" />
+		        </span>
+		        <span class="mui-tab-label" style="font-size: 0.18rem;">个人中心</span>
+		    </a> 
+		</nav>
+		<script>
+			var isExit = false;//标记用户是否想退出应用
+			mui.init({
+				beforeback:function () {
+		//			if(isInstalledApp()){
+						if(isExit){
+							plus.runtime.quit();
+						} else {
+							isExit = true;
+							mui.toast("再按一次返回键退出应用！");
+							mui.later(function(){
+								isExit = false;  
+							},2000)
+						}
+					return false;
+				}
+			});
+			mui.init({
+				beforeback:function () {
+		//			if(isInstalledApp()){
+						if(isExit){
+							plus.runtime.quit();
+						} else {
+							isExit = true;
+							mui.toast("再按一次返回键退出应用！");
+							mui.later(function(){
+								isExit = false;  
+							},2000)
+						}
+					return false;
+				}
+			});
+		</script>
+	</body>
+
+</html>

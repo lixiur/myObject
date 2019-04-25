@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>新闻</title>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/privile.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css" />
+		<link rel="stylesheet" href="http://www.cdlgb.com/WebSite/css/Content_page.css" />
+		<style>
+			/*@font-face{
+			font-family: 'FZBaoSong_Z04S';
+			src: url('../../fonts/FZBaoSong_Z04S.ttf') format('truetype');
+			font-weight: normal; 
+			font-style: normal;			
+			}
+			@font-face{
+			font-family: 'FZFangSong_Z02S';
+			src: url('../../fonts/FZFangSong_Z02S.TTF') format('truetype');
+			font-weight: normal; 
+			font-style: normal;			
+			}					*/
+			html,body{ 
+					overflow-x: inherit;
+				}
+			.mui-table-view-cell:after {
+				background-color: #efeff4;
+			}
+			
+			.mui-table-view-cell:after {
+				left: 0px;
+			}
+			#content p{font-size:0.20rem;padding: 2px 15px;}
+			#content .otitle{text-align:center;font-size: 28px;}	
+			
+		.content_t{font-family:"宋体";}      
+		.content_t a{font-size:0.20rem;color:#FF6600;}      
+		.content_t p{line-height:1.75em;font-size:0.20rem;color:#292929;margin-top:0px;margin-bottom:1em;text-indent:32px;}   
+		.content_t p strong{font-weight:600;font-size:0.20rem;}   
+		.content_t p.bold{font-weight:600;}      
+		.content_t table{border-collapse:collapse;border:1px solid #ababab; margin:10px;}      
+		.content_t table td{border:1px solid #ababab;text-align:left; height:30px; line-height:30px;}       
+		.content_t table td p{text-indent:0px;}      
+		.content_t span.bold{font-weight:600;color:#292929; }      
+		.content_t span.color1{color:#336; color:#292929;}
+		</style>
+		<script type="text/javascript" src="../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../js/jump.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+//			mui.init({
+//				statusBarBackground: "#d23330"
+//			});
+//			var name = obtain();
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">新闻</h1>
+		</header>
+		<div class="mui-content" style="background-color: white;margin-top: 18px;">
+			<!--<div class="news-title" style="word-wrap:break-word;width:80%;background-color: white;font-size: 20px;margin-top:10px;margin-left:10%;text-align: center;line-height: 25px;">
+				<b id="title"></b>
+			</div>
+			<div class="news-span textColorGray" style="margin-left: 15px;font-size: 16px;">
+				<span class="font22">发布日期：</span>
+				<span class="font22" id="createTime"></span>
+				<span class="font22">来源：</span>
+				<span class="font22" id="userName"></span>
+			</div>-->
+			<!--<div class="news-img" style="margin-top: 10px;">
+				<img id="imgUrl" src="" style="width: 100%;"/>
+			</div>-->
+			<div class="news-text font24 textColorMain" id="content" style="margin-top: 10px;">
+				 <div class="content_t">
+                       <p style="text-align:justify;"></p><div class="content_t"><p style="text-align:center;text-indent:0em;"><img src="http://www.cdlgb.com/website/upload/images/2019/3/287217974.jpg" title="00ab589797f83005466ba74356d46f4c.jpg" width="300" height="163" border="0" hspace="0" vspace="0" style="width:300px;height:163px;float:none;" /><br /></p><p style="text-align:center;text-indent:0em;">3月27日上午，四川省2019年第一季度重大项目集中开工。图为成都至自贡高速铁路项目建设现场。</p><p style="text-align:justify;">3月27日上午，我省2019年第一季度重大项目集中开工。省委书记彭清华宣布开工，省委副书记、省长尹力讲话。</p><p style="text-align:justify;">本次集中开工主会场设在位于成都高新东区的成都至自贡高速铁路项目建设现场。集中开工前，彭清华、尹力等听取了省、市有关方面和企业负责人关于全省和成都市一季度重大项目落地建设、固定资产投资完成情况和成自高速铁路项目规划建设情况的汇报。</p><p style="text-align:justify;">省委常委、副省长王宁主持并介绍此次集中开工重大项目情况。成都市委副书记、市长罗强介绍成都集中开工项目情况；省铁路产业投资集团负责同志介绍成自高速铁路项目情况；眉山市、自贡市、攀枝花市、遂宁市、南充市负责同志通过视频连线介绍本地区集中开工项目有关情况。</p><p style="text-align:justify;">尹力在讲话中指出，全省各地各部门和各业主单位要以这次重大项目集中开工为契机，认真落实省委、省政府工作部署，精心组织、科学调度、狠抓落实，推动项目早竣工、早投产、早达效，促进全省经济高质量发展。要坚持目标导向，把稳投资摆在突出位置，在全省上下掀起“抓大项目、大抓项目”的实干热潮，各级党政主要领导要亲自抓投资、抓项目，确保完成全年目标任务。要强化工作协同，联动推进重点项目建设，严格落实安全生产责任制，科学规范有序施工，保证建设质量和施工安全。要优化服务保障，持续深化“放管服”改革，贯彻落实好国家减税降费政策和我省促进民营经济健康发展20条政策，进一步加强要素保障，努力营造良好投资环境。</p><p style="text-align:justify;">上午10时30分许，彭清华宣布：全省2019年第一季度重大项目集中开工。在现场热烈掌声和各种工程机械鸣笛声中，我省2019年第一季度集中开工重大项目正式启动建设。</p><p style="text-align:justify;">除甘孜州外，全省19个市(州)设分会场。当日全省集中开工1703个项目，其中包括重大基础设施项目392个、重大产业项目807个、民生及社会事业项目301个。这批项目的开工，将进一步激发民间投资活力，扩大有效投资，优化投资结构，增强经济发展后劲，为完成全年经济主要预期目标和推动全省经济高质量发展提供有力支撑。</p><p style="text-align:justify;">省委常委、秘书长王铭晖，省直有关部门负责人在主会场参加活动，同步举行集中开工的各市(州)主要负责同志在分会场参加活动。</p></div>
+                </div>
+			</div>			
+			<!--<div class="news-title" style="word-wrap:break-word;width:300px;background-color: white;margin-left: 20px;font-size: 20px;margin-top: 10px;text-align: center;">
+				<b >培训促融合 四川各地纪委监委 “培训班”继续开讲</b>
+			</div>
+			<div class="news-span textColorGray" style="margin-left: 10px;">
+				<span class="font22">发布日期：</span>
+				<span class="font22">2018-02-01 08:23:49</span>
+				<span class="font22">来源：</span>
+				<span class="font22">四川省纪委</span>
+			</div>
+			<div class="news-img" style="margin-top: 10px;">
+				<img src="../../images/sho             uye.png" style="width: 100%;"/>
+			</div>
+			<div class="news-text font24 textColorMain">
+				<p class="textColorMain" style="margin-left: 28px;">自深化国家监察体制改革试点工作以来，四川省各地纪委监委纷纷通过开设“培训班”，加快人员融合、工作融合、感情融合，促进纪委监委干部尽快适应监察体制改革试点工作的新形势要求，全面提升素质，形成整体战力。</p>
+				<span class="font24" style="margin:20px 0px 20px 28px"><b>成都市：对180余名转隶干部集中培训 促角色转变</b></span>
+				<p class="textColorMain" style="margin-left: 28px;">“希望大家以这次系统培训为新起点，不负使命担当服从时代召唤，切实履职尽责，扎实推进国家检查体制改革各项工作落实，努力开创成都市党风建设和反腐败工作新局面。”在全市转隶干部首次集中培训第一天开班式上，成都市纪委常委、市纪委书记，市监委主任王川红提出明确要求。</p>
+			</div>-->
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		mui.init();
+//		var Utils = getUtils();
+//		var userInfoJson = Utils.getDataStorageJsonNode('local',"TYuserInfo","userIn");
+//		var user = Utils.jsonStrTOjonsObj(userInfoJson).data;	
+//		var id = obtain();
+//		$.ajax({
+//			url:httpAction[126],   			
+//				data:{
+//					encryptionPara:encryptionPara,
+//					id:id,
+//				},
+//			dataType: 'json', //服务器返回json格式数据
+//			type: 'post', //HTTP请求类型
+//			timeout: 10000, //超时时间设置为10秒；
+//			success: function(data) {
+//				console.log(data);
+////				plus.nativeUI.closeWaiting();
+//				if (data.status == 1) {
+//					console.log(data.data);
+//					$("#title").text(data.data.title);
+//					$("#createTime").text(data.data.createTime);
+//					$("#userName").text(data.data.userName);
+////					document.getElementById("imgUrl").src=header+data.data.imgUrl;
+//					var html = data.data.content;
+//					$("#content").append(html);
+//					$("img").each(function(){
+////						var imgurl = this.src.slice(27);
+////						console.log(this.src.slice(27));
+////						this.src = header + imgurl;
+//						var imgwidth =parseFloat(this.style.width);
+//						console.log(imgwidth);
+//						this.style.width = '100%';
+//						var imgwidths = parseFloat(this.width);
+//						var imgheight = parseFloat(this.style.height);
+//						console.log(imgheight);
+//						var i = imgwidths/imgwidth;
+//						console.log(i);
+//						if (i<=1) {
+//							var is = parseInt(imgheight*i);	
+//						} else{
+//							var is = parseInt(imgheight/i);	
+//						}						
+//						this.style.height = +is+"px";
+//						console.log(is);
+//					});
+//				} else{
+//					mui.toast(data.msg);
+//				}
+//			},
+//			error:function(xhr,type,errorThrown){
+//				plus.nativeUI.closeWaiting();
+//				if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//				mui.toast("网络异常，请检查网络设置！");
+//				 
+//				} else {
+//				 mui.alert("服务器出错！");
+//				}							
+//			}
+//			})					
+		
+	</script>
+</html>

@@ -1,0 +1,443 @@
+@CHARSET "utf-8";
+margin 设置4个值方向 上，右，下，左。
+html,body{
+	overflow-x: hidden;
+	/*background-image:url(../images/t_bj.png) ;*/
+}
+body {
+	font-family: "微软雅黑";
+	background: #FFFFFF;
+	/*background-color: #F8F9FB;*/
+}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+/*a标签定义*/
+a:active {
+    color: red;
+}
+.blk_font{
+	color: #000000!important;
+}
+.gray_font{
+	color: #8f8f94;
+}
+.headr {/*顶部标题栏*/
+    height: 67px;
+    padding-top: 18px;
+    background-color: red;
+}
+.headr h1.mui-title{
+	font-size: 0.22rem;
+}
+#reying_title {
+    /*background: url(../images/headerbackground.png);*/
+    padding: 0;
+    height: 64px;
+    margin: 0;
+    padding-top: 18px;
+    background-color: red;
+}
+.img_jg {/*选项卡图片高度*/
+    height: 28px;
+}
+.img_s{
+	height: 206px; 
+}
+.t-line{
+	height:60px; margin-left:-8px;width: 1px; border-left: 2px #ea3f33 solid;
+}
+.mui-title {
+    color: white;
+}
+.mui-action-back.mui-icon.mui-icon-left-nav {
+    color: white;
+}
+.img_b {
+	/*margin-top: -5px;*/
+    width: 30px;
+    height: auto;
+}
+.img_x {
+	margin-top: 5px;
+    width: 12px;
+    height: auto;
+}
+.titile{margin-top: 8px;padding-left: 20px;
+}
+
+.div-content23{padding: 10px 15px;line-height: 50px;font-size: 0.25rem;  background-color: #FFFFFF;}
+
+ .labe_ro{/*右边字体的颜色*/
+ 	color: #8F8F94;
+ }
+.fr {/*右边字体的颜色*/
+    float: right !important;
+    color: #8F8F94;
+}
+.clear{clear:both; height:0;overflow:hidden;}
+/*信息展示块css*/
+.mes-block{
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 0 10px #d9cfcf;
+	border-radius: 5px;
+	padding:20px 15px;
+	background-color: #FFFFFF;
+}
+.mes-block .div-content2:last-child{
+	border-bottom:0;
+} 
+.div-content2 {
+    border-bottom: 1px solid #F5F5F5;
+    line-height: 40px;
+    font-size: 0.2rem;
+   
+}
+.div-content2 label {
+    font-size: 0.2rem;
+}
+.circle_label{
+	width: 35%;
+	color: #FFFFFF;
+	height:30px;
+	margin:20px 0;
+	background: red;
+	line-height:30px;
+	padding-left:10px;
+	border-radius:0 50px 50px 0;
+    display: inline-block;
+}
+.labe_co {
+    color: red;
+    width: 40%;
+    display: inline-block;
+}
+.label_blk{
+	color: #000000;
+	width: 40%;
+    display: inline-block;
+}
+/*成员展示样式*/
+.mes-block .person_block_t{
+	color: red;
+	line-height: 40px;
+	text-align: center;
+	font-size: 0.2rem;
+	border-bottom: 1px solid #F5F5F5;
+	
+}
+.mes-block .person_block_ul{
+	font-size: 0.2rem;
+	overflow-y:scroll;
+	position: unset;
+	height:300px;
+	text-align: center;
+	clear: both;
+}
+.mes-block .person_block_ul li{
+	padding: 0 5px;
+	line-height: 40px;
+	border-bottom: 1px solid #F5F5F5;
+}
+.mes-block .person_block_ul li:last-child{
+	border-bottom:0;
+}
+.mes-block .person_block_ul li img{
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+/*课程信息展示*/
+.div-content2 .mes_content{
+    color: #8F8F94;
+    display: inline-block;
+    width: 45%;
+    vertical-align: middle;
+    margin-left: 20px;
+    line-height: 20px!important;
+}
+/*长按钮*/
+.long-btn{
+	background-color: red;
+	color: #FFFFFF;
+	width: 78%;
+	border: 0;
+	border-radius: 50px;
+	margin-top: 20px;
+}
+.room_url {
+    width: 14px;
+    vertical-align: middle;
+    height: 15px;
+    margin-right: 5px;
+}
+.btn-start{
+	background-color: #ee0000;
+	color: #FFFFFF;
+	border:0;
+    position: absolute;
+    top: 23px;
+    right: 0;
+    font-size: 0.18rem;
+}
+
+.div_l1_1 {
+    margin-left: 15px;
+    margin-top: 30px;
+}
+.div_l1_t1 {
+    margin-right: 15px;
+    margin-top: 9px;
+}
+.iinpo {
+    width: 94%;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-top: 10px;
+    border: 1px solid #E6E6E6;
+    border-radius: 120px;
+    color: #8F8F94;
+}
+.div-schedule {
+    width: 100%;
+    height: auto;
+    border: 2px solid #E6E6E6;
+}
+.div-content3 {
+    padding: 10px 15px;
+    font-size: 0.2rem;
+    background-color: #ffffff;
+}
+.labe_sqh {
+    margin-left: 25px;
+}
+.div-schedule3 {
+    margin-top: 15px;
+    border-left: 2px solid #E6E6E6;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+.top_but {
+    color: white;
+    width: 100%;
+    border: 0px;
+    background-color: red;
+    height: 70px;
+    border-radius: 0px;
+}
+.top_img {
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+}
+/**附件*/
+.file{
+	margin-left: -20px;
+	width: 0px;
+	opacity: 0;
+	position: fixed;
+	z-index: 100; 
+}
+.fujian_div2 {
+	margin-top: 12px;
+	background: white;
+}
+.fujian_img {
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+	margin-top: -8px;
+}
+
+.fujian_div2 .fujian_title {
+	font-size: 1.0em;
+	/*margin-top: -15px;*/
+	/*padding-left: 50px;*/
+}
+.fujian_div2 li{ 
+	height: 60px;
+}
+.fujian_btn {
+background-image: url(../img/shangchuan.png);background-color:#f8f9fb; width: 70px;height: 40px;border-radius: 0px;border: 0px;background-repeat: no-repeat;
+}
+.fujian_div2 .fujian_del {  
+	color: red;
+}
+
+/*星级评定样式*/
+.star_picker{
+	background-color: #F5F7F7;
+	border-radius: 10px;
+	width: 33.3%;
+	color: #df0300;
+	text-align: center;
+}
+.star_content{
+	background: #FFFFFF;
+}
+/*新闻或动态列表布局*/
+.news_list{
+	box-shadow: 0 0 5px #d9cfcf;
+    margin: 10px auto;
+    width: 95%;
+    border-radius: 5px;
+}
+.mui-table-view:before {
+    height:0;
+}
+.mui-table-view:after {
+    height:0;
+}
+.mui-table-view-cell:after {
+    height:0;
+}
+/*晚霞之声等底部评论点赞框*/
+.comment_bottom{
+	bottom: 0px;
+	position: fixed;
+	width: 100%;
+	padding-bottom: 10px;
+	background-color: white;
+	padding-top: 10px;
+	border-top: 1px solid #f5f5f5;
+}
+/*可评论文章回复按钮样式*/
+.text-box .btn {
+    font-size: 0.18rem;
+    display: none;
+    margin-right: 5px;
+    float: right;
+    width: auto;
+    height: 25px;
+    line-height: 10px;
+    text-align: center;
+    border: 1px solid #F5F5F5;
+    color: #fff;
+    background: #ff0000;
+}
+/*文章点赞昵称样式*/
+#zanpeople div{
+	display: inline-block;
+	margin-right: 5px;
+}
+#zanpeople{
+	width: 86%;
+	float: left;
+}
+#zanpeople div .zan_user{
+	color: #e29f36;
+	font-size:0.2rem;
+}
+.comment-list{
+	border-top: 10px solid #eee;
+	padding-bottom: 100px;
+}
+
+.comment-list .txt{
+	font-size: 0.20rem;
+}
+
+/*活动列表页面布局设置*/
+.active_item{
+	border-radius: 5px;
+	position: relative;
+	margin: 10px auto;
+	padding: 5px 0 5px 30px;
+	background-image: url(../img/active_bg.png);
+	width: 95%;
+}
+.active_item .list_type{
+	font-size: 0.22rem;
+	color: #000000;
+	margin-bottom: 3px;
+}
+.active_item .list_blk{
+	width: 80%;
+}
+.circle_item{
+	width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.time_ellipsis{
+	width: 80%;
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+/*子菜单列表页面布局*/
+.menu_ul{
+	background: inherit;
+}
+.menu_item_list img{
+	margin-top: 16px;
+	vertical-align: middle;
+}
+.menu_item_list{
+	height: 70px;
+	box-shadow: 0 0 10px #968888;
+	background: #FFFFFF;
+	padding: 11px 5px 11px 15px;
+	border-radius: 5px;
+	line-height: 50px;
+	margin-bottom: 15px;
+	
+}
+.menu_item_list .img_b{
+	width: 33px;
+	margin: 10px 10px 0 10px;
+	height: 33px;
+}
+.menu_ul .menu_item_list:after {
+    background-color: inherit;
+}
+.mui-table-view {
+    background-color: inherit;
+}
+/*表单统一样式*/
+.form-item{
+	border-bottom: 1px solid #F5F5F5;
+	line-height: 20px;
+}
+.form-item .div_l1_1{
+	margin-top: 20px;
+	margin-left: 0;
+}
+.form-item .div_l1_t1{
+	margin-bottom:0;
+	margin-right: 15px;
+}
+.form-item .iinpo{
+	border: none;
+	padding: 5px;
+	height: 25px;
+}
+.white_li{
+	background: #FFFFFF;
+}
+.gray_li{
+	background: #f5f5f5;
+}
+.person_list{
+	background: inherit;
+}
+.person_list li{
+	background: #FFFFFF;
+	margin: 10px;
+	box-shadow: 0 0 10px #D9CFCF;
+	border-radius: 5px;
+}
+.person_list li .mui-media-body label{
+	font-size: 0.20rem;
+}
+.person_list li .mui-media-body p{
+	font-size: 0.18rem;
+}

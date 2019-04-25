@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>通讯录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" href="../../css/mescroll.min.css" />
+		<style type="text/css">
+			.mui-icon{line-height: 0;}
+			.mui-pull-right{width: 40px;}
+			.mui-search .mui-placeholder{line-height: 0px;}
+			.mui-table-view-cell:after, .mui-table-view:after{height: 0px; left: 0px;right: 0px;}
+			.mui-table-view-cell{padding: 12px 15px;}
+			.mui-table-view-cell.mui-collapse .mui-table-view{margin-top: -5px;}
+			.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:after{left: 0px;}
+			.mui-table-view:after{height: 0px;}
+			.mui-table-view-cell:after{height: 0px;}
+			input{top: 0px;right: 0px;}
+			.department{background-color: white;width: 46%;float: left;margin: 2% 2% 0 2%;border: 1px solid #f0f3f7;box-shadow: 2px 2px 10px #8f8f94;}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/privile.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mescroll-for-muiscroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="mui-content" style="margin-top: -10px;">
+			<!--<a class="mui-btn font25" onclick="chk()" id="qunfa" style="border: 0px;width: 50%;background-color: #f8f9fb;"><img src="../../images/qun.png" style="height: 20px;margin-right: 10px;"/>群发短消息</a>
+			<a class="mui-btn font25" onclick="jump(158)" id="qunfa" style="border: 0px;margin-left: 10%;background-color: #f8f9fb;"><img src="../../images/qun.png" style="height: 20px;margin-right: 10px;"/>我的群组</a>			-->
+			<ul id="dataList" class="mui-table-view change">
+				
+			</ul>		    
+		</div>
+		<!--<div class="mui-input-row mui-search">
+		    <input type="search" class="mui-input-clear" placeholder="搜索">
+		</div>-->
+		<script type="text/javascript">
+			mui.init({
+		        keyEventBind: {
+			        backbutton: false,  //Boolean(默认true)关闭back按键监听
+			        menubutton: true   //Boolean(默认true)关闭menu按键监听
+			    } 
+		    });
+		    
+//			var Utils = getUtils();
+//			var userInfoJson = Utils.getDataStorageJsonNode('local',"TYuserInfo","userIn");
+//			var user = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//			var userId = user.id;
+//			var listDom=document.getElementById("dataList");
+			$("ul").find("li").remove();
+//	   		$.ajax({
+//	   			url:header + "mobile/getOrgNames",
+//	   			data:{encryptionPara:encryptionPara,userId:userId},
+//	   			dataType: 'json', //服务器返回json格式数据
+//				type: 'post', //HTTP请求类型
+//				timeout: 10000, //超时时间设置为10秒；
+//	   			success: function(res) {
+//					if (res.status == 1) {
+//						var	 list = res.data;
+						var	 list = mildList;
+						var fragment = document.createDocumentFragment(); //新建一个装节点的碎片
+						if (list.length>0) {
+							var alist = list;
+							for (var i = 0;i<alist.length;i++) {
+								if (list[i].childOrgs == null) {
+									var qlst = list[i].users;
+									var department_li = document.createElement('li'); //新建一个节点
+									department_li.className = 'mui-right ';
+									department_li.value = list[i].id;
+									department_li.innerHTML = '<a class=" font25 " style="color:black;margin-left: 15px;line-height: 35px;padding-right:36%;" onclick=jumpValue(74,'+list[i].id+') >' + list[i].name + '</a>';
+									var department_ui = document.createElement('ul'); //新建一个节点
+									department_ui.setAttribute("style","margin: 0;");
+									department_ui.className = 'mui-table-view mui-table-view-chevron';
+									if (i%2 != 0) {
+										department_li.setAttribute("style","background-color: #F8F8FA;");
+									}								
+									var html = "";
+									department_li.appendChild(department_ui);
+									fragment.appendChild(department_li); //将节点装入碎片									
+								} else{
+								var qlst = list[i].childOrgs;
+								var department_li = document.createElement('li'); //新建一个节点
+								department_li.className = 'mui-table-view-cell mui-checkbox mui-right mui-collapse';
+								department_li.value = list[i].id;
+								department_li.innerHTML = '<a class="mui-navigate-right font25" href="#">' + list[i].name + '</a>';
+								department_li.setAttribute("style","padding: 8px 15px;");
+								if (i%2 != 0) {
+									department_li.setAttribute("style","background-color: #F8F8FA;padding: 8px 15px;");
+								}								
+								var department_ui = document.createElement('ul'); //新建一个节点
+								department_ui.className = 'mui-table-view mui-table-view-chevron';
+								var html = "";
+								for(var k = 0; k < qlst.length; k++) {
+									var im = qlst[k];
+									var depart_li = document.createElement('li'); //新建一个节点
+									depart_li.className = 'mui-table-view-cell mui-checkbox mui-right';
+									depart_li.value = im.id;
+									depart_li.innerHTML = '<a class=" font25" style="color:black;margin-left: 15px;line-height: 11px;" onclick="jumpValue(74,'+im.id+')">' + im.name + '</a>';
+									if (k%2 != 0) {
+										depart_li.setAttribute("style","background-color: #F8F8FA;");
+									}									
+			//						+'<span id="org_name" style="display: none;" >'+im.orgId+'</span>';
+									department_ui.appendChild(depart_li);
+								}
+									department_li.appendChild(department_ui);
+									fragment.appendChild(department_li); //将节点装入碎片										
+								}
+
+							};
+							$("#dataList").append(fragment);//将节点装入碎片
+						}
+//					}else{
+//						alert('无数据');
+//					}
+//			},
+//				error:function(xhr,type,errorThrown){
+////							plus.nativeUI.closeWaiting();
+//					if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//					mui.toast("网络异常，请检查网络设置！");
+//					 
+//					} else {
+////					 mui.alert("服务器出错！");
+//					}
+//														
+//					}						
+//		});		
+
+		</script>
+			
+	</body>
+
+</html>

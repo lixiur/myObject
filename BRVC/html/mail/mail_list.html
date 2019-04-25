@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>部门下人员</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css"/>
+		<style type="text/css">
+			.mui-icon{line-height: 0;}
+			.mui-pull-right{width: 40px;}
+			.mui-search .mui-placeholder{line-height: 0px;}
+			.mui-table-view-cell:after, .mui-table-view:after{height: 0px;left: 0px;right: 0px;}
+			.mui-table-view-cell{padding: 12px 15px;}
+			.mui-table-view-cell.mui-collapse .mui-table-view{margin-top: -5px;}
+			.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:after{left: 0px;}
+			input{top: 0px;right: 0px;}
+			.font30{color: #8f8f94;}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/privile.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="margin-top: 10px;"></a>
+		    <h1 class="mui-title font25">部门下人员</h1>
+		    <span class="font25" style="margin-top: 10px;float:right;margin-right:10px;color:white;" onclick="choices(this)">全选</span>
+		</header>
+		<div class="mui-content" style="margin-top: 18px;">
+			<a class="mui-btn font25" onclick="chk()" id="qunfa" style="border: 0px;width: 100%;background-color: #f8f9fb;color:#8f8f94;"><img src="../../img/qun.png" style="height: 20px;margin-right: 10px;"/>群发短消息</a>
+			<!--<a class="mui-btn font25" onclick="jump(158)" id="qunfa" style="border: 0px;margin-left: 10%;background-color: #f8f9fb;color:#8f8f94;"><img src="../../images/qun.png" style="height: 20px;margin-right: 10px;"/>我的群组</a>-->			
+			<ul id="dataList" class="mui-table-view change mui-checkbox hui">
+				
+			</ul>		    
+		</div>		
+		<script type="text/javascript">
+			mui.init({
+//		        keyEventBind: {
+//			        backbutton: false,  //Boolean(默认true)关闭back按键监听
+//			        menubutton: true   //Boolean(默认true)关闭menu按键监听
+//			    } 
+		    });
+//			var Utils = getUtils();
+//			var userInfoJson = Utils.getDataStorageJsonNode('local',"TYuserInfo","userIn");
+//			var user = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//			var userId = user.id;
+			var listDom=document.getElementById("dataList");
+			var applyUserOrgId = obtain();
+			var et = 0;
+//			var texts = md5("abc");
+//			console.log(texts);
+//			mui.plusReady(function() {
+//			plus.nativeUI.showWaiting();
+			$("ul").find("li").remove();
+//	   		$.ajax({
+//	   			url:header+"mobile/getUserByOrg",
+//	   			data:{encryptionPara:encryptionPara,userId:userId,orgId:applyUserOrgId},
+//	   			dataType: 'json', //服务器返回json格式数据
+//				type: 'post', //HTTP请求类型
+//				timeout: 10000, //超时时间设置为10秒；
+//	   			success: function(data) {
+////				plus.nativeUI.closeWaiting();
+// 				if (data.status == 1) {		
+					var aXldist =dildList
+					for (var i = 0; i < aXldist.length; i++) {
+						var pd=aXldist[i];
+						var str='';
+							str+='<a onclick="jumpValue(75,'+pd.id+')" style="margin-right:20%">';
+    						str+='<span class="mui-icon mui-icon-person"></span><span class="font25" style="margin-left: 10px;">'+pd.username+'</span>';
+    						str+='</a>';
+    						str+='<input class="'+pd.phone+'" id="'+pd.id+'" name="checkbox" type="checkbox" value="'+pd.username+'"">';
+						var liDom=document.createElement("li");
+						liDom.setAttribute("class", "mui-table-view-cell mui-input-row");
+						liDom.innerHTML=str;					
+						listDom.appendChild(liDom);						
+					}													
+//				}else{
+//					alert('无数据');
+//				}
+//			},
+//				error:function(xhr,type,errorThrown){
+////							plus.nativeUI.closeWaiting();
+//					if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+//					mui.toast("网络异常，请检查网络设置！");
+//					 
+//					} else {
+//					 mui.alert("服务器出错！");
+//					}
+//														
+//					}						
+//		});		
+	function chk(){ 
+		var count=0;
+//		var butts= document.getElementById("qunfa");
+		var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+		var obj=document.getElementsByName('checkbox'); //选择所有name="'test'"的对象，返回数组 
+		//取到对象数组后，我们来循环检测它是不是被选中 
+		var s=''; 
+		for(var i=0; i<obj.length; i++){ 
+			if(obj[i].checked){
+				s+=obj[i].className+','
+				count++;
+			} ; //如果选中，将value添加到变量s中
+		}
+		if (s!='') {
+			if(count>1){
+				var sphone = s.split(",");
+				msg.to=sphone;
+			}else if(count == 1){
+				var spho = s.split(",");
+				var sphone = spho[0]
+				msg.to=[sphone]; 
+//				butts.href = "sms:"+sphone[0];
+			}
+			plus.messaging.sendMessage( msg );
+		} else{
+			//那么现在来检测s的值就知道选中的复选框的值了 
+			alert('你还没有选择任何联系人！');			
+		}
+	} 
+	function choices(lable){
+		mui("input[name='checkbox']").each(function(){
+			var iscode =this.checked;
+			if(iscode == false){
+				this.checked=true;
+				$(lable).text('反选');
+			}else{
+				this.checked=false;
+				$(lable).text('全选');
+			}
+	    }); 
+	}	
+		</script>
+	</body>
+
+</html>

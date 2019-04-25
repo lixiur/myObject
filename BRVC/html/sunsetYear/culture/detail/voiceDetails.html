@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>休养之声详情</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../css/base.css" />
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<link rel="stylesheet" href="../../../../css/mescroll.min.css" />
+		<style>
+						.date {
+				margin-top: 10px;
+			}
+			.info1 {
+				font-size: 0.20rem;
+				height: 50px;
+			}
+			label{
+				font-size: 0.18rem;
+			}
+			.head{
+				width: 20%;
+				float: left;
+				margin-left: 10px;
+			}
+			.head-bo{
+				width: 70%;
+				margin-left: 20px;
+			}
+			.info2 {
+				height: auto;
+				margin-top: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			
+			.info3 {
+				height: 30px;
+				color: #AAAAAA;
+				font-size: 13px;
+			}
+			
+			.info4{
+				margin-top: 50px;
+				padding-top:10px;
+				height: auto;
+				padding-bottom: 20px;
+				background-color: #EEEEEE;
+			}
+			.info4 li{
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 10px;
+				background: #FFFFFF;
+			}
+			.public-1 {
+				font-size: 0.18rem;
+				padding-top: 10px;
+				margin-top: 30px;
+				width: 50%;
+				float: left;
+				border-top: 1px solid #EEEEEE;
+			}
+			
+			.public-2 {
+				font-size: 0.18rem;
+				border-right: 1px solid #EEEEEE;
+			}
+			
+			.interval {
+				height: 10px;
+				background-color: #EEEEEE;
+			}
+			.info4 li{
+				list-style: none;
+			}
+			.info4 label{
+				margin-left: 10px;
+			}
+			.info4 p{
+				margin-top: 10px;
+				margin-left: 30px;
+			}
+			.info4 .comments{
+				bottom: 0px;
+			    position: fixed;
+			    width: 100%;
+			    z-index: 100;
+			    padding-bottom: 10px;
+			    background-color: white;
+			    padding-top: 10px;
+			    border-top: 1px solid #f5f5f5;
+			}
+			.info4 .comment-content{
+				height: 50px;
+				float: left;
+				width: 80%;
+			}
+			 .info4 .comment{
+				 width: 20%;
+				 height: 50px;
+			 }
+		</style>
+		<script src="../../../../js/mui.min.js"></script>
+		<script src="../../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js"></script>
+		<script>
+			var datas1 = "";//心得数据
+			var datas2 = [];//评论数据
+			var count = 0;
+			mui.ready(function() {
+
+				getExperienceDatas();
+
+			})
+			
+			//获取参数  动态加载页面
+			function getExperienceDatas() {
+				var eId = obtain();
+				
+// 				console.log(test05);
+// 				console.log(test051);
+				for(var i = 0; i < test05.length;i++){
+					var eIds = test05[i].eId;
+					if(eId == eIds){
+						datas1 = test05[i];
+					}
+				}
+				for(var j = 0; j < test051.length;j++){
+					var eIds = test051[j].eId;
+					if(eId == eIds){
+						datas2.push(test051[j]);
+					}
+				}
+// 				console.log(datas1);
+//				console.log(datas2);
+				loadExperienceData();
+			}
+			
+			//加载工作心得到页面
+			function loadExperienceData() {
+				// console.log(datas);
+				
+				var ulss = document.createElement("ul");
+				ulss.innerHTML = null;
+				for (var i = 0 ; i < datas2.length;i++) {
+					var li = document.createElement("li");
+					li.innerHTML = '<label>'+datas2[i].userName+':'+
+									'<p>'+
+									datas2[i].content+
+									'</p>'+
+									'</label>'
+					ulss.appendChild(li);
+				}
+				
+				
+				var divss = mui(".mui-content")[0];
+				divss.innerHTML = null;
+				
+					var statusCode = datas1.statusCode;
+					var imgstatusCode = "";
+					
+					if(statusCode == 0){
+						imgstatusCode ='<img src="../../../../img/bg2.jpg" style="width: 20px;height: 20px;"/>'
+					}else{
+						imgstatusCode ='<img src="../../../../img/bg3.jpg" style="width: 20px;height: 20px;"/>'
+					}
+					var div = document.createElement("div");
+					div.innerHTML = '<!-- 头像/姓名/时间 -->'+
+											'<div class="info1">'+
+													'<div class="head">'+
+														'<img src="../../../../img/HeadImgDefault.png" style="width: 50px;height: 50px;border-radius: 25px;" />'+
+													'</div>'+
+													'<div class="head-bo">'+
+														'<label>'+datas1.userName+
+															'<p class="date">'+datas1.date+'</p>'+
+														'</label>'+
+													'</div>'+
+											'</div>'+
+											
+											'<!-- 内容 -->'+
+											'<div class="info2">'+
+												'<label>'+datas1.content+'</label>'+
+											'</div>'+
+											
+											'<!-- 点赞/评论/分享 -->'+
+												'<div class="info3">'+
+													'<div class="public-1 public-2">'+
+														'<center>'+
+															'<a class="thumbs-up" onclick="thumbs()">'+
+																imgstatusCode+
+															'</a>'+
+															'<span>点赞数'+datas1.thumbs+'</span>'+
+														'</center>'+
+													'</div>'+
+													'<div class=" public-1">'+
+														'<center>'+
+															'<a class="comment" onclick="showComment()">'+
+																'<img src="../../../../img/t3_2.png"/ style="width: 20px;height: 20px;">'+
+															'</a>'+
+															'<span>评论'+datas2.length+'</span>'+
+														'</center>'+
+													'</div>'+
+												'</div>'+
+												'<!-- 评论内容 -->'+
+												'<div class="info4">'+
+													ulss.innerHTML+
+													'<div class="comments">'+
+														'<input class="comment-content" type="text" placeholder="评论一下吧..."/>'+
+														'<input class="comment" type="button" value="评论" onclick="comment()">'+
+													'</div>'+
+												'</div>'
+												
+					divss.appendChild(div);
+			}
+			
+			//点赞
+			function thumbs(){
+					
+					var img = mui(".thumbs-up img")[0];
+					var statusCodes = datas1.statusCode;
+					console.log('statusCodes = '+statusCodes);
+					
+					if(statusCodes == 0){
+						datas1.thumbs += 1;
+						datas1.statusCode = 1;
+						img.setAttribute("src","../../img/bg3.jpg");
+					}else{
+						datas1.thumbs -= 1;
+						datas1.statusCode = 0;
+						img.setAttribute("src","../../img/bg2.jpg");
+					}
+					loadExperienceData();
+			}
+			
+			//评论
+			function comment(){
+					var commentContent = mui(".comment-content")[0].value;
+// 					console.log(datas1.eId);
+// 					console.log(commentContent);
+					var datas2s = {"eId":datas1.eId,"pId":1,"userName":"测试人员000","content":commentContent};
+//					console.log(datas2s);
+					datas2.push(datas2s);
+					loadExperienceData();
+			}
+			
+			//展示评论
+			function showComment(){
+				count += 1;
+				console.log(count)
+				if(count%2 == 0){
+					$(".info4").hide();
+				}else{
+					$(".info4").show();
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr" style="box-shadow: 0 1px 1px red;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">休养之声</h1>
+		</header>
+
+		<div class="mui-content" style="padding-top: 80px;background-color: #FFFFFF;padding-bottom: 90px;">
+			<!-- <div class="info1">
+				<div>
+					<img src="../../../../img/HeadImgDefault.png" style="width: 40px;height: 40px;border-radius: 20px;" />
+					<span>测试人员</span>
+					<span class="date">2019-04-18 16:17:18</span>
+				</div>
+			</div>
+
+			<div class="info2">
+				<label>测试数据</label>
+			</div>
+
+			<div class="info3">
+				<div class="public-1 public-2">
+					<center>
+						<a class="thumbs-up">
+							<img src="../../../../img/bg2.jpg" style="width: 20px;height: 20px;" />
+						</a>
+						<span>点赞数20</span>
+					</center>
+				</div>
+				<div class=" public-1">
+					<center>
+						<a class="comment">
+							<img src="../../../../img/t3_2.png"/ style="width: 20px;height: 20px;">
+						</a>
+						<span>评论11</span>
+					</center>
+				</div>
+			</div>
+			<div class="info4">
+				<ul>
+					<li>
+						<label>测试人员:
+							<p>
+								加强政治理论课程学习
+							</p>
+						</label>
+					</li>
+					<li>
+						<label>测试人员:
+							<p>
+								加强政治理论课程学习
+							</p>
+						</label>
+					</li>
+					<li>
+						<label>测试人员:
+							<p>
+								加强政治理论课程学习
+							</p>
+						</label>
+					</li>
+				</ul>
+			</div> -->
+		</div>
+	</body>
+</html>

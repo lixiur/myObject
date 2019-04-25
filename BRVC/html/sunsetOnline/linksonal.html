@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>链接内容</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" href="../../css/list.css" />
+		<style type="text/css">
+			
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../js/privile.js" ></script>
+		<script type="text/javascript" src="../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../js/jump.js"></script>
+		<script type="text/javascript" src="../../js/httpUrl.js" ></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">链接内容</h1>
+		    <!--<a class="mui-pull-right font14" style="width: 75px;padding-top: 13px;padding-bottom: 10px;color: white;" onclick="goBack()">返回上一页</a>-->
+		</header>
+		<div class="mui-content" style="" >
+			
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			var self =null;baiduWV =null;
+			var count = obtain();
+			mui.plusReady(function() {
+				var url=0;
+				if(count == 1){
+					url = "http://mp.weixin.qq.com/profile?src=3&timestamp=1555396777&ver=1&signature=S-JmSkQAAjA2vMSQiCcY6t0b3OYH6wu21WlEnbPq-hRhmOaz75StzYiSin*gZjhLDfJ6GPKWLF3yEhfy6J331w=="
+				}else if(count == 2){
+					url = "http://www.cdlgb.com/website/index.html" ;
+				}
+				self = plus.webview.currentWebview();
+				baiduWV = plus.webview.create(url, "laoganju",{scalable:true,
+					top: "60px",
+					bottom: 0
+				});  
+				self.append(baiduWV);
+				mui.back = function() {
+					baiduWV.close('slide-out-right',250);	
+					mui.currentWebview.close();
+				};
+			});
+			// 返回上次页面
+			function goBack() {
+				baiduWV.back();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的班队</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../../css/base.css" />
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<link rel="stylesheet" href="../../../../css/mescroll.min.css" />
+		<style>
+			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+			    top: 70px;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+			    color: red;
+			}
+			.person-mes{
+				list-style: none;
+			}
+			.team-table{
+				margin: 0 auto;
+			}
+			.team-table td{
+				padding-left: 10px;
+			}
+		</style>
+
+		<script src="../../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../../js/mescroll-for-muiscroll.min.js"></script>
+		<script type="text/javascript" src="../../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js"></script>
+		<script>
+			mui.init();
+			mui.ready(function() {
+	
+	getUsersList();
+})
+var teamData;
+teamData=myPosit;
+
+function getUsersList() {
+
+	var uul = teamData;
+	console.log(uul)
+	getTeamTitle(uul)
+//	loadUsersList(uul);
+}
+function getTeamTitle(datas){
+	var titleDiv=$(".team-title");
+	var item=$(".mui-slider-item");
+	var titHtml="";
+	var baseMes="";
+	var personList=[];
+	var personTitle='<div class="mes-block" style="margin-top: 20px;"><div class="mui-row person_block_t">'+
+									'<div class="mui-col-sm-4 mui-col-xs-4">'+
+										'<span class="font25" style="margin-left: 10px;">姓名</span>'+
+									'</div>'+
+									'<div class="mui-col-sm-4  mui-col-xs-4">'+
+										'<span class="font25" style="margin-left: 10px;">电话号码</span>'+
+									'</div>'+
+									'<div class="mui-col-sm-4  mui-col-xs-4">'+
+										'<span class="font25" style="margin-left: 10px;">拨打电话</span>'+
+									'</div>'+
+								'</div>'
+
+	for(var i=0;i<datas.length;i++){
+		//团队名称
+		
+		titHtml += '<a class="mui-control-item" data-index="' + datas[i].id + '" style="width: 33%;">团队'+(i+1)+'</a>';
+		baseMes='<div class="mes-block"><div class="div-content2">'+
+									'<label class="label_blk">班队名称</label>'+
+									'<label class="fr" id="proposerName">' + datas[i].name + '</label>'+
+								'</div>'+
+								'<div class="div-content2">'+
+									'<label class="label_blk">班主任/负责人</label>'+
+									'<label class="fr" id="duty">' + datas[i].person + '</label>'+
+								'</div>'+
+								'<div class="div-content2">'+
+									'<label class="label_blk">班队人数</label>'+
+									'<label class="fr" id="subhead">' + datas[i].team.length + '</label>'+
+								'</div></div>';
+		var teamList=[];
+		teamList[i]=datas[i].team;
+		console.log(teamList[i].length)
+		var li="";
+		for (var j = 0; j<teamList[i].length; j++) {
+			li+= '<li class="mui-input-row" onclick="smPhone('+ teamList[i][j].phone + ')">'+
+										'<div class="mui-row">'+
+											'<div class="mui-col-sm-4 mui-col-xs-4">'+
+												'<span class="font14">' + teamList[i][j].name + '</span>'+
+											'</div>'+
+											'<div class="mui-col-sm-5  mui-col-xs-5">'+
+												'<span class="font14">' + teamList[i][j].phone + '</span>'+
+											'</div>'+
+											'<div class="mui-col-sm-3  mui-col-xs-3 callPhone">'+
+												'<img src="../../../../img/dpohe2.png" style="width:20px">'+
+											'</div>'+
+										'</div>'+
+									'</li>'
+			personList[i]=li;
+	}
+		personList[i]=li;
+						
+		item[i].innerHTML=baseMes+personTitle+'<ul class="mui-table-view person_block_ul">'+personList[i]+'</ul></div>'
+	}
+	$(".team-title a:first").addClass("mui-active")
+	$("mui-slider-group .mui-slider-item:first").addClass("mui-active")
+}
+
+	function smPhone(phone) {
+		var ophe = phone;
+		plus.device.dial(ophe, true);
+	}
+		</script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">我的班队</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" style="width: 100%;">
+						<a class="mui-control-item  mui-active font21" data-index="0" style="width: 33%;">班队一</a>
+						<a class="mui-control-item font21" data-index="1" style="width: 33%;">班队二</a>
+						<a class="mui-control-item font21" data-index="2" style="width: 33%;">班队三</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll mui-row">
+								<div class="mes-block">
+									<!-- 班级信息-->
+									<div class="teamInfo" style="margin-top: 0.3125rem;margin-left: 0.625rem;">
+										
+									</div>
+								</div>
+									<!-- 班级成员信息 -->
+									<div class="teamMembers">
+										<div class="mes-block">
+										<ul class="mui-table-view" style="margin-top:20px;">
+											
+										</ul>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!-- 班级信息-->
+								<div class="mes-block">
+								<div class="teamInfo" style="margin-top: 0.3125rem;margin-left: 0.625rem;">
+									
+								</div>
+								</div>
+								<!-- 班级成员信息 -->
+								<div class="teamMembers">
+									<div class="mes-block">
+									<ul class="mui-table-view" style="margin-top:20px;">
+										
+									</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!-- 班级信息-->
+								<div class="mes-block">
+								<div class="teamInfo" style="margin-top: 0.3125rem;margin-left: 0.625rem;">
+								
+								</div>
+								</div>
+								<!-- 班级成员信息 -->
+								<div class="teamMembers">
+									<div class="mes-block">
+									<ul class="mui-table-view" style="margin-top:20px;">
+										
+									</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.ready(function() {
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: true,
+					indicators: true,
+					deceleration: mui.os.ios ? 0.003 : 0.0009
+				});
+				mui('.mui-scroll').on('tap', '.mui-control-item:not(.mui-active)', function() {
+					mui('.mui-slider').slider().gotoItem(this.getAttribute('data-index'));
+				});
+			});
+			
+		</script>
+	</body>
+</html>

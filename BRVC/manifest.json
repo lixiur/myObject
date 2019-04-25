@@ -1,0 +1,943 @@
+{
+	"@platforms": ["android", "iPhone", "iPad"],
+	"id": "H58752133",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "天府晚霞",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1.0.0",/*应用版本名称*/
+		"code": "83"
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": "http://www.dcloud.io"
+	},
+	"permissions": {
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "Messaging": {
+            "description": "访问通讯能力"
+        },
+        "Maps": {
+            "description": "管理地图插件"
+        },
+        "Speech": {
+            "description": "管理语音识别插件"
+        }
+	},
+	"plus": {
+		"statusbar":{
+			//"UIStatusBarStyle": "UIStatusBarStyleBlackOpaque",
+			"background": "red",
+			"style":"UIStatusBarStyleBlackTranslucent",
+			"immersed": true
+		},
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": true
+		},
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"apple": {
+				"appid": "com.xinxin.tfwx",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "com.xinxin.tfwx",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+					"<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.INTERNET\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+				]
+			},
+			"orientation": ["portrait-primary", "portrait-secondary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					 /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "",/*iPhone高分屏程序图标，分辨率：114x114*/
+						/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"app@2x":"unpackage/res/icons/120x120.png","app@3x":"unpackage/res/icons/180x180.png","settings@3x":"unpackage/res/icons/87x87.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","spotlight@3x":"unpackage/res/icons/120x120.png","notification@3x":"unpackage/res/icons/60x60.png","notification@2x":"unpackage/res/icons/40x40.png"
+					},
+					"ipad": {
+						"normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+						 /*iPad iOS7程序图标，分辨率：76x76*/
+						 /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						/*iPad设置页面程序图标，分辨率：29x29*/
+						"app":"unpackage/res/icons/76x76.png","app@2x":"unpackage/res/icons/152x152.png","settings":"unpackage/res/icons/29x29.png","proapp@2x":"unpackage/res/icons/167x167.png","spotlight":"unpackage/res/icons/40x40.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","notification":"unpackage/res/icons/20x20.png","notification@2x":"unpackage/res/icons/40x40.png"
+					},"appstore":"unpackage/res/icons/1024x1024.png"
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "img/background/640_960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "img/background/640_1136.png","iphonex":"img/background/1125_2436.png","retina47":"img/background/750_1334.png","retina55":"img/background/1242_2208.png"
+					},
+					"ipad": {
+						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "img/background/480_762.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "img/background/720_1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "img/background/1080_1882.png"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"html/tab/main.html": {
+				"resources": [
+					"html/tab/home.html"
+				],
+				"refer": [
+					"html/tab/setting.html",
+					"html/tab/mine.html",
+					"html/tab/market.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [],
+				"refer": [
+					"html/tab/main.html"
+				],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [],
+				"refer": [
+					"html/tab/homePageOptions.html"
+				],
+				"priority": 0
+			},
+			"html/tab/homePageOptions.html": {
+				"resources": [
+					"html/tab/market.html",
+					"html/tab/tabmain.html",
+					"img/t4_1.png",
+					"img/t2_1.png",
+					"img/t1_2.png"
+				],
+				"refer": [
+					"html/tab/setting.html",
+					"html/tab/mine.html",
+					"html/tab/maillist.html",
+					"html/tab/personal.html",
+					"html/mail/maillist.html"
+				],
+				"priority": 0
+			},
+			"html/tab/tabmain.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/branch.html",
+					"html/myWork/work.html",
+					"html/sunsetGarden/garden.html",
+					"html/sunsetYear/sunsetYear.html",
+					"html/mybranch/partydues.html",
+					"html/sunsetOnline/wxOnline.html",
+					"html/sunsetDemeanor/demeanor.html",
+					"html/tab/news.html",
+					"html/sunsetGarden/garden2.html",
+					"html/mybranch/branchdetails.html",
+					"html/mybranch/vanguard.html",
+					"html/mybranch/scactivity.html",
+					"html/sunsetOnline/perialReort.html",
+					"html/sunsetOnline/dynamic.html",
+					"html/sunsetDemeanor/demeanor2.html",
+					"html/myWork/work2.html",
+					"html/sunsetGarden/politicalTheory.html",
+					"html/sunsetGarden/historyAndArt.html",
+					"html/sunsetGarden/healthManager.html",
+					"html/sunsetGarden/voiceOfLearning.html",
+					"html/myWork/staffStatus.html",
+					"html/myWork/mobilOffice.html",
+					"html/myWork/voiceOfWork.html",
+					"html/sunsetYear/activity/activityList.html",
+					"html/sunsetDemeanor/advancedList.html",
+					"html/tab/noticeDetails.html",
+					"html/sunsetOnline/xartydues.html",
+					"html/sunsetDemeanor/consunet/column.html",
+					"html/sunsetDemeanor/myvolunteer/volunteer.html",
+					"html/sunsetYear/sunsetYear2.html",
+					"html/sunsetOnline/propvoices.html",
+					"html/myWork/workDisplay.html",
+					"html/sunsetYear/culture/cultureList.html",
+					"html/sunsetYear/helpList/helpList.html",
+					"html/sunsetYear/elsewhere/elsewhList.html",
+					"html/sunsetDemeanor/fiveAtcvity.html",
+					"html/sunsetOnline/linkList.html",
+					"html/sunsetGarden/learningStar.html"
+				],
+				"priority": 0
+			},
+			"html/mybranch/branch.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/branchdetails.html",
+					"html/mybranch/scactivity.html",
+					"html/mybranch/partydues.html",
+					"html/mybranch/vanguard.html"
+				],
+				"priority": 0
+			},
+			"html/mybranch/scactivity.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/scactivity-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/garden.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/politicalTheory.html",
+					"html/sunsetGarden/healthPreserving.html",
+					"html/sunsetGarden/historyAndArt.html",
+					"html/sunsetGarden/voiceOfLearning.html",
+					"html/sunsetGarden/learningStar.html",
+					"html/sunsetGarden/healthManager.html",
+					"html/sunsetGarden/garden2.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/work.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/staffStatus.html",
+					"html/myWork/voiceOfWork.html",
+					"html/myWork/visitingCondolences.html",
+					"html/myWork/mobilOffice.html",
+					"html/mybranch/branch.html",
+					"html/myWork/workDisplay.html",
+					"html/myWork/work2.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetOnline/wxOnline.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/vanguard.html",
+					"html/sunsetOnline/linksonal.html",
+					"html/sunsetOnline/perialReort.html",
+					"html/sunsetOnline/propvoices.html",
+					"html/sunsetOnline/xartydues.html",
+					"html/sunsetOnline/dynamic.html",
+					"html/sunsetOnline/linkList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetOnline/propvoices.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetOnline/sunset-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/demeanor.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/column.html",
+					"html/sunsetDemeanor/consunet/column.html",
+					"html/mybranch/vanguard.html",
+					"html/sunsetDemeanor/myvolunteer/volunteer.html",
+					"html/sunsetDemeanor/advancedList.html",
+					"html/sunsetDemeanor/fiveAtcvity.html",
+					"html/sunsetDemeanor/myElegant.html",
+					"html/sunsetDemeanor/suneactivity.html",
+					"html/sunsetDemeanor/demeanor2.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/column.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/vanguard.html",
+					"html/sunsetDemeanor/sunetcvity.html",
+					"html/sunsetDemeanor/sentvguard.html",
+					"html/sunsetDemeanor/mydemeList.html",
+					"html/sunsetDemeanor/sunetXdetails.html",
+					"html/sunsetDemeanor/myPower.html",
+					"html/sunsetDemeanor/sunetpvoices.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/sunetcvity.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/sunetcvity-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/mydemeList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/sunetcvity-list.html",
+					"html/sunsetDemeanor/sunetXdetails.html",
+					"html/sunsetDemeanor/sunetdetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myPower.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/sunetXdetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/sunetpvoices.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/sunset-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/consunet/column.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/sunetcvity.html",
+					"html/sunsetDemeanor/consunet/mydemeList.html",
+					"html/sunsetDemeanor/consunet/sentvguard.html",
+					"html/sunsetDemeanor/consunet/myPower.html",
+					"html/sunsetDemeanor/consunet/sunetpvoices.html",
+					"html/sunsetDemeanor/consunet/sunetxartydues.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/consunet/sunetcvity.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/sunetcvity-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/consunet/mydemeList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/sunetdetails.html",
+					"html/sunsetDemeanor/consunet/sunetXdetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/consunet/myPower.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/sunetXdetails.html",
+					"html/sunsetDemeanor/consunet/sunetdetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/consunet/sunetpvoices.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/sunset-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myvolunteer/volunteer.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/myvolunteer/myVPower.html",
+					"html/sunsetDemeanor/myvolunteer/myVemeList.html",
+					"html/sunsetDemeanor/myvolunteer/teamLikst.html",
+					"html/sunsetDemeanor/myvolunteer/sunetpVoices.html",
+					"html/sunsetDemeanor/myvolunteer/sunetVtydues.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myvolunteer/myVPower.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/myvolunteer/sunetVdetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myvolunteer/myVemeList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/myvolunteer/sunetdetails.html",
+					"html/sunsetDemeanor/myvolunteer/sunetVdetails.html",
+					"html/sunsetDemeanor/myvolunteer/sunetdVetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myvolunteer/teamLikst.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/myvolunteer/sunetVdetails.html",
+					"html/sunsetDemeanor/myvolunteer/teamDateils.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myvolunteer/sunetpVoices.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/myvolunteer/sunsetV-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/advancedList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/advandetails.html",
+					"html/sunsetDemeanor/advancedDeeds/mien.html",
+					"html/sunsetDemeanor/advancedDeeds/advancedDetail.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/fiveAtcvity.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/fiveAtcvity-list.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/myElegant.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/sendcircle.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/sunsetYear.html": {
+				"resources": [],
+				"refer": [
+					"html/mybranch/vanguard.html",
+					"html/sunsetYear/activity/activityList.html",
+					"html/sunsetYear/helpList/helpList.html",
+					"html/sunsetYear/culture/cultureList.html",
+					"html/sunsetYear/elsewhere/elsewhList.html",
+					"html/sunsetYear/elsewhere/spirations.html",
+					"html/sunsetYear/sunsetYear2.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/activityList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/positionList.html",
+					"html/sunsetYear/activity/squadList.html",
+					"html/sunsetYear/activity/universityList.html",
+					"html/sunsetYear/activity/schoolList.html",
+					"html/sunsetYear/activity/onlineList.html",
+					"html/sunsetDemeanor/consunet/sunetxartydues.html",
+					"html/sunsetYear/activity/activitdues.html",
+					"html/sunsetYear/activity/interest.html",
+					"html/sunsetYear/activity/univeManage.html",
+					"html/sunsetYear/activity/myPosition/myPosition.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/positionList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/positionList.html",
+					"html/sunsetYear/activity/posiDatelis.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/squadList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/squadDatelis.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/universityList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/univeDatelis.html",
+					"html/sunsetYear/activity/univeManage.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/schoolList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/schoolDatelis.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/onlineList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/onlineDatelis.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/helpList/helpList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/helpList/newHelp.html",
+					"html/sunsetYear/helpList/myList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/helpList/myList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/helpList/helpDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/culture/cultureList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/culture/cultuListX.html",
+					"html/sunsetYear/culture/scheduleList.html",
+					"html/sunsetYear/culture/opinionList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/culture/cultuListX.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/culture/cultuDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/culture/scheduleList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/culture/scheduleDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/culture/opinionList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/culture/opinnPldetaiks.html",
+					"html/sunsetYear/culture/detail/newVoice.html",
+					"html/sunsetYear/culture/detail/voiceDetails.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/workDisplay.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/workDeeds.html",
+					"html/myWork/workPainDetails.html",
+					"html/myWork/workArticDetails.html",
+					"html/myWork/workPhotoDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/elsewhere/elsewhList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/elsewhere/preseYuan.html",
+					"html/sunsetYear/elsewhere/newReim.html",
+					"html/sunsetYear/elsewhere/spirations.html",
+					"html/sunsetYear/elsewhere/consolationList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/politicalTheory.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/course/detailsOfPoliticalCourse.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/historyAndArt.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/course/detailsOfLiteratureAndArtHistoryCourse.html"
+				],
+				"priority": 0
+			},
+			"html/mail/maillist.html": {
+				"resources": [],
+				"refer": [
+					"html/mail/mail_list.html"
+				],
+				"priority": 0
+			},
+			"html/mail/mail_list.html": {
+				"resources": [],
+				"refer": [
+					"html/mail/workpDetails.html"
+				],
+				"priority": 0
+			},
+			"html/tab/personal.html": {
+				"resources": [],
+				"refer": [
+					"login.html",
+					"html/tab/changePassword.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/demeanor2.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/consunet/column.html",
+					"html/sunsetDemeanor/advancedList.html",
+					"html/sunsetDemeanor/myvolunteer/volunteer.html",
+					"html/sunsetDemeanor/suneactivity.html",
+					"html/sunsetDemeanor/myElegant.html",
+					"html/sunsetDemeanor/fiveAtcvity.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/sunsetYear2.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/activityList.html",
+					"html/sunsetYear/helpList/helpList.html",
+					"html/sunsetYear/culture/cultureList.html",
+					"html/sunsetYear/elsewhere/elsewhList.html",
+					"html/sunsetYear/elsewhere/spirations.html",
+					"html/sunsetYear/lettesvisits/Lettersvisits.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/healthManager.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/health/healthCare.html",
+					"html/sunsetGarden/health/healthPreservation.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/work2.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/staffStatus.html",
+					"html/myWork/visitingCondolences.html",
+					"html/myWork/workDisplay.html",
+					"html/mybranch/branch.html",
+					"html/myWork/voiceOfWork.html",
+					"html/myWork/mobilOffice.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/staffStatus.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/information/departmentalInformation.html",
+					"html/myWork/information/personalInformation.html",
+					"html/myWork/information/departmentalPersonnelInformation.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/garden2.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/voiceOfLearning.html",
+					"html/sunsetGarden/healthManager.html",
+					"html/sunsetGarden/historyAndArt.html",
+					"html/sunsetGarden/politicalTheory.html",
+					"html/sunsetGarden/learningStar.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/health/healthCare.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/health/careDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/health/healthPreservation.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/health/preservingDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetOnline/dynamic.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetOnline/news.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/advancedDeeds/mien.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/advancedDeeds/newMien.html",
+					"html/sunsetDemeanor/advandetails.html",
+					"html/sunsetDemeanor/advancedDeeds/mieDaitls.html",
+					"html/sunsetDemeanor/advancedDeeds/miedDailts.html",
+					"html/sunsetDemeanor/advancedDeeds/miedFDailts.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetDemeanor/advancedDeeds/advancedDetail.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetDemeanor/advandetails.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/information/departmentalPersonnelInformation.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/information/personnelDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/lettesvisits/Lettersvisits.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/lettesvisits/newlett.html",
+					"html/sunsetYear/lettesvisits/lettmyList.html",
+					"html/sunsetYear/lettesvisits/examinList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/lettesvisits/lettmyList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/lettesvisits/lettDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/lettesvisits/examinList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/lettesvisits/lettDetails.html",
+					"html/sunsetYear/lettesvisits/examinDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/signList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/signDetail.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/univeManage.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/signList.html",
+					"html/sunsetYear/activity/enterList.html",
+					"html/sunsetYear/activity/activitdues.html",
+					"html/sunsetYear/activity/university/courseList.html",
+					"html/sunsetYear/activity/university/enterList.html",
+					"html/sunsetYear/activity/university/signList.html",
+					"html/sunsetYear/activity/university/activitdues.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/enterList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/enterDetail.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/visitingCondolences.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/consolation/dailyCondolences.html",
+					"html/myWork/consolation/differentPlacesCondolences.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/elsewhere/consolationList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/elsewhere/consoDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/interest.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/joinDetail.html",
+					"html/sunsetYear/activity/unJoinDetails.html",
+					"html/sunsetYear/activity/interest/interActive.html",
+					"html/sunsetYear/activity/interest/interestTeam.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/consolation/dailyCondolences.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/consolation/consolationDetails.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/consolation/differentPlacesCondolences.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/consolation/consolationDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/university/courseList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/university/courseDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/university/enterList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/university/enterDetail.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/university/signList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/university/signDetail.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/myPosition/myPosition.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/myPosition/squadList.html",
+					"html/sunsetYear/activity/myPosition/myActivities.html",
+					"html/sunsetYear/activity/myPosition/signIn.html",
+					"html/sunsetYear/activity/myPosition/siteReservationList.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/myPosition/siteReservationList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/myPosition/siteReservationDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetOnline/linkList.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetOnline/linksonal.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/activity/interest/interActive.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/activity/interest/unJoinDetails.html",
+					"html/sunsetYear/activity/interest/joinDetail.html"
+				],
+				"priority": 0
+			},
+			"html/myWork/voiceOfWork.html": {
+				"resources": [],
+				"refer": [
+					"html/myWork/details/experienceDetails.html",
+					"html/myWork/details/newExperience.html",
+					"html/myWork/details/newRecommendation.html",
+					"html/myWork/details/recommendationDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetYear/elsewhere/spirations.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetYear/elsewhere/spirationsDetails.html"
+				],
+				"priority": 0
+			},
+			"html/sunsetGarden/voiceOfLearning.html": {
+				"resources": [],
+				"refer": [
+					"html/sunsetGarden/newVoice.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/main.js",
+				"img/background/icon.png",
+				"js/mui.min.js",
+				"css/common.css",
+				"js/jquery-1.9.1.min.js",
+				"fonts/mui.ttf",
+				"css/mui.min.css",
+				"js/mui.js",
+				"css/mui.css",
+				"js/immersed.js"
+			]
+		}
+	},
+	"unpackage":[
+	  "img/background/icon.png"
+	]
+}

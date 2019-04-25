@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>活动签到</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../../css/base.css" />
+		<link rel="stylesheet" href="../../../../css/mescroll.min.css" />
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<style>
+			.mui-scroll-wrapper{top: 10%}
+            .mui-table-view:before {background-color: #c8c7cc;top: 6px;}
+			.mui-table-view-cell:after, .mui-table-view:after {left: 0px;right: 0px;}
+			
+		</style>
+		<script src="../../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../../js/mescroll-for-muiscroll.min.js"></script>
+		<script type="text/javascript" src="../../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">活动签到</h1>
+		</header>
+		<div class="mui-content" style="z-index: 3;">
+			<div id="offCanvasContentScroll" class=" mui-scroll-wrapper" style="background-color: white;margin-left: 2px;width: 99%;">
+				<div class="mui-scroll" style="top: 1px;">
+					<!--数据列表-->
+					<ul class="mui-table-view" id="gw_List">
+
+					</ul>
+					<p id="msg" style="display: none;">无数据</p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" charset="UTF-8">
+			//		var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+			//		var userq = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+			var user = 123;
+			mui.ready(function() {
+				signIn();
+				
+				//创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;内部已初始化mui的区域滚动
+				var mescroll = new MeScroll("offCanvasContentScroll", {
+						up: {
+							clearEmptyId: "gw_List", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+							callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+							page: {
+								size: 10
+							}
+						}
+					}
+					//				 ,{bounce:false} //是否启用回弹效果,默认true; 如果设置false,可解决一个小小的问题: 下拉的时候不会感觉下拉区域被遮住一点点
+				);
+				window.addEventListener('refresh', function(e) { //执行刷新
+					mescroll.resetUpScroll();
+				});
+				/*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+				function getListData(page) {
+					//联网加载数据
+					console.log("page.num==" + page.num + ",page.size==" + page.size);
+					getListDataFromNet(page.num, page.size, function(data) {
+						//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+						//					mescroll.endByPage(data.length, totalSize/page.size);
+						mescroll.endSuccess(data.length); //传参:数据的总数; mescroll会自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+						//设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+						$.each(data, function(index, event) {
+							appendDom(index, event);
+						});
+					}, function() {
+						//联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+						mescroll.endErr();
+					});
+				}
+				/*联网加载列表数据*/
+				function getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
+					//延时一秒,模拟联网
+					//              setTimeout(function () {
+					//              	$.ajax({
+					//              		type: 'post',
+					//		                url: httpAction[07],
+					//		                data:{
+					//		                	encryptionPara:encryptionPara,
+					//		                	userId:user,
+					//							page:pageNum,
+					//							limit:pageSize
+					//				　　　　	},
+					//		                dataType: 'json',
+					//		                success: function(res){
+					//		                	//模拟分页数据
+					////		                	var listData=[];
+					////		                	console.log(JSON.stringify(data.length));
+					//		                	if(res.status == 1){
+					//		                		var data = res.data;
+					//		                		datas = res.data.noticeUsers;
+					var data = lodeD2;
+					successCallback(data);
+					//		                	}else{
+					//		                		mui.toast(res.msg);
+					//		                	}
+					//		                },
+					//		                error: errorCallback
+					//		            });
+					//              },1000)
+				}
+				//禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
+				document.ondragstart = function() {
+					return false;
+				}
+			});
+
+			function appendDom(index, data, p2dType) {
+				var html = "";
+				var thtml = "";
+				var cou = "";
+				var im = data;
+				var qtype = im.type;
+				var conid = im.id;
+				var address = im.address;
+				var astate = im.state;
+
+				styr = '<li class="mui-table-view-cell active_item" id="' + im.id + '" >';
+				thtml = '<div class="fl" style="width: 70%;">';
+				if(astate == 0){
+					thtml1 ='<p style="color:red;">未签到</p>';
+				}else{
+					thtml1 = '<p style="color: green;">已签到</p>';
+				}
+				
+				html += styr +thtml +
+					'<div class="fl list_blk"><p class="font25 textColorMain labe_ro" >' + qtype + '</p>' +
+					'<img class="room_url" src="../../../../img/gray_star.png" /><time class="font25 labe_ro time_ellipsis">' + address +
+					'</time></div>' +
+					'</div>' +
+					'<div class="fr div_b " style="width:30%;" >' +
+					'<button type="button" class="mui-btn nosign" style="" states="'+astate+'">' + thtml1 + '</button></div>'
+					'</li>'
+					
+					
+				$("#gw_List").append(html);
+			}
+
+			function signIn() {
+				mui("#gw_List").on("tap",".nosign",function() {
+					var states = this.getAttribute("states");
+					if(states == 0){
+						this.innerHTML = '<p style="color: green;">已签到</p>';
+						this.setAttribute("states",1);
+						mui.toast("签到成功");
+					}else{
+						mui.toast("您已经签到过了");
+					}
+					
+				})
+			}
+		</script>
+	</body>
+</html>

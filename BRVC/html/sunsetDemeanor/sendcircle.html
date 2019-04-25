@@ -1,0 +1,591 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>上传我的风采</title>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css" />
+		<script type="text/javascript" charset="utf-8">
+//			mui.init({
+//				statusBarBackground: "#d23330"
+//			});
+		</script>
+		<style type="text/css">
+			.mui-bar {
+				height: 64px;
+				padding-top: 20px;
+			}
+			
+			.width {
+				position: absolute;
+				width: 100%;
+				min-height: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+				-ms-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-webkit-transform: translateY(-50%);
+				-o-transform: translateY(-50%);
+			}
+			
+			.height {
+				position: absolute;
+				height: 100%;
+				min-width: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				-ms-transform: translateX(-50%);
+				-moz-transform: translateX(-50%);
+				-webkit-transform: translateX(-50%);
+				-o-transform: translateX(-50%);
+			}
+			
+			.tips {
+				padding: 12px;
+			}
+			
+			.tips p {
+				margin: 0;
+				line-height: 1.5
+			}
+			
+			.photo-list {
+				background-color: #fff;
+				padding: 6px;
+			}
+			
+			.photo-list .photo-box,
+			.add-btn {
+				position: relative;
+				float: left;
+				margin: 1%;
+				width: 23%;
+				height: 0;
+				padding-bottom: 23%;
+				border-radius: 3px;
+				overflow: hidden;
+			}
+			
+			.add-btn {
+				border: dashed 1px #DDD;
+				font-size: 30px;
+			}
+			
+			.delete {
+				font-size: 20px;
+			}
+			
+			.add-btn,
+			.delete {
+				position: relative;
+				font-family: Muiicons;
+				font-weight: 400;
+				font-style: normal;
+				line-height: 1;
+				display: inline-block;
+				text-decoration: none;
+				-webkit-font-smoothing: antialiased;
+			}
+			
+			.add-btn:after {
+				content: '\e468';
+				position: absolute;
+				left: 50%;
+				top: 35%;
+				transform: translateX(-50%);
+				color: #aaa;
+			}
+			
+			.delete:after {
+				content: '\e401';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				color: #fff;
+			}
+			
+			.photo-box .delete {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 24px;
+				background-color: rgba(0, 0, 0, .4);
+			}
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.mui-table-view-cell:after {
+				background-color: #efeff4;
+			}
+			
+			.mui-table-view-cell:after {
+				left: 0px;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 0px;
+			}	
+			#send {
+			    color: white;
+			    line-height: 44px;
+			    margin-left: 10px;
+			    float: right;
+			    margin-right: 10px;
+			}
+			#cancle {
+			    color: white;
+			    line-height: 44px;
+			    margin-left: 10px;
+			}		
+		</style>
+	</head>
+
+	<body>
+
+		<header id="reying_title" class="mui-bar mui-bar-nav headr">
+			<a href="" class="font25"id="cancle" style="color: #FFFFFF;" onclick="quxiao()">取消</a>
+			<a href="" class="font25" id="send" style="color: #FFFFFF;">发送</a>
+		</header>
+
+		<div class="mui-content" style="background-color: white;margin-top: 68px;">
+			<ul class="mui-table-view font28">
+				<li class="">
+					<div class="">
+						<textarea id="say" name="" rows="" cols="" placeholder="说些什么吧..." style="height: 150px;border: 0px;margin-bottom: 0px;"></textarea>
+					</div>
+					<div class="photo-list mui-clearfix" id="list">
+						<div class="add-btn" id="btn"></div>
+					</div>
+				</li>
+				<!--<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<span class="mui-icon mui-icon-location" style="color: red;"></span>
+						<span>地点</span>
+					</a>
+				</li>-->
+				<!--<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<span class="mui-icon mui-icon-locked" style="color: red;"></span>
+						<span>权限设置</span>
+						<span class="mui-icon mui-icon-arrowright" style="float: right;"></span>
+						<span class="textColorGray" style="float: right;">所有人可见</span>
+					</a>
+				</li>-->
+			</ul>				
+		</div>
+			<script src="../../js/plugins/jquery-3.1.1.slim.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/plugins/cropper/js/cropper.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" charset="utf-8">
+				mui.init({
+					statusBarBackground: "#d23330"
+				});
+			</script>
+			<script>
+				mui.previewImage();
+			</script>
+			<script type="text/javascript">
+				mui.init();
+				var Utils = getUtils();
+				var userInfoJson = Utils.getDataStorageJsonNode('local',"userInfo","userIn");
+				var user = Utils.jsonStrTOjonsObj(userInfoJson).data;
+				var userId = user.id;
+				var userName = user.username;
+				//DOM获取及变量
+				var list = document.getElementById('list');
+				var btn = document.getElementById('btn');
+				var setNum = 9; //图片最大选择数量
+				var imgs = new Array();
+				var num = -1;
+				/* *
+				 * 调取系统相册需在API加载完成后发生
+				 */
+				function quxiao(){
+					backa();
+				}
+				mui.plusReady(function() {
+					//添加图片按钮点击
+
+					btn.addEventListener('tap', function() {
+						var editButtons = new Array();
+						editButtons.push({
+							title: "拍照上传",
+							style: "default"
+						});
+						editButtons.push({
+							title: "从相册选择",
+							style: "default"
+						});
+						plus.nativeUI.actionSheet({
+							cancel: "取消",
+							buttons: editButtons
+						}, function(e) {
+							var index = e.index;
+							switch(index) {
+								case 1:
+									captureImage(); //拍照
+									break;
+								case 2:
+									var num = setNum;
+									if(list.querySelector('.photo-box')) {
+										var box = list.getElementsByClassName('photo-box');
+										num -= box.length;
+									}
+									galleryImgs(num); //相册选择
+									break;
+							}
+						});
+
+					});
+				}, false);
+				//拍照
+				function captureImage() {
+					var cmr = plus.camera.getCamera(2);
+					cmr.captureImage(
+						function(path) {
+							//将图片地址转换
+							plus.io.resolveLocalFileSystemURL(path, function(entry) {
+								newPath = entry.toLocalURL() + "?version=" + Math.random();
+								insertPhoto(newPath);
+							});
+						},
+						function(error) {
+							mui.toast(error.message);
+						}, {
+							filename: "_documents/"
+						}
+					);
+
+				}
+				// 从相册中选择多张图片 
+				function galleryImgs(num) {
+					// 从相册中选择图片
+					console.log("从相册中选择多张图片:");
+					plus.gallery.pick(function(e) {
+						for(var i in e.files) {
+							console.log(e.files[i]);
+							insertPhoto(e.files[i]); //将图片放在页面上
+						}
+					}, function(e) {
+						console.log("取消选择图片");
+					}, {
+						filter: "image", //系统相册选择器中可选择的文件类型 "image" , "video" , "none"
+						multiple: true, //是否支持多选
+						maximum: num, //最多选择的文件数量，上面设置了全局变量
+						system: false, //是否使用系统文件选择界面，iOS下无效
+						onmaxed: function() { //超出选择最大文件数时触发
+							mui.toast('最多选择' + num + '张图片')
+						}
+					});
+				}
+
+				//将选择的图片转base64并加入到页面中
+				function insertPhoto(data) {
+					var imgClass; //img的class名
+					//创建image对象并转换base64码
+					var img = new Image();
+					img.src = data;
+					img.onload = function() {
+						//创建canvas画布
+						var canvas = document.createElement("canvas");
+						//在css中不要直接给img设置宽高,否则此处会获取到css设置的值
+						var width = img.width;
+						var height = img.height;
+						//比较图片宽高设置图片显示和canvas画布尺寸
+						if(width > height) {
+							imgClass = 'height';
+							if(width > 500) {
+								height = Math.round(height *= 500 / width);
+								width = 500;
+							}
+						} else {
+							imgClass = 'width';
+							if(height > 500) {
+								width = Math.round(width *= 500 / height);
+								height = 500;
+							}
+						}
+						canvas.width = width; //设置新的图片的宽度
+						canvas.height = height; //设置新的图片的长度
+						var ctx = canvas.getContext("2d");
+						ctx.drawImage(img, 0, 0, width, height); //绘图
+						var dataURL = canvas.toDataURL("image/png", 0.8); //供img标签使用的src路径
+						//					console.log(dataURL);
+						//将最后拿到的图片类名和src放入页面中
+						var div = document.createElement('div');
+						div.setAttribute('class', 'photo-box');
+						div.innerHTML = '<img class="' + imgClass + '" src="' + dataURL + '" data-preview-src="" data-preview-group="1"/>\
+					                                          <div class="delete"></div>';
+						//					div.innerHTML = '<img src="star.jpeg" id="real" alt="model test picture"><div class="motai" id="mo"><span class="close" id="close">×</span><img class="motaiimg" id="moimg"><div id="caption"></div></div>'
+						list.insertBefore(div, btn);
+						btnHidden(); //显示或隐藏添加按钮
+						num++;
+						imgs[num] = dataURL;
+//						console.log(imgs[num]);
+						
+					}
+
+				}
+						mui('#reying_title').on('tap', '#send', function() {
+							plus.nativeUI.showWaiting();
+							var area = $("#say").val();
+//							console.log(area);
+//							var image = imgs;
+//								console.log(imgs[0]);
+//							var rootPath = "http://www.chendd.cn";
+//							var url = rootPath + "/testaa.servlet";
+							if (area != "") {
+								var url =header + "mobile/saveWorkCircle";
+								mui.ajax(url, {
+									dataType: "json",
+									type: "post",
+									data: {
+	//									imageBase64: image
+										encryptionPara:encryptionPara,
+										userId:userId,
+										userName:userName,
+										content:area,
+										fILENAME:imgs									
+									},
+									traditional: true,//这里设置为true
+									success: function(data) {
+	//									if(data.result == "success") {
+										if(data != null) {
+											plus.nativeUI.closeWaiting();
+											mui.toast("发送成功!");
+											backa();
+	//										document.getElementById("imagePath_div").innerText = rootPath + "/" + data.message + ".image";
+											return;
+										}
+										mui.toast(data.message);
+									},
+									error: function(a, b, c) {
+										plus.nativeUI.closeWaiting();
+										if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+											mui.toast("网络异常，请检查网络设置！");						 
+										} else {
+										 mui.alert("服务器出错！");
+										}	
+									}
+								});								
+							}else{
+									plus.nativeUI.closeWaiting();
+									mui.alert("发送内容不能为空！");
+							}
+						})
+				//删除
+				mui('#list').on('tap', '.delete', function() {
+					this.parentNode.remove();
+					btnHidden(); //显示或隐藏添加按钮
+				})
+				var motai = document.getElementById('mo')
+				var moimg = document.getElementById("moimg")
+				var caption = document.getElementById("caption")
+				mui('#list').on('tap', '.width', function() {
+//					console.log("1");
+				})
+				//          mui('#up').on('tap','.up-button',function(){
+				//          	console.log("点击");
+				//          })
+				//在每次添加图片时进行判断，是否隐藏添加按钮
+				function btnHidden() {
+					if(list.querySelector('.photo-box')) {
+						var box = list.getElementsByClassName('photo-box');
+						if(box.length > setNum - 1) {
+							btn.classList.add('mui-hidden');
+						} else {
+							btn.classList.remove('mui-hidden');
+						}
+					} else {
+						btn.classList.remove('mui-hidden');
+					}
+				}
+			</script>
+	</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>信访申请</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../../css/base.css"/>
+		<!--<link rel="stylesheet" href="../../../css/mui.picker.min.css" />-->
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<style>
+			.mui-table-view-cell:after, .mui-table-view:after{height: 0px;}
+			.mui-table-view-cell:before, .mui-table-view:before{height: 0px;}
+
+			.div-content23 {
+			     padding: 0px; 
+			    line-height: 50px;
+			    font-size: 0.25rem;
+			    background-color: #FFFFFF;
+			}
+			.mui-table-view-cell {
+			    position: relative;
+			    overflow: hidden;
+			    padding: 0px; 
+			    -webkit-touch-callout: none;
+			}
+			.fujian_img {
+			   width: 30px;
+			   height: 30px;
+			   margin-left: 0px; 
+			   margin-top: -8px;
+			}
+			.mes-block {
+			    position: static;
+			}
+		</style>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../../js/jquery-form.js"></script>
+		<script type="text/javascript" src="../../../js/privile.js" ></script>
+		<script type="text/javascript" src="../../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/njs-io.js" ></script>
+		<script type="text/javascript" src="../../../js/anxnex.js" ></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js" ></script>
+		<script type="text/javascript" src="../../../js/easy_validator.pack.js" ></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">信访申请</h1>
+		</header>
+		<div class="mui-content " style="padding-top: 60px;background-color: #FFFFFF;">
+			<div class="mes-block">
+				<form id="data_form" action="#" method="post" class="form-horizontal">
+				    <!--<input type="hidden" name="proposerName" id="proposerName" value="" />用户名-->
+				   <div>
+				   	<div class="mui-row form-item">
+				   		<div class="mui-col-sm-12 mui-col-xs-12">
+				   			<p class="gray-font font21">请填写信息</p>
+				   		</div>
+				   	</div>
+				   	 <div class="mui-row form-item">
+				   	  <div class="mui-col-sm-4 mui-col-xs-4" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">姓名</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-8 mui-col-xs-8" style=" ">
+						    <div class="div_l1_t1" style="">
+				        		<input class="iinpo" type="text" name="proposerName" id="proposerName" reg="^.+$" tip="必填项,不能为空"  style=""placeholder="请输入姓名"/>
+						    </div>
+				        </div>
+				       </div>
+				        <div class="mui-row form-item">
+				        <div class="mui-col-sm-4 mui-col-xs-4" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">职务</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-8 mui-col-xs-8" style=" ">
+				        	<div class="div_l1_t1" style="">
+				        		<input class="iinpo" type="text" name="duty" id="duty" reg="^.+$" tip="必填项,不能为空" style=""placeholder="请输入职务"/>
+						    </div>
+				        	<!--<div class="div_l1_2" style="">
+						    	<label class="label_z" id="useDuty">&nbsp;</label>
+				        	</div>-->
+				        </div>
+				        </div>
+				         <div class="mui-row form-item">
+				        <div class="mui-col-sm-4 mui-col-xs-4" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">所在地点</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-8 mui-col-xs-8" style=" ">
+				        	<div class="div_l1_t1" style="">
+						    	<input class="iinpo" type="text" name="site" id="site" reg="^.+$" tip="必填项,不能为空" style=""placeholder="请输入所在地点"/>
+						    </div>
+				        </div>
+				        </div>
+				         <div class="mui-row form-item">
+				        <div class="mui-col-sm-4 mui-col-xs-4" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">联系电话</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-8 mui-col-xs-8" style=" ">
+				        	<div class="div_l1_t1" style="">
+						    	<input class="iinpo" type="text" id="phone" name="phone"  style=""placeholder="请输入电话号码"/>
+						    </div>
+				        </div>
+				        </div>
+				         <div class="mui-row form-item">
+				        <div class="mui-col-sm-4 mui-col-xs-4" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">联系电话</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-8 mui-col-xs-8" style=" ">
+				        	<div class="div_l1_t1" style="">
+						    	<input class="iinpo" type="text" id="phone" name="phone"  style=""placeholder="请输入电话号码"/>
+						    </div>
+				        </div>
+				        </div>
+				         <div class="mui-row form-item">
+				        <div class="mui-col-sm-12 mui-col-xs-12" style=""> 
+						    <div class="div_l1_1" style="">
+						    	<label class="font20 blk_font">信访内容</label>
+						    </div>
+				        </div>
+				        <div class="mui-col-sm-12 mui-col-xs-12" style=" ">
+				        	<div class="div_l1_t1" style="margin-right: 0;">
+				        		<textarea class="" type="text" id="phoe" name="phoe"  style="height: 200px;"placeholder="请输入内容"></textarea>
+						    </div>
+				        </div>
+				        </div>
+				        <div class="div-content23" id="fj_la" style="margin-top: 50px;" >
+				   		<label class="font20 blk_font">文件附件</label> 
+				    </div>
+				    <div class="mui-content">
+						<div class="fujian_div2">
+							<ul class="mui-table-view " id="fj_ul" style="display: none;">
+							</ul>
+						</div>
+					</div> 
+					 <div class="mui-content-padded" style="border: 0px;text-align: center;">
+						<button id="btn_submit" type="button" class="mui-btn long-btn" style="width:60%;text-align: center;" >提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			mui.init();
+			window.onresize=function(){ //该方法控制输入软键盘将要输入的地方向上推
+			    document.activeElement.scrollIntoView(false);     
+			}   
+//		$("#proposerName").val(use);
+//		$("#duty").val(du2);
+		var isCoun = false;//是否需要给提交的方法传值
+		addFeila();
+		//提交表单
+		function submitDataForm(){
+			var clin = $("#result1").text();
+			var fclin =$("#result").text();
+			if(clin == "请选择开始时间" || fclin == "请选择结束时间" ){
+				dialog_c()
+			}else{
+				mui.toast('该申请已提交到相关人员处');
+				mui.back()
+//				var sTime = tabime(clin,fclin);
+//					//				$("#proposerName").val(use);
+//					var quse = $("#proposerName").val();
+//					if(use == quse){
+//						$("#proposerId").val(uId);
+//					}else{
+//						$("#fromUserId").val(uId);
+//					}
+//	//				$("#duty").val(du2);
+//					$("#proposerParentName").val(du);
+//					$("#startTime").val(clin);
+//					$("#endTime").val(fclin);
+			}
+		}
+		
+		/*提交数据*/
+		function sBmit(){
+			var enUrl = httpAction[31];
+				$("#data_form").ajaxSubmit({
+					url: enUrl,
+					type: 'POST',
+					data:{encryptionPara:encryptionPara},
+					dataType: 'json',
+					boforeSubmit: function() {},
+					success: function(result) {
+						var code = result.status;
+						if(code == 1) {
+							dialog_mc();
+						} else{
+							dialog_x();
+						}
+					}
+				});
+		}
+		
+		</script>
+	</body>
+
+</html>

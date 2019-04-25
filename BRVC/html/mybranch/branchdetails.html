@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>支部信息</title>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/list.css" />
+		<style>
+			.mes-block{
+				z-index: 1;
+				position: static;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../js/privile.js"></script>
+		<script type="text/javascript" src="../../js/tools.js"></script>
+		<script type="text/javascript" src="../../js/jump.js"></script>
+		<script type="text/javascript" src="../../js/httpUrl.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">支部信息</h1>
+		</header>
+		<div class="mui-content" style="padding-top: 65px;background: #FFFFFF;">
+			<div class="mes-block">
+				<div class="div-content2">
+					<label class="label_blk">支部名称</label>
+					<label class="fr" id="proposerName">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">支部类型</label>
+					<label class="fr" id="duty">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">支部书记</label>
+					<label class="fr" id="subhead">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">支部副书记1</label>
+					<label class="fr" id="startTime">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">支部副书记2</label>
+					<label class="fr" id="startTime">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">支部委员</label>
+					<label class="fr" id="startTime">测试数据</label>
+				</div>
+				<div class="div-content2">
+					<label class="label_blk">成员数量</label>
+					<label class="fr" id="startTime">9人</label>
+				</div>
+			</div>
+			<div class="mes-block" style="margin-top: 20px;">
+				<div class="mui-row person_block_t">
+					<div class="mui-col-sm-4 mui-col-xs-4">
+						<span class="font25" style="margin-left: 10px;">姓名</span>
+					</div>
+					<div class="mui-col-sm-4  mui-col-xs-4">
+						<span class="font25" style="margin-left: 10px;">电话号码</span>
+					</div>
+					<div class="mui-col-sm-4  mui-col-xs-4">
+						<span class="font25" style="margin-left: 10px;">拨打电话</span>
+					</div>
+				</div>
+				<ul class="mui-table-view person_block_ul">
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+					<li class="mui-input-row" onclick="smPhone()">
+						<div class="mui-row">
+							<div class="mui-col-sm-4 mui-col-xs-4">
+								<span class="font14">测试成员1</span>
+							</div>
+							<div class="mui-col-sm-5  mui-col-xs-5">
+								<span class="font14">13812345678</span>
+							</div>
+							<div class="mui-col-sm-3  mui-col-xs-3">
+								<img src="../../img/dpohe2.png" class="">
+							</div>
+						</div>
+					</li>
+				</ul>
+		</div>
+		</div>
+		<script>
+			mui.init({
+
+			});
+			phx = 0; //是否显示审批环节0不显示、1显示审批笺2、显示签批单
+			//  	var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+			//		var user = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+			//		var applyUserOrgId = user.orgId;
+			//		var applyUserOrgName=user.applyUserOrgName;
+			//		var userId=user.id;//用户id
+			//		var name=user.username;//用户名
+			//		var detaId = obtain();//任务
+			//		var datep = detaId.split(",");
+			//		myAjax(httpAction[36],{id:datep[1]},function (res) {
+			//			if (res.status == 1) {
+			//				var list = res.data;
+			//				for(var keyVal in list) {
+			//					$("#" + keyVal).text(list[keyVal]);
+			//				}
+			//			} else{
+			//				mui.toast("服务器错误");
+			//			}
+			//		});
+			function smPhone() {
+				var ophe = 13812345678;
+				plus.device.dial(ophe, true);
+			}
+		</script>
+	</body>
+
+</html>

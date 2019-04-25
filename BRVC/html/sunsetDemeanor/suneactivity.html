@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>活动之星</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/list.css" />
+		<!--<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />-->
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<style>
+			/*input[type=search]{margin-top: 10px;}*/
+			.ui-alert{color: #d23330;margin-left: 5px;}
+			
+			.mui-pciker-list, .mui-pciker-rule{top: 22%;} 
+			.mui-table-view-cell:after {
+				left: 0px;
+			}
+			.mui-table-view {
+			    position: static;
+			}
+			.mui-content {
+				height: 0px;
+				margin: 0px;
+				background-color: #efeff4;
+			}
+			
+			h5.mui-content-padded {
+				margin-left: 3px;
+				margin-top: 20px !important;
+			}
+			
+			h5.mui-content-padded:first-child {
+				margin-top: 12px !important;
+			}
+			
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 10px;
+				color: white;
+				background-color: #df0300;
+			}
+			
+			/*.ui-alert {
+				text-align: center;
+				padding: 20px 10px;
+				font-size: 16px;
+			}*/
+			
+			* {
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+			.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+			    color: #fff;
+			    border: 1px solid #df0300;
+			    background-color: #df0300;
+			}			
+			.wages {
+				margin: 15px 10px;
+			}
+			.wages-type p{width: 31.6%;display: inline-block;color: white;float: left;line-height: 25px;}
+			.mages-money p{width: 31.6%;display: inline-block;color: #000;float: left;line-height: 40px;margin-top: 5px;}
+			.mui-btn-block{display: inline-block;width: auto;}
+			img{height: 7px;width: 12px;}
+			.mui-table-view-cell:after {left: 0px; height: 0px;}
+		</style>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/httpUrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jump.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/xartydues.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/privile.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				statusBarBackground: "#d23330"
+			});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">活动之星</h1>
+		</header>
+		</header>
+		<div class="mui-content" style="margin-top: 18px;">
+			<div class="information-table textColorMain">
+				<div class="mui-row"style="margin-top: 10px;line-height: 40px;">
+			    	<div id='showUserPicker' class=" fl"style="width: 50%;background-color: #F5F7F7;border-radius: 10px;">
+			    		<label id='result' class="ui-alert font22" style="color: #df0300;"><span id="wag-yaer"style="color: #df0300;">2018</span>年</label>
+			    		<img src="../../img/xxia.png"/>
+			    	</div>
+			   	
+				   	<div id='showCityPicker' class=" fl"align="center" style="width: 50%;background-color: #F5F7F7;border-radius: 10px;">
+				   		<span id='data_m'  class="font22" style="width: 50%;color: #df0300;"><span id="wag-month">全年</span></span>
+				   		<img src="../../img/xxia.png"/>
+				   	</div>
+				   	<!--<div id='showCityPicker3' style="width: 55%;float: left;background-color: #F5F7F7;border-radius: 10px;">
+				   		<img style="float: right;margin: 16px 5px 0px 5px;" src="../../img/xxia.png"/>
+					    <label id="wag-type" class="met_wek fr font22" style="color: #df0300;">工资类型</label>
+				   	</div>-->
+			    </div>
+				<ul class="mui-table-view" style="background-color: #F8F9FB;">
+					<!--<li class="mui-table-view-cell mui-media" style="padding: 0px 3%;margin:-8px 0;">
+						<a href="javascript:;">
+							<div class="mui-media-body font20 textColorMain wages">
+									<div style="width:66.5%;float: left;background-color:#F2F7FE;padding: 8px 0px;">
+										<span style="margin-left: 5px;" >授课</span>
+									</div>
+								<div align="center" style="overflow:hidden;background-color:#F3F3F4;padding: 8px 0px;" >
+									<span id="maternity" >12元</span>
+								</div>
+							</div>
+						</a>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		var list= [];
+		var listwq= [];
+		var year = '';
+		var month = '';
+		var typeSum = '';
+//		var Utils = getUtils();
+//		var userInfoJson = Utils.getDataStorageJsonNode('local',"TYuserInfo","userIn");
+//		var users = Utils.jsonStrTOjonsObj(userInfoJson).data;
+//		var userName = users.username;
+		var tim = 0;
+		var now= new Date();
+		var years=now.getFullYear();
+		var months=String(now.getMonth()+1).padStart(2,0);
+		tim = years+"-"+months;
+		var userResult = $('#wag-yaer');
+		userResult.text(years);
+		var usedata_m = $('#wag-month');
+		usedata_m.text(months);
+		if(years!=null&&years!=undefined){
+			year=years;
+		}
+		if(months!=null&&months!=undefined){
+			month=months;
+		}
+		loadDate(year,month,typeSum);
+		function loadDate(year,month,typeSum){
+//			plus.nativeUI.showWaiting("查询中……");
+//			myAjax(httpAction[27],{userName:userName,year:year,month:month,types:typeSum},function (data) {
+//					if(data.status == "1"){
+//						plus.nativeUI.closeWaiting();
+						$('.wag-tite').css("display","block");
+						if(month !=""){
+							var list = alseX22;
+							if (list != null && typeof list != "null" && list.length>0) {
+//								for(var k=0;k<3;k++) {
+//									loadList(list);
+//								}
+								loqer(list);
+							} else{
+								mui.toast("暂无个人工资信息");
+								$('.wag-tite').css("display","none");
+							}
+						}else{
+//							var sumlist = data.data2;
+//							loaist(sumlist);
+							var felist = alseWX23//data.data;
+							loqer(felist);
+						}
+//					}else if(data.status == "2"){
+//						mui.toast("姓名重复");
+//					}else {
+////						plus.nativeUI.closeWaiting();
+//						$('.wag-tite').css("display","none");
+////						mui.toast(data.errorMessage);
+//						mui.alert("查询失败,当前月数据可能未录入");
+//					}
+//			});
+			
+		}
+		//将最上面3个需要单独显示的数据装载并从数组中清除
+		function loadList(list3){
+			for(var i=0;i<list3.length;i++) {
+				var data = list3[i];
+				var parmar = new Object();
+				var types = data.types;//工资类型
+				var money = data.money;//金额
+				if(types==""||types==null){
+					types = "无";
+				}else{
+					parmar.text= types;
+					parmar.value = i;
+				}
+				list[i] =parmar;
+				if(types == "应发工资"){
+					$('#my_yingfa').text(types);
+					$('#yingfa').text(money);
+					list3.splice(i,1);
+					break;
+				}else if(types == "扣发项"){
+					$('#my_koufa').text(types);
+					$('#koufa').text(money);
+					list3.splice(i,1);
+					break;
+				}else if(types == "实发工资"){
+					$('#my_wag').text(types);
+					$('#payroll').text(money);
+					list3.splice(i,1);
+					break;
+				}
+			}
+			listwq = list3;
+			
+		}
+		//将最上面3个需要单独显示的数据单独装载
+		function loaist(list3){
+			for(var i=0;i<list3.length;i++) {
+				var data = list3[i];
+				var parmar = new Object();
+				var types = data.types;//工资类型
+				var money = data.countMoney;//金额
+				if(types==""||types==null){
+					types = "无";
+				}else{
+					parmar.text= types;
+					parmar.value = i;
+				}
+				list[i] =parmar;
+				if(types == "应发工资"){
+					$('#my_yingfa').text(types);
+					$('#yingfa').text(money);
+				}else if(types == "扣发项"){
+					$('#my_koufa').text(types);
+					$('#koufa').text(money);
+				}else if(types == "实发工资"){
+					$('#my_wag').text(types);
+					$('#payroll').text(money);
+				}
+			}
+		}
+		//将最终的数组装载到列表中
+		function loqer(lqist){
+			var html= '';
+			var monte=0;
+			for(var k=0;k<lqist.length;k++) {
+				var data = lqist[k];
+				var types = data.types;//工资类型
+				var money = data.money;//金额
+				var mont = data.month;//金额
+				var html2='';
+				if(month == ''){
+					if(monte !=mont){
+						var html2= ' <li class="mui-table-view-cell mui-media" style="padding: 0px 3%;">'
+										+'<a href="javascript:;">'
+										+'<div class="mui-media-body font20 textColorMain wages">'+'<div  style="width: 100%;text-align: center;background-color:#FFFFFF;padding: 8px 0px;">'
+										+'<span style="margin-left: 5px;color: red;" >'+mont+'月</span>'+'</div>'
+//										+'<div align="center" style="overflow:hidden;background-color:#F3F3F4;padding: 8px 0px;" >'+'<span id="maternity" >'+money+'元</span>'+'</div>'
+//										+'</div>'
+										+'</a>'
+									+'</li>'
+						monte = mont;
+					}
+				}
+				if(k%2 == 0){
+					html1 = '<div class="mui-media-body font20 textColorMain wages">'+'<div  style="width:66.5%;float: left;background-color:#F2F7FE;padding: 8px 0px;">'
+						+'<span style="margin-left: 5px;" >'+types+'</span>'+'</div>'
+						+'<div align="center" style="overflow:hidden;background-color:#F3F3F4;padding: 8px 0px;" >'+'<span id="maternity" >'+money+'</span>'+'</div>'
+					+'</div>';
+				}else{
+					html1 = '<div class="mui-media-body font20 textColorMain wages">'+'<div  style="width:66.5%;float: left;background-color:#E4EFF9;padding: 8px 0px;">'
+						+'<span style="margin-left: 5px;" >'+types+'</span>'+'</div>'
+						+'<div align="center" style="overflow:hidden;background-color:#EEEEEF;padding: 8px 0px;" >'+'<span id="maternity">'+money+'</span>'+'</div>'
+					+'</div>';
+				}
+			 	html +=html2+ ' <li class="mui-table-view-cell mui-media" style="padding: 0px 3%;">'
+						+'<a href="javascript:;">'
+						+html1
+						+'</a>'
+					+'</li>'
+//						html = html+html2;
+						html2='';
+			}
+			$(".mui-table-view").append(html);
+		}
+		function delet(){
+		 	$(".mui-table-view").find('li').remove();
+		}
+	</script>
+
+</html>

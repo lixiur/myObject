@@ -1,0 +1,120 @@
+@CHARSET "utf-8";
+body{
+	background: #fff;
+}
+/*logo------*/
+.top_logo{
+	width: 100%;
+	text-align: center;
+	margin-top: 18%;
+}
+.top_logo img{
+	width: 20%;
+	height: auto;
+}
+
+
+.mui-input-group:before,.mui-input-group:after{
+	background: #fff;
+}
+
+#login-form>div{
+/*	margin-bottom: 25px;*/
+}
+#login-form>div label img{
+	width: 80%;
+}
+.veri-code{
+	line-height: 55px;
+}
+.veri-code input{
+	width: 52% !important;
+	height: 50px !important;
+	background-color: #f8f9fb;
+	/*border: 1px solid #c8c7cc !important;*/
+}
+.veri-code img{
+	margin-left: 5px;
+}
+.mui-input-group .mui-input-row:last-of-type:after{
+	height: 0;
+	/*background-color:#b4b4b4;*/
+}
+.mui-input-group:before, .mui-input-group:after{
+	height: 0;
+}
+.mui-btn-blue, .mui-btn-primary, input[type=submit]{
+	border: 0;
+	border-radius: 50px;
+	padding: 15px 0;
+	background: #1a81d1;
+}
+#account{
+	width: 90%;
+	padding-left: 10px;
+	/*border: 1px solid #c8c7cc !important;*/
+	/*background-color: #f8f9fb;*/
+	/*border-radius: 10px;*/
+	height: 50px;
+}
+#password{
+	width: 90%;
+	padding-left: 10px;
+	/*border: 1px solid #c8c7cc !important;*/
+	/*background-color: #f8f9fb;
+	border-radius: 10px;*/
+}
+#login-form .mui-input-row{
+	width: 90%;
+	height: 0%;
+	margin-left: 5%;
+	margin-top: 10px;
+	border-bottom: 1px solid #efecec;
+}
+#account:focus{
+	/*padding-left: 10px;
+	border: 1px solid #df0300!important;
+	background-color: #f8f9fb;
+	border-radius: 10px;
+	height: 50px;*/
+}
+#password:focus{
+	/*padding-left: 10px;
+	border: 1px solid #df0300 !important;
+	background-color: #f8f9fb;
+	border-radius: 10px;*/
+}
+.veri-code input:focus{
+	width: 45% !important;
+	height: 50px !important;
+	background-color: #f8f9fb;
+	border: 1px solid #df0300 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

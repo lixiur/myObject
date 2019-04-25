@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的兴趣</title>
+		<link rel="stylesheet" href="../../../../css/mui.min.css"/>
+		<link rel="stylesheet"href="../../../../css/base.css" />
+		<link rel="stylesheet" href="../../../../css/mescroll.min.css"/>
+		<link rel="stylesheet" href="../../../../css/list.css" />
+		<style>
+            .mui-scroll-wrapper{top: 12%}
+			.mui-table-view:before {background-color: #c8c7cc;top: 6px;}
+			.mui-table-view-cell:after, .mui-table-view:after {left: 0px;right: 0px;}
+        	.nav p{
+				font-size: 0.22rem;
+				display: inline-block;
+				width: 48%;
+				padding: 15px 0;
+			}
+			.nav .active{
+				border-bottom: 1px solid red;
+				color: red;
+			}
+			.mui-bar-nav~.mui-content {
+			    padding-top: 60px;
+			}
+		</style>
+		<script src="../../../../js/mui.min.js"></script>
+		<script src="../../../../js/public.js"></script>
+		<script type="text/javascript" src="../../../../js/mescroll-for-muiscroll.min.js"></script>
+        <script type="text/javascript" src="../../../../js/common.js"></script>
+		<script type="text/javascript" src="../../../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../../../js/httpUrl.js" ></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">我的兴趣</h1>
+		</header>
+		<div class="mui-content" style="z-index: 3;padding-top: 50px;">
+	    	<div class="nav" id="my_depute_table" style="z-index: 3;position: relative;background: #FFFFFF;">
+				<p class="active" i="1" align="center" >未参加</p> 
+				<p i="2" align="center">已参加</p>
+			</div> 
+			<div  id="offCanvasContentScroll" class=" mui-scroll-wrapper" style="background-color: white;margin-top: 25px;margin-left: 2px;width: 99%;">
+				<div class="mui-scroll"style="">
+						<!--数据列表-->
+					<ul class="mui-table-view" id="dataList"  style="padding-top: 16px">
+			     		
+				    </ul>
+				     <p id="msg" style="display: none;" >无数据</p>
+				</div>
+			</div>
+		</div>
+	<script>
+//      	var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+//			var user = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+//			var userid=user.id;//用户id
+			mui.ready(function() {	
+			//创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;内部已初始化mui的区域滚动
+			var mescroll = new MeScroll("offCanvasContentScroll", {
+				up: {
+					clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+					callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+					page:{size:10}
+				}
+			}
+//				 ,{bounce:false} //是否启用回弹效果,默认true; 如果设置false,可解决一个小小的问题: 下拉的时候不会感觉下拉区域被遮住一点点
+			);
+			window.addEventListener('refresh', function(e){//执行刷新
+			    mescroll.resetUpScroll();
+			});
+			/*初始化菜单*/
+			var pdType=1;//未办1; 已办2;;
+			$(".nav p").click(function(){
+				var i=$(this).attr("i");
+				if(pdType!=i) {
+					//更改列表条件
+					pdType=i;					
+					$(".nav .active").removeClass("active");
+					$(this).addClass("active");
+					//重置列表数据
+					mescroll.resetUpScroll();
+				}
+			})
+			/*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+			function getListData(page){
+				//联网加载数据
+				console.log("page.num=="+page.num+",page.size=="+page.size);
+				getListDataFromNet(pdType,page.num, page.size, function(data){
+					//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+//					mescroll.endByPage(data.length, totalSize/page.size);
+					mescroll.endSuccess(data.length);//传参:数据的总数; mescroll会自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+					//设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+					$.each(data, function(index,event) {
+						appendDom(index,event,pdType);
+					});
+				}, function(){
+					//联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+	                mescroll.endErr();
+				});
+			}
+			/*联网加载列表数据*/
+			function getListDataFromNet(p2dType,pageNum,pageSize,successCallback,errorCallback) {
+				if(p2dType == 1){
+					alist = inter1;
+				}else if(p2dType == 2){
+					alist = inter2;
+				}
+				//延时一秒,模拟联网
+//              setTimeout(function () {
+//              	$.ajax({
+//              		type: 'post',
+//		                url: httpAction[17],
+//		                data:{
+//		                	encryptionPara:encryptionPara,
+//		                	flowStatus:p2dType,
+//		                	forwardId:userid,
+//							page:pageNum,
+//							limit:pageSize
+//				　　　　	},
+//		                dataType: 'json',
+//		                success: function(res){
+//		                	//模拟分页数据
+//		                	if(res.status == 1){
+								var data=alist;
+//		                		var data = res.data;
+			            			successCallback(data);
+//		                	}else{
+//		                		mui.toast(res.msg);
+//		                	}
+//		                },
+//		                error: errorCallback
+//		            });
+//              },1000)
+			}
+			//禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
+			document.ondragstart=function() {return false;}
+});
+	function appendDom (index,data,p2dType) {
+		var html = "";
+		var im = data;
+		var qtype =im.name;
+		var conid = im.id;
+		var address = im.address;//创建时间
+		var cou = ""; 
+		var thtml = "";
+		if(p2dType == 1){
+			cound = 121;
+		}else if(p2dType == 2){
+			cound = 122;
+		}
+			styr = '<li class="mui-table-view-cell active_item" id="'+im.id+'" onclick=jumpValue('+cound+',"'+conid+'")>';
+        	cou = '查看';
+			thtml = '<div class="fl" style="width: 100%;" >';
+			html +=styr+thtml+
+			'<div class="fl list_blk"><p class="labe_ro list_type" >'+qtype+'</p>'+
+			'<img class="room_url" src="../../../../img/gray_star.png" /><time class="font20 labe_ro time_ellipsis">'+address+'</time></div></div>'+
+			'<div class="fr div_b " style="margin-top: 10px;">'+
+			'<button type="button" class="mui-btn font25 bt_gw div_b btn-start" style="top:12px">'+cou+'</button></div></div>'+
+			'</li>';
+			$("#dataList").append(html);
+	}
+  </script>
+	</body>
+</html>

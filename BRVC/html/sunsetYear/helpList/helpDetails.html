@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>帮扶申请查看</title>
+		<link rel="stylesheet" href="../../../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css"/>
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<style>
+			.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			
+			.mui-control-content {
+				height: auto;
+			}
+			
+			.mui-segmented-control .mui-control-item.mui-active {
+				border-bottom: 1px solid red;
+				color: red;
+				background-color: #FFFFFF;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 38px;
+				display: table-cell;
+				overflow: hidden;
+				width: 1%;
+				-webkit-transition: background-color .1s linear;
+				transition: background-color .1s linear;
+				text-align: center;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #8F8F94;
+				border-color: #007aff;
+				/* border-left: 1px solid #007aff; */
+			}
+			
+			.div-content2 {
+				line-height: 70px;
+			}
+			.div-content3 {
+			    padding: 10px 10px;
+			}
+			.pross_img{
+				height:auto;
+				line-height:60px;
+				color: #E6E6E6;
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+			.pross_img img{
+				vertical-align: middle;
+				width: 50px;
+				margin: 0 20px;
+				height: 62px;
+			}
+			.labe_sqh {
+			    margin-left: 5px;
+			    color: #fd9528;
+			}
+			.div-schedule{
+				text-align: center;
+				border: 0;
+			}
+			.div-schedule3{
+				margin-top: 10px;
+				border: 0;
+				padding-left: 0;
+			}
+		</style>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../../../js/privile.js" ></script>
+		<script type="text/javascript" src="../../../js/tools.js" ></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js" ></script>
+	</head>
+	<body>
+    	<header class="mui-bar mui-bar-nav headr">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title font25">帮扶申请查看</h1>
+		</header>
+		<div class="mui-content" style="padding-top: 65px;">
+			<div id="segmentedControl" class="mui-segmented-control" style="border: 0px;background-color: #FFFFFF;">
+				<a class="mui-control-item mui-active" href="#item1" style="border-left: 0px;">申请详情</a>
+				<a class="mui-control-item" href="#item2" style="border-left: 0px;">处理流程</a>
+			</div>
+			<div id="item1" class="mui-control-content mui-active" style="padding-top: 10px;background: #FFFFFF;">
+				<div class="mes-block">
+		    		<div class="div-content2">
+				   		<label class="label_blk">姓名</label> 	
+				   		<label class="fr" id="proposerName"></label> 	
+				    </div>
+				    <div class="div-content2">
+				   		<label class="label_blk" >职务</label> 	
+				   		<label class="fr" id="duty"></label> 	
+				    </div>
+				    <!--<div class="div-content2">
+				   		<label>单位</label> 	
+				   		<label class="fr" id="subhead"></label> 	
+				    </div>-->
+				    <div class="div-content2">
+				   		<label class="label_blk" >所在地点</label> 	
+				   		<label class="fr" id="site"></label> 	
+				    </div>
+				    <div class="div-content2">
+				   		<label class="label_blk" >联系电话</label> 	
+				   		<label class="fr" id="phone"></label> 	
+				    </div>
+				    <div class="div-content2" >
+				   		<label class="label_blk" >备注</label> 	
+				   		<label class="fr" id="remark">
+				   		</label>
+				    </div>
+				    <div class="div-content2">
+				   		<label class="label_blk" >当前进度</label> 	
+				   		<label class="fr" id="qstatus"></label> 	
+				    </div>
+			    </div> 
+			</div>
+			<div id="item2" class="mui-control-content">
+				<div class="div-content3" id="schedule" >
+				</div>
+			</div>
+		</div>
+    <script>mui.init({
+	beforeback: function() {　　　　 //获得父页面的webview
+		var list = plus.webview.currentWebview().opener();　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+		mui.fire(list, 'refresh');
+		//返回true,继续页面关闭逻辑
+		return true;
+	}
+});
+phx = 0; //是否显示审批环节0不显示、1显示审批笺2、显示签批单
+var pdType = 0; //选项卡 最近联系人0;常用联系人1; 当前部门2; 组织结构3;必须放在当前页
+//  	var userInfoJson = getUtils().getDataStorageJsonNode('local',"userInfo","userIn");
+//		var user = getUtils().jsonStrTOjonsObj(userInfoJson).data;
+//		var applyUserOrgId = user.orgId;
+//		var applyUserOrgName=user.applyUserOrgName;
+//		var userId=user.id;//用户id
+//		var name=user.username;//用户名
+//		var detaId = obtain();//任务
+//		var datep = detaId.split(",");
+//		myAjax(httpAction[36],{id:datep[1]},function (res) {
+//			if (res.status == 1) {
+var list = data;
+for(var keyVal in list) {
+	if(keyVal == 'auditStatus') {
+		var qstatus = list[keyVal]; //当前审核状态
+		var cou = "";
+		if(qstatus == 0) {
+			cou = '待审';
+			$("#ctys").css('display', 'block');
+			//							$("#ctys2").css('display', 'block');
+		} else if(qstatus == 1) {
+			cou = '拒绝';
+			$("#ctys").css('display', 'none');
+			//							$("#ctys2").css('display', 'none');
+		} else if(qstatus == 2) {
+			cou = '完成';
+			$("#ctys").css('display', 'none');
+			//							$("#ctys2").css('display', 'none');
+		} else if(qstatus == 3) {
+			cou = '转发';
+			$("#ctys").css('display', 'none');
+			//							$("#ctys2").css('display', 'none');
+		}
+		$("#qstatus").text(cou);
+	} else if(keyVal == 'flows') {
+		var fistw = list[keyVal];
+		sched(fistw);
+	} else if(keyVal == 'phone') {
+		var phone = list[keyVal];
+		if(phone != null) {
+			$("#phone").text(phone);
+		} else {
+			$("#phone").text('');
+		}
+	} else {
+		$("#" + keyVal).text(list[keyVal]);
+	}
+}
+//			} else{
+//				mui.toast("服务器错误");
+//			}
+//		});</script>
+	</body>
+</html>

@@ -1,0 +1,124 @@
+@CHARSET "utf-8";
+/*浮动--------------------*/
+html{margin: 0;padding: 0;}
+html{font-size:86px;margin: 0;padding: 0;}
+.fl{float: left !important;}      /* 左浮动*/
+.fr{float: right !important;}	   /* 右浮动*/
+.clearfix:before,.clearfix:after{content:"."; display:block; visibility:hidden; height:0; line-height:0; font-size:0;}
+.clearfix:after{clear:both;}
+.clearfix{zoom:1;}     /*清除浮动*/
+.clear{clear:both; height:0;overflow:hidden;}
+.headr{
+	height: 64px; padding-top: 18px;
+	/*background: url(../images/headerbackground.png);*/
+}
+html,body{ 
+	overflow-x: inherit;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0px; 
+/*	padding-top: 18px; */
+}
+p{
+	font-size: 0.20rem;
+}
+
+
+/*字体---------------------*/
+.font42{
+	font-size: 0.85rem;      /*页面标题36px*/
+}
+.font41{
+	font-size: 0.75rem;      /*页面标题36px*/
+}
+.font40{
+	font-size: 0.65rem;      /*页面标题36px*/
+}
+.font38{
+	font-size: 0.52rem;      /*页面标题36px*/
+}
+.font36{
+	font-size: 0.48rem;      /*页面标题36px*/
+}
+.font34{
+	font-size: 0.46rem;      /*页面标题36px*/
+}
+.font32{
+	font-size: 0.44rem;      /*页面标题36px*/
+}
+.font30{
+	font-size: 0.4rem;       /*一级标题30px*/
+}
+.font28{
+	font-size: 0.37rem;      /*二级标题28px*/
+}
+.font24{
+	font-size: 0.33rem;      /*次要文案24px*/
+}
+.font22{
+	font-size: 0.28rem;		 /*次要文案22px*/
+}
+.font21 {
+	font-size: 0.22rem;
+	/*次要文案22px*/
+}
+
+.font20{
+	font-size: 0.20rem;		 /*次要文案22px*/
+}
+.font14 {
+    font-size: 0.18rem;
+}
+
+/*颜色---------------*/
+.bgMainColor{                         /* 主色调蓝色*/
+	background: #df0300;
+}
+.bgTopColor{	                      /* 顶部色块*/
+	background: #923a38;
+}
+.bgPlateColor{                        /* 板块背景色*/
+	background: #eeeeee;
+}
+.textColorGray{	                      /* 次要文案*/
+	color: #bbbbbb;
+}
+.textColorOra{                        /* 次要文案*/
+	color: #ff901b;
+}
+.textColorBlue{						  /* 次要文案*/
+	color: #33a7fa;
+}
+.textColorMain{                       /* 主字体*/
+	color: #3d3d3d;
+}
+.blk_font{
+	color: #000000!important;
+}
+.gray_font{
+	color: #8f8f94;
+}
+@font-face{
+font-family: 'FZBaoSong_Z04S';
+src: url('../../fonts/FZBaoSong_Z04S.ttf') format('truetype');
+font-weight: normal; 
+font-style: normal;			
+}
+@font-face{
+font-family: 'FZFangSong_Z02S';
+src: url('../../fonts/FZFangSong_Z02S.TTF') format('truetype');
+font-weight: normal; 
+font-style: normal;			
+}
+
+
+
+
+

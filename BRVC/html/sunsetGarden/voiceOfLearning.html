@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/list.css"/>
+		<style>
+			*{
+				font-family: "微软雅黑";
+			}
+			body{
+				background-color: white;
+			}
+			.content{
+				margin-top:80px;
+			}
+			.h-head {
+				width: 95%;
+			}
+		
+			.mui-table-view-cell {
+				height: 6.25rem;
+			}
+			
+			.content-display{
+				height: auto;
+				margin-top:0;
+			}
+			.mui-input-row{
+				margin-top:10px;
+			}
+			.date{
+				margin-top:10px;
+			}
+			.content-display li{
+				border-top: 1px solid #DDDDDD;
+				list-style: none;
+			}
+			.experience-content{
+				margin-left:0.3125rem ;
+			}
+		</style>
+
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script src="../../js/jump.js"></script>
+		<script src="../../js/httpUrl.js"></script>
+		<script src="../../js/privile.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function () {
+				
+				getAllExperience();
+				
+				publishLearningExperience();
+				
+			})
+			
+			//获取所有学习心得
+			function getAllExperience(){
+				var ae = test08;
+				
+				loadAllExperience(ae);
+			}
+			
+			//加载学习心得到页面
+			function loadAllExperience(datas){
+				var ul = mui(".content-display ul")[0];
+				for(var i=0;i<datas.length;i++){
+					var li = document.createElement("li");
+					
+					li.innerHTML = "<label>"+datas[i].content+"</label>"+
+								"<p class='date'>"+datas[i].date+"</p>";
+					ul.appendChild(li);
+				}
+			}
+			
+			//发表学习心得
+			function publishLearningExperience(){
+				var publish = mui(".publish")[0];
+				publish.addEventListener("tap",function(){
+					var experienceContent = mui(".experience-content")[0].value;
+					if(experienceContent == ""){
+						mui.toast('还没有任何内容哦');
+					}else{
+						//追加学习心得
+						var ul = mui(".content-display ul")[0];
+						var date = getNowFormatDate();
+						var li = document.createElement("li");
+						
+						li.innerHTML = "<label>"+experienceContent+"</label>"+
+									"<p class='date'>"+date+"</p>";
+						ul.appendChild(li);
+						
+						mui(".experience-content")[0].value = null;
+						
+						mui.toast('感谢您分享的学习心得')
+					}
+				})
+			}
+			
+			//获取当前时间 格式YYYY-MM-DD hh-mm-ss
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+				var strDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+					" " + date.getHours() + seperator2 + date.getMinutes() +
+					seperator2 + date.getSeconds();
+				return currentdate;
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">学习之声</h1>
+			<a class="mui-icon mui-icon-plusempty mui-pull-right" onclick="jump(142)" style="color: #ffffff;font-size: 0.3rem;"></a>
+		</header>
+
+		<div class="content">
+			<center>
+				<img class="h-head" src="../../img/background/2436_1125png.png" />
+			</center>
+			<!--<div class="mui-input-row">
+				<input class="experience-content" type="text" placeholder="谈谈您的学习感受" style="width: 80%;" />
+				<input class="publish" type="button" value="发表" style="width: 15%;height: 2.5rem;" />
+			</div>-->
+
+			<div class="content-display">
+				<ul style="padding: 0 15px;">
+					<!-- <li>
+						<label>学习一时，受用一世。</label>
+						<p class="date">2019-3-28 17:39:25</p>
+
+					</li>
+					<li>
+						<label>
+							如果是铁，就要经历跳起炽热火海的痛苦，才能锻造出最具锋芒的剑；是石，就要经历海浪打的痛苦，才能将自己割得棱角分明。
+						</label>
+						<p class="date">2019-3-28 17:39:25</p>
+					</li>
+					<li>
+						<label>
+							要成为一名好干部,必须勤于学,敏于思。认真学习马克思列宁主义,特别是具有中国特
+						</label>
+						<p class="date">2019-3-28 17:39:25</p>
+					<li>
+						<label>
+							“信念坚定”是好干部立身之本，领导干部在任何条件下，都要把改造主观世界、加强党性修养、加强品格陶冶作为必修课。
+						</label>
+						<p class="date">2019-3-28 17:39:25</p>
+					</li>
+					<li>
+						<label class="t-content">
+							全心全意为人民服务，是职责所系，更是价值所在。能否牢记宗旨、心系群众、服务人民，是衡量领导干部是否合格的试金石，也是人民群众对领导干部进行取舍的关键点。
+						</label>
+						<p class="date">2019-3-28 17:39:25</p>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+
+	</body>
+
+</html>

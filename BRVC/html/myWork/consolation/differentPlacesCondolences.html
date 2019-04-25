@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>易地慰问</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/list.css"/>
+		<style>
+		.mui-bar-nav~.mui-content{
+				padding-top: 60px;
+			}
+		</style>
+
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/tools.js"></script>
+		<script src="../../../js/jump.js"></script>
+		<script src="../../../js/httpUrl.js"></script>
+		<script src="../../../js/privile.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function(){
+				
+				getUsersList();
+				
+			})
+			
+			//根据部门ID动态获取人员名单
+			function getUsersList(){
+				
+				var uul = test03;
+				
+				loadUsersList(uul);
+			}
+			
+			//加载人员信息
+			function loadUsersList(datas){
+				var ul = mui(".mui-content ul")[0];
+				
+				for(var i = 0; i < datas.length;i++){
+					var li = document.createElement("li");
+					li.innerHTML = '<a href="javascript:;" onclick="jumpValue(124,'+datas[i].userId+')">'+
+									'<img class="mui-media-object mui-pull-left" src="'+datas[i].imgpath+'">'+
+									'<div class="mui-media-body">'+
+										'<label>'+datas[i].username+'</label>'+
+										'<p class="mui-ellipsis">'+datas[i].phonenum+'</p>'+
+									'</div>'+
+								'</a>'
+					li.setAttribute("class","mui-table-view-cell mui-media");
+					ul.appendChild(li);
+				}
+			}
+		</script>
+	</head>
+
+	<body style="background: #efeff4;">
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">易地慰问</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view person_list">
+				
+			</ul>
+		</div>
+	</body>
+
+</html>

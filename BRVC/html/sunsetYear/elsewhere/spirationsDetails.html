@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/list.css" rel="stylesheet" />
+		<link href="../../../css/iconfont1.css" rel="stylesheet" />
+		<style>
+			.lis-c{
+				margin-top: 10px;
+			}
+			.lis-e{
+				padding-top: 15px;
+			}
+			.lis-e span{
+				font-size: 14px;
+				width:33%;
+				float: left;
+				text-align: center;
+				color: #AAAAAA;
+			}
+			.content{
+				background-color: white;
+				margin-top: 50px;
+			}
+			.col1{
+				color: #AAAAAA;
+			}
+			.col2{
+				color: red;
+			}
+			.comDatas{
+				margin-top: 20px;
+			}
+			.aspDatas li{
+				padding: 11px 15px;
+				background: #FFFFFF;
+				margin-bottom: 10px;
+			}
+		</style>
+
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/tools.js"></script>
+		<script src="../../../js/jump.js"></script>
+		<script src="../../../js/httpUrl.js"></script>
+		<script src="../../../js/privile.js"></script>
+		<script type="text/javascript">
+			var test101 = test101;
+			var test102 = test102;
+			var datas = "";//心声内容
+			var datase = [];//评论列表数据
+			mui.init();
+			mui.ready(function () {
+				
+				getAspid();
+				
+				//addBrowseTime();
+				
+			})
+			
+			//获取数据
+			function getAspid(){
+				var aspId = obtain();
+				
+				for(var i = 0;i < test101.length;i++){
+					if(test101[i].aspId == aspId){
+						datas = test101[i];
+					}
+				}
+				for(var i = 0;i < test102.length;i++){
+					if(test102[i].aspId == aspId){
+						datase.push(test102[i]);
+						
+					}
+				}
+// 				console.log(datas);
+				loadDatas();
+			}
+			
+			//加载数据
+			function loadDatas(){
+				var pointss = "";
+				var ul = mui(".aspDatas")[0];
+				var ul1 = mui(".aspDatas")[0];
+				ul.innerHTML = null;
+				ul1.innerHTML = null;
+				var li = document.createElement("li");
+				
+				if(datas.status == 0){
+					pointss = '<span class="mui-icon iconfont icon-chakan  col1" onclick="points('+datas.status+')">点赞'+datas.points+'</span>';
+				}else{
+					pointss = '<span class="mui-icon iconfont icon-chakan  col2" onclick="points('+datas.status+')">点赞'+datas.points+'</span>';
+				}
+				
+				li.innerHTML =     '<div class="lis-h">'+
+										'<img class="mui-media-object mui-pull-left" style="width: 40px;height: 40px;border-radius: 20px;" src="'+datas.imgPath+'">'+
+										'<div class="mui-media-body">'+
+										'<label style="margin-left: 5px;">'+datas.userName+'</label>'+
+										'<p class="mui-ellipsis" style="margin-left: 5px;font-size: 15px;">'+datas.info+'</p>'+
+								   '</div>'+
+								   '<div class="lis-c">'+
+										'<p>'+datas.content+'</p>'+
+								   '</div>'+
+								   '<div class="lis-e">'+
+										'<span class="mui-icon iconfont icon-chakan">浏览'+datas.browse+'</span>'+
+										pointss+
+										'<span class="mui-icon iconfont icon-chakan">评论'+datase.length+'</span>'+
+								   '</div>'
+				li.setAttribute("class","mui-table-view-cell mui-media");				   
+				ul.appendChild(li);
+				
+				for(var i = 0;i < datase.length ; i++){
+					if(i%2 == 0){
+						
+					}
+					var lis = document.createElement("li");
+					lis.innerHTML = '<label>'+datase[i].userName+
+										'<p>'+
+											datase[i].content+
+										'</p>'+
+									'</label>'
+					ul1.appendChild(lis);
+				}
+			}
+			
+			//增加浏览次数
+			function addBrowseTime(){
+				
+			}
+			
+			//点赞
+			function points(status){
+				if(status == 0){
+					mui(".icon-chakan")[0].setAttribute("class","mui-icon iconfont icon-chakan points col2");
+					mui(".ponts")
+					datas.status = 1;
+					datas.points += 1;
+				}else{
+					mui(".icon-chakan")[0].setAttribute("class","mui-icon iconfont icon-chakan points col1");
+					datas.status = 0;
+					datas.points -= 1;
+				}
+				loadDatas();
+			}
+		</script>
+	</head>
+
+	<body style="background: #efeff4;">
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">心声详情</h1>
+		</header>
+		
+		<div class="mui-content">
+			<!-- 数据列表 -->
+			<ul class="mui-table-view aspDatas">
+				
+			</ul>
+			<!-- 评论数据列表 -->
+			<ul class="comDatas">
+				
+			</ul>
+			
+		</div>
+	</body>
+
+</html>

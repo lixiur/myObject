@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人信息</title>
+		<link rel="stylesheet" href="../../../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/list.css" />
+		<style>
+				.div-content2{
+					line-height: 50px;
+				}
+			</style>
+		<script type="text/javascript" src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/privile.js"></script>
+		<script type="text/javascript" src="../../../js/tools.js"></script>
+		<script type="text/javascript" src="../../../js/jump.js"></script>
+		<script type="text/javascript" src="../../../js/httpUrl.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+			
+				getPersonalInformation();
+			
+			})
+			
+			//获取个人信息
+			function getPersonalInformation() {
+				var datass = test03[0];
+				// console.log(datass);
+				loadPersonalInformation(datass);
+			}
+			
+			//加载个人信息
+			function loadPersonalInformation(datas) {
+				// console.log(datas)
+				var imgpath = mui(".img_b")[0];
+				var name = mui("#name")[0];
+				var ophone = mui("#ophone")[0];
+				var email = mui("#email")[0];
+				var opqq = mui("#opqq")[0];
+				var weixin = mui("#weixin")[0];
+				var address = mui("#address")[0];
+			
+				// console.log(imgpath);
+				imgpath.setAttribute("src", datas.imgpath);
+				name.innerHTML = datas.username;
+				ophone.innerHTML = datas.phonenum;
+				email.innerHTML = datas.email;
+				opqq.innerHTML = datas.qq;
+				weixin.innerHTML = datas.vx;
+				address.innerHTML = datas.address;
+			}
+		</script>
+		
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headr">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title font25">个人信息</h1>
+		</header>
+		<div class="mui-content" style="background: #fff;padding-top: 65px;">
+			<div class="mes-block">
+			<div id="order_con9" class="met_fk12" align="center" style="margin-top: 20px;" onclick="qwstart()">
+				<img class="img_b" src="" style="width: 45px;height: 45px;" />
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">姓名:</label>
+				<label class="fr" id="name"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电话:</label>
+				<label class="fr" id="ophone"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">电子邮箱:</label>
+				<label class="fr" id="email"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">QQ:</label>
+				<label class="fr" id="opqq"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">微信:</label>
+				<label class="fr" id="weixin"></label>
+			</div>
+			<div class="div-content2">
+				<label class="labe_co">办公地址:</label>
+				<label class="fr" id="address"></label>
+			</div>
+		</div>
+		</div>
+		</div>
+	</body>
+</html>

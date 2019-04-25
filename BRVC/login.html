@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登陆</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/base.css" rel="stylesheet" />
+		<link href="css/login.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-input-group .mui-input-row:after{
+				height: 0px;
+			}
+			html,body{
+				padding: 0px;
+				height: 100%;
+			}
+			.mui-content{
+			background-color: white;
+			background: url(img/s_be.png);
+			background-position: inherit;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-repeat:no-repeat;
+			background-size:100% 45%;
+			overflow-x: hidden;
+			}
+			.login_info{
+				background-color: white;
+				/*background-color: #f8f9fb;*/
+				position: absolute;
+			    width: 80%;
+			     height: 50%; 
+			    top: 36%;
+			    left: 10%;
+			    text-align: center;
+			    border: 1px solid #f0f3f7;
+			    box-shadow: 0px 1px 10px #d7dade;
+			    border-radius: 10px;
+			}		
+			html,body{overflow-x: hidden;}			
+		</style>
+		<script src="js/mui.min.js"></script>
+		<script src="js/public.js"></script>
+		<script  src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/httpUrl.js"></script>
+		<script src="js/jump.js"></script>
+		<script src="js/privile.js" ></script>
+	</head>
+	<body onmousewheel="return false;">
+		<div class="mui-content">
+			<div class="top_logo">
+				<img src="img/lgicon.png" />
+				<p style="font-size: 0.40rem;float: right;margin-top: 5%;margin-right: 10%;width: 80%;color: #FFFFFF;">天府晚霞</p>
+			</div>
+			<div class="login_info" style="">
+				<form id='login-form' class="mui-input-group" style="background: none;width: 90%;margin-left: 5%;">
+					<div class="" align="center" style="margin-top: 20px;margin-bottom: 20px;">
+						<span style="font-size: 24px;color: #e10202;font-weight: 800;text-shadow: 3px 4px 3px #fd8d93;">登录</span>
+					</div>
+					<div class="mui-input-row">
+						<input value="" id="account" type="number" class="mui-input-clear mui-input" onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入用户名">
+						<span><img style="width: 17px;margin-top: 12px;float: left;" src="img/MailIcon.png"/></span>
+					</div>
+					<div class="mui-input-row">
+						<input value="123" id="password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码" style="height: 50px;">
+						<img style="width: 17px;margin-top: 12px;float: left;" src="img/PasswordIcon.png"/>
+					</div>
+				</form>
+				<div class="link-area" style="text-align: right;margin-right: 20px;">
+						<a href="" class="font32" style="font-size: 12px;color: red;">忘记密码？</a>
+				</div>
+				<div class="mui-content-padded" style="border: 0px;text-align: center;margin-top: 30px;"> 
+					<button id='login' class="mui-btn" style="width: 85%;height: 42px;border-radius: 35px;font-size: 20px; color: #ffffff;background-color: red;border: 1px solid red !important;" onclick="lggin()" >登录</button>
+				</div>
+			</div>			
+		</div>
+		<script>
+			mui.plusReady(function() {
+				//*************防止屏幕底部内容被输入法的软键盘顶起start**********************
+				//获取原始窗口的高度
+				var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				window.onresize = function() {
+					//软键盘弹起与隐藏  都会引起窗口的高度发生变化
+					var resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+					if(resizeHeight * 1 < originalHeight * 1) { //resizeHeight<originalHeight证明窗口被挤压了
+						plus.webview.currentWebview().setStyle({
+							height: originalHeight
+						});
+					}
+				}
+			})
+			function lggin(){
+				userName = document.getElementById("account").value;
+				password = document.getElementById("password").value;
+				if(!userName || userName == "") {
+					mui.toast("手机号不能为空！");
+					return;
+				}
+				if(!password || password == "") {
+					mui.toast("密码不能为空！");
+					return;
+				}
+				jump(0);
+//				if(isNotNull(info)){
+//					doLogin();
+//				}else{
+//					mui.toast('没有取到用于推送的标识,请等待或再次点击登录键');
+//					squeinfog();
+//				}
+			}
+			//执行登录
+			function doLogin() {
+				password = md5(password);
+				myAjax(httpAction[37],{phone:userName,password:password,clientid:info},function (res) {
+					if(res.status == "1") { //登录成功
+		//				plus.nativeUI.closeWaiting();
+						var hexgh = $(window).height();
+						var result = res.data;
+						var Uesr = JSON.stringify(result);
+						var uphone = res.data.phone;
+						var datw = twime();
+							datall.setItem("userIn", Uesr);
+							datall.setItem("hexgh", hexgh);
+							datall.setItem("uphone", uphone);
+							datall.setItem("headPortrait", result.headPortrait);
+							datall.setItem("showTime",datw);
+							Utils.addDataStorageJsonNode("local",datall,"TYuserInfo");
+							jump(0);
+					} else { //登录失败
+		//					显示错误信息
+						mui.toast(res.msg);
+						
+					}
+				});
+			}
+			function upVersion( urls){
+				var btnarr=["确定","取消"];  
+			    mui.confirm("你有新的版本请更新","版本更新",btnarr,function(e){  
+			        if(e.index == 0){  
+			        	console.log(urls);
+					    downApp (urls)
+			        }else{
+		//	        	mui.currentWebview.close();
+			        }
+			    });
+			}
+			mui.back = function(event){
+			       plus.runtime.quit();
+			   }	
+		</script>
+	</body>
+</html>
